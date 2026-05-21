@@ -1,0 +1,46 @@
+[
+  {
+    "id": "single",
+    "name": "Konsultacja pojedyncza",
+    "price": "250 zł",
+    "popular": false,
+    "features": [
+      "60 min spotkanie online",
+      "Analiza nawyków żywieniowych",
+      "Indywidualny plan działania",
+      "Materiały edukacyjne po spotkaniu"
+    ],
+    "ctaText": "Umów się",
+    "ctaLink": "#kontakt"
+  },
+  {
+    "id": "program-3m",
+    "name": "Program 3-miesięczny",
+    "price": "1200 zł",
+    "popular": true,
+    "features": [
+      "6 spotkań online (co 2 tygodnie)",
+      "Wsparcie mailowe między sesjami",
+      "Materiały edukacyjne i ćwiczenia",
+      "Praca z psychodietetyką",
+      "Monitoring postępów"
+    ],
+    "ctaText": "Umów się",
+    "ctaLink": "#kontakt"
+  },
+  {
+    "id": "individual",
+    "name": "Program indywidualny",
+    "price": "Ustalana indywidualnie",
+    "popular": false,
+    "features": [
+      "Dostosowany do Twoich potrzeb",
+      "Elastyczna liczba spotkań",
+      "Wsparcie długoterminowe",
+      "Kompleksowe podejście",
+      "Priorytetowy kontakt"
+    ],
+    "ctaText": "Zapytaj o szczegóły",
+    "ctaLink": "#kontakt"
+  }
+]

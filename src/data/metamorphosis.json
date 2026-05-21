@@ -1,0 +1,29 @@
+[
+  {
+    "id": "anna",
+    "name": "Anna",
+    "age": 34,
+    "quote": "Przestałam jeść w ukryciu. Jedzenie to już nie wróg.",
+    "result": "Waga: -8 kg | Odzyskałam kontrolę bez liczenia kalorii",
+    "beforeImage": "/images/metamorphosis/anna-before.jpg",
+    "afterImage": "/images/metamorphosis/anna-after.jpg"
+  },
+  {
+    "id": "karolina",
+    "name": "Karolina",
+    "age": 28,
+    "quote": "Po raz pierwszy w życiu jem bez poczucia winy.",
+    "result": "Waga: -15 kg | Wyszłam z cyklu jo-jo po 10 latach",
+    "beforeImage": "/images/metamorphosis/karolina-before.jpg",
+    "afterImage": "/images/metamorphosis/karolina-after.jpg"
+  },
+  {
+    "id": "magda",
+    "name": "Magda",
+    "age": 41,
+    "quote": "Moje relacje z rodziną poprawiły się, bo przestałam być obsesyjnie skupiona na diecie.",
+    "result": "Waga: -10 kg | Zyskałam pewność siebie i czas dla bliskich",
+    "beforeImage": "/images/metamorphosis/magda-before.jpg",
+    "afterImage": "/images/metamorphosis/magda-after.jpg"
+  }
+]

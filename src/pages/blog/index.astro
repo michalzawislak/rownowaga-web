@@ -1,0 +1,92 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Card from '../../components/ui/Card.astro';
+import Button from '../../components/ui/Button.astro';
+
+const allPosts = await getCollection('blog');
+const sortedPosts = allPosts.sort((a, b) => 
+  b.data.publishDate.getTime() - a.data.publishDate.getTime()
+);
+---
+
+<Layout 
+  title="Blog | Psychodietetyka i intuicyjne jedzenie"
+  description="Artykuły o psychodietetyce, intuicyjnym jedzeniu i zdrowiu bez diet. Praktyczne porady i najnowsze badania."
+>
+  <section class="py-16 lg:py-24 bg-gradient-to-br from-[var(--color-background)] to-[var(--color-background-alt)]">
+    <div class="container mx-auto px-4 md:px-8 lg:px-16">
+      <div class="text-center mb-12 lg:mb-16">
+        <h1 class="text-5xl lg:text-6xl font-bold text-[var(--color-text-dark)] mb-4">
+          Blog o psychodietetyce
+        </h1>
+        <p class="text-lg lg:text-xl text-[var(--color-text-light)] max-w-2xl mx-auto">
+          Praktyczne porady, inspiracje i najnowsze badania o zdrowiu i intuicyjnym jedzeniu
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-[var(--color-background)]">
+    <div class="container mx-auto px-4 md:px-8 lg:px-16">
+      {sortedPosts.length === 0 ? (
+        <div class="text-center py-16">
+          <p class="text-xl text-[var(--color-text-light)]">
+            Wkrótce pojawią się tutaj artykuły. Zajrzyj ponownie!
+          </p>
+        </div>
+      ) : (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {sortedPosts.map((post) => (
+            <Card class="overflow-hidden flex flex-col">
+              {post.data.image && (
+                <div class="h-48 overflow-hidden">
+                  <img
+                    src={post.data.image}
+                    alt={post.data.imageAlt || post.data.title}
+                    class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                  />
+                </div>
+              )}
+              
+              <div class="p-6 flex flex-col flex-grow">
+                <div class="mb-4">
+                  <span class="inline-block bg-[var(--color-primary)] text-[var(--color-text-dark)] px-3 py-1 rounded-full text-sm font-medium">
+                    {post.data.category}
+                  </span>
+                </div>
+
+                <h2 class="text-2xl font-bold text-[var(--color-text-dark)] mb-3 line-clamp-2">
+                  {post.data.title}
+                </h2>
+
+                <p class="text-[var(--color-text-light)] mb-4 line-clamp-3 flex-grow">
+                  {post.data.description}
+                </p>
+
+                <div class="flex items-center justify-between pt-4 border-t border-gray-200">
+                  <span class="text-sm text-[var(--color-text-muted)]">
+                    {post.data.publishDate.toLocaleDateString('pl-PL', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}
+                  </span>
+                  <Button href={`/blog/${post.id}`} variant="secondary" size="sm">
+                    Czytaj →
+                  </Button>
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
+      )}
+
+      <div class="mt-16 text-center">
+        <Button href="/#kontakt" variant="outline" size="lg">
+          Umów konsultację
+        </Button>
+      </div>
+    </div>
+  </section>
+</Layout>

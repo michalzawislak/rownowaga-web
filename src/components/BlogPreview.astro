@@ -1,0 +1,72 @@
+---
+import { getCollection } from 'astro:content';
+import Button from './ui/Button.astro';
+import Card from './ui/Card.astro';
+
+const blogPosts = await getCollection('blog');
+const featuredPost = blogPosts.find(post => post.data.featured);
+---
+
+{featuredPost && (
+  <section id="blog-preview" class="py-16 lg:py-24 bg-[var(--color-background)]">
+    <div class="container mx-auto px-4 md:px-8 lg:px-16">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl lg:text-5xl font-bold text-[var(--color-text-dark)] mb-4">
+          Wiedza i inspiracje
+        </h2>
+        <p class="text-lg text-[var(--color-text-light)] max-w-2xl mx-auto">
+          Praktyczne porady i artykuły o psychodietetyce
+        </p>
+      </div>
+
+      <Card class="max-w-4xl mx-auto overflow-hidden">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+          {featuredPost.data.image && (
+            <div class="h-64 md:h-auto">
+              <img
+                src={featuredPost.data.image}
+                alt={featuredPost.data.imageAlt || featuredPost.data.title}
+                class="w-full h-full object-cover"
+              />
+            </div>
+          )}
+
+          <div class="p-8 flex flex-col justify-center">
+            <div class="mb-4">
+              <span class="inline-block bg-[var(--color-primary)] text-[var(--color-text-dark)] px-3 py-1 rounded-full text-sm font-medium">
+                {featuredPost.data.category}
+              </span>
+            </div>
+
+            <h3 class="text-2xl lg:text-3xl font-bold text-[var(--color-text-dark)] mb-4">
+              {featuredPost.data.title}
+            </h3>
+
+            <p class="text-[var(--color-text-light)] mb-6 leading-relaxed">
+              {featuredPost.data.description}
+            </p>
+
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-[var(--color-text-muted)]">
+                {featuredPost.data.publishDate.toLocaleDateString('pl-PL', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}
+              </span>
+              <Button href={`/blog/${featuredPost.id}`} variant="secondary">
+                Czytaj więcej →
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Card>
+
+      <div class="text-center mt-12">
+        <Button href="/blog" variant="outline" size="lg">
+          Zobacz wszystkie artykuły
+        </Button>
+      </div>
+    </div>
+  </section>
+)}

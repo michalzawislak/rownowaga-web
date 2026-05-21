@@ -1,0 +1,55 @@
+---
+import Button from './ui/Button.astro';
+---
+
+<section id="hero" class="relative min-h-[90vh] flex items-center bg-gradient-to-br from-[var(--color-background)] to-[var(--color-background-alt)]">
+  <div class="container mx-auto px-4 md:px-8 lg:px-16">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div class="order-2 lg:order-1 space-y-6">
+        <h1 class="text-5xl lg:text-6xl font-bold text-[var(--color-text-dark)] leading-tight">
+          Odzyskaj zdrową <span class="text-[var(--color-secondary)]">relację z jedzeniem</span>
+        </h1>
+        
+        <p class="text-lg lg:text-xl text-[var(--color-text-light)] leading-relaxed">
+          Psychodietetyka i terapia żywieniowa bez restrykcji i diet. 
+          Przestań walczyć ze sobą i zacznij słuchać swojego ciała.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 pt-4">
+          <Button href="#kontakt" size="lg">
+            Bezpłatna konsultacja
+          </Button>
+          <Button href="#o-mnie" variant="outline" size="lg">
+            Dowiedz się więcej
+          </Button>
+        </div>
+        
+        <div class="pt-8 flex items-center gap-8 text-sm text-[var(--color-text-light)]">
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-[var(--color-secondary)]" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            <span>Spotkania online</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-[var(--color-secondary)]" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            <span>Bez liczenia kalorii</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="order-1 lg:order-2">
+        <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+          <img 
+            src="/images/hero/hero-main.jpg" 
+            alt="Psychodietetyka - zdrowa relacja z jedzeniem"
+            class="w-full h-[400px] lg:h-[600px] object-cover"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

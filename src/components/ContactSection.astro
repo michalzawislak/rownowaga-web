@@ -1,0 +1,236 @@
+---
+import Button from './ui/Button.astro';
+---
+
+<section id="kontakt" class="py-16 lg:py-24 bg-[var(--color-background-alt)]">
+  <div class="container mx-auto px-4 md:px-8 lg:px-16">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl lg:text-5xl font-bold text-[var(--color-text-dark)] mb-4">
+        Zacznijmy razem
+      </h2>
+      <p class="text-lg text-[var(--color-text-light)] max-w-2xl mx-auto">
+        Bezpłatna 15-minutowa konsultacja - bez zobowiązań
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+      <div class="bg-white rounded-2xl shadow-xl p-8">
+        <h3 class="text-2xl font-semibold text-[var(--color-text-dark)] mb-6">
+          Wyślij wiadomość
+        </h3>
+
+        <form
+          action="https://api.web3forms.com/submit"
+          method="POST"
+          class="space-y-6"
+          id="contact-form"
+        >
+          <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+          <input type="hidden" name="subject" value="Nowa wiadomość ze strony gabinetu" />
+          <input type="hidden" name="from_name" value="Gabinet Dietetyczny - Formularz kontaktowy" />
+          <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
+
+          <div>
+            <label for="name" class="block text-sm font-medium text-[var(--color-text-dark)] mb-2">
+              Imię *
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--color-secondary)] focus:border-transparent transition-colors"
+              placeholder="Twoje imię"
+            />
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-medium text-[var(--color-text-dark)] mb-2">
+              Email *
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--color-secondary)] focus:border-transparent transition-colors"
+              placeholder="twoj@email.com"
+            />
+          </div>
+
+          <div>
+            <label for="phone" class="block text-sm font-medium text-[var(--color-text-dark)] mb-2">
+              Telefon
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--color-secondary)] focus:border-transparent transition-colors"
+              placeholder="+48 XXX XXX XXX"
+            />
+          </div>
+
+          <div>
+            <label for="message" class="block text-sm font-medium text-[var(--color-text-dark)] mb-2">
+              Wiadomość *
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              required
+              rows="5"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--color-secondary)] focus:border-transparent transition-colors resize-none"
+              placeholder="Opisz krótko, czym mogę Ci pomóc..."
+            ></textarea>
+          </div>
+
+          <div class="flex items-start">
+            <input
+              type="checkbox"
+              id="consent"
+              name="consent"
+              required
+              class="mt-1 mr-2"
+            />
+            <label for="consent" class="text-sm text-[var(--color-text-light)]">
+              Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z 
+              <a href="/polityka-prywatnosci" class="text-[var(--color-secondary)] hover:underline">
+                polityką prywatności
+              </a> *
+            </label>
+          </div>
+
+          <Button type="submit" size="lg" class="w-full">
+            Wyślij wiadomość
+          </Button>
+
+          <div id="form-result" class="hidden text-center p-4 rounded-lg"></div>
+        </form>
+      </div>
+
+      <div class="space-y-8">
+        <div class="bg-white rounded-2xl shadow-xl p-8">
+          <h3 class="text-2xl font-semibold text-[var(--color-text-dark)] mb-6">
+            Informacje kontaktowe
+          </h3>
+
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="bg-[var(--color-primary)] p-3 rounded-lg">
+                <svg class="w-6 h-6 text-[var(--color-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-medium text-[var(--color-text-dark)]">Email</p>
+                <a href="mailto:kontakt@example.com" class="text-[var(--color-text-light)] hover:text-[var(--color-secondary)]">
+                  kontakt@example.com
+                </a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="bg-[var(--color-primary)] p-3 rounded-lg">
+                <svg class="w-6 h-6 text-[var(--color-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-medium text-[var(--color-text-dark)]">Telefon</p>
+                <a href="tel:+48XXXXXXXXX" class="text-[var(--color-text-light)] hover:text-[var(--color-secondary)]">
+                  +48 XXX XXX XXX
+                </a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="bg-[var(--color-primary)] p-3 rounded-lg">
+                <svg class="w-6 h-6 text-[var(--color-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-medium text-[var(--color-text-dark)]">Spotkania</p>
+                <p class="text-[var(--color-text-light)]">
+                  Online (Zoom/Google Meet)
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="bg-[var(--color-primary)] p-3 rounded-lg">
+                <svg class="w-6 h-6 text-[var(--color-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-medium text-[var(--color-text-dark)]">Godziny</p>
+                <p class="text-[var(--color-text-light)]">
+                  Pn-Pt: 9:00-18:00
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-[var(--color-secondary)] text-white rounded-2xl shadow-xl p-8">
+          <h3 class="text-2xl font-semibold mb-4">
+            Bezpłatna konsultacja
+          </h3>
+          <p class="mb-6 opacity-90">
+            Nie jesteś pewna, czy psychodietetyka jest dla Ciebie? 
+            Umów się na bezpłatną 15-minutową rozmowę, podczas której odpowiem na wszystkie Twoje pytania.
+          </p>
+          <Button href="#kontakt" variant="outline" class="w-full border-white text-white hover:bg-white hover:text-[var(--color-secondary)]">
+            Umów bezpłatną rozmowę
+          </Button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const result = document.getElementById('form-result');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Wysyłanie...';
+    }
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        result?.classList.remove('hidden', 'bg-red-100', 'text-red-700');
+        result?.classList.add('bg-green-100', 'text-green-700');
+        if (result) result.textContent = 'Dziękuję za wiadomość! Odpowiem najszybciej jak to możliwe.';
+        form.reset();
+      } else {
+        throw new Error('Submission failed');
+      }
+    } catch (error) {
+      result?.classList.remove('hidden', 'bg-green-100', 'text-green-700');
+      result?.classList.add('bg-red-100', 'text-red-700');
+      if (result) result.textContent = 'Wystąpił błąd. Spróbuj ponownie lub skontaktuj się mailowo.';
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Wyślij wiadomość';
+      }
+    }
+  });
+</script>

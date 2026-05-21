@@ -1,0 +1,42 @@
+[
+  {
+    "id": "calories",
+    "question": "Czy będę musiała liczyć kalorie?",
+    "answer": "Nie! To przeciwieństwo mojego podejścia. Uczymy się słuchać ciała zamiast liczb. Intuicyjne jedzenie opiera się na sygnałach głodu i sytości, nie na matematyce."
+  },
+  {
+    "id": "results",
+    "question": "Jak szybko zobaczę efekty?",
+    "answer": "To zależy od Twoich celów. Jeśli chodzi o relację z jedzeniem - pierwsze zmiany możesz zauważyć już po 2-3 tygodniach. Jeśli chodzi o zdrowie i samopoczucie - efekty są indywidualne, ale przede wszystkim trwałe."
+  },
+  {
+    "id": "weight-loss",
+    "question": "Czy to działa, jeśli mam dużo do zrzucenia?",
+    "answer": "Psychodietetyka działa dla każdego, niezależnie od wagi początkowej. Nie skupiamy się tylko na liczbie na wadze, ale na całościowym zdrowiu fizycznym i psychicznym. Wiele osób naturalnie traci wagę, gdy nauczy się słuchać swojego ciała."
+  },
+  {
+    "id": "online-stationary",
+    "question": "Czy spotkania są online czy stacjonarne?",
+    "answer": "Wszystkie spotkania odbywają się online przez Zoom lub Google Meet, co daje Ci wygodę i elastyczność. Możesz uczestniczyć z dowolnego miejsca, gdzie czujesz się komfortowo."
+  },
+  {
+    "id": "insurance",
+    "question": "Czy akceptujesz NFZ/prywatne ubezpieczenia?",
+    "answer": "Nie współpracuję z NFZ, ale wystawiam faktury, które możesz rozliczyć z prywatnymi ubezpieczycielami. Skontaktuj się ze swoim ubezpieczycielem, aby sprawdzić możliwości refundacji."
+  },
+  {
+    "id": "reschedule",
+    "question": "Co jeśli nie pasuje mi termin spotkania?",
+    "answer": "Możesz zmienić termin do 24 godzin przed umówionym spotkaniem bez dodatkowych opłat. Jesteśmy elastyczni i rozumiemy, że życie bywa nieprzewidywalne."
+  },
+  {
+    "id": "duration",
+    "question": "Jak długo trwa współpraca?",
+    "answer": "To zależy od Twoich potrzeb. Oferuję pojedyncze konsultacje (60 min), program 3-miesięczny (6 spotkań) oraz programy indywidualne dostosowane do Twojej sytuacji. Wspólnie ustalimy optymalny plan."
+  },
+  {
+    "id": "preparation",
+    "question": "Jak przygotować się do pierwszego spotkania?",
+    "answer": "Nie musisz się specjalnie przygotowywać. Przydatne może być przemyślenie, co chciałabyś zmienić w swojej relacji z jedzeniem i ciałem. Resztę omówimy wspólnie podczas konsultacji."
+  }
+]
