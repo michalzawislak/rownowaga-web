@@ -8,8 +8,18 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://example.com',
+  devToolbar: { enabled: false },
+  
+  image: {
+    remotePatterns: [{ protocol: "https" }],
+  },
+  
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    build: {
+      cssMinify: true,
+      minify: 'esbuild',
+    }
   },
 
   integrations: [

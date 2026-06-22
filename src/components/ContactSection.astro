@@ -4,7 +4,7 @@ import Button from './ui/Button.astro';
 
 <section id="kontakt" class="py-16 lg:py-24 bg-[var(--color-background-alt)]">
   <div class="container mx-auto px-4 md:px-8 lg:px-16">
-    <div class="text-center mb-12">
+    <div class="text-center mb-12 animate-on-scroll">
       <h2 class="text-4xl lg:text-5xl font-bold text-[var(--color-text-dark)] mb-4">
         Zacznijmy razem
       </h2>
@@ -13,9 +13,9 @@ import Button from './ui/Button.astro';
       </p>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-      <div class="bg-white rounded-2xl shadow-xl p-8">
-        <h3 class="text-2xl font-semibold text-[var(--color-text-dark)] mb-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
+      <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 animate-on-scroll" style="animation-delay: 100ms">
+        <h3 class="text-xl md:text-2xl font-semibold text-[var(--color-text-dark)] mb-6">
           Wyślij wiadomość
         </h3>
 
@@ -25,7 +25,7 @@ import Button from './ui/Button.astro';
           class="space-y-6"
           id="contact-form"
         >
-          <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+          <input type="hidden" name="access_key" value="f45148a7-4158-4c49-ae37-8036702271bc" />
           <input type="hidden" name="subject" value="Nowa wiadomość ze strony gabinetu" />
           <input type="hidden" name="from_name" value="Gabinet Dietetyczny - Formularz kontaktowy" />
           <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
@@ -110,7 +110,7 @@ import Button from './ui/Button.astro';
       </div>
 
       <div class="space-y-8">
-        <div class="bg-white rounded-2xl shadow-xl p-8">
+        <div class="bg-white rounded-2xl shadow-xl p-8 animate-on-scroll" style="animation-delay: 200ms">
           <h3 class="text-2xl font-semibold text-[var(--color-text-dark)] mb-6">
             Informacje kontaktowe
           </h3>
@@ -174,7 +174,7 @@ import Button from './ui/Button.astro';
           </div>
         </div>
 
-        <div class="bg-[var(--color-secondary)] text-white rounded-2xl shadow-xl p-8">
+        <div class="bg-[var(--color-secondary)] text-white rounded-2xl shadow-xl p-8 animate-on-scroll" style="animation-delay: 300ms">
           <h3 class="text-2xl font-semibold mb-4">
             Bezpłatna konsultacja
           </h3>

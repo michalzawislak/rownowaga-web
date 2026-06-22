@@ -15,29 +15,99 @@ const {
   type = 'button'
 } = Astro.props;
 
-const baseClasses = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2';
+const baseClasses = 'inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2';
 
 const variantClasses = {
-  primary: 'bg-[var(--color-secondary)] text-white hover:bg-[var(--color-secondary-dark)] focus:ring-[var(--color-secondary)] hover:shadow-lg hover:scale-105',
-  secondary: 'bg-[var(--color-primary)] text-[var(--color-text-dark)] hover:bg-[var(--color-primary-dark)] focus:ring-[var(--color-primary)] hover:shadow-lg hover:scale-105',
-  outline: 'border-2 border-[var(--color-secondary)] text-[var(--color-secondary)] hover:bg-[var(--color-secondary)] hover:text-white focus:ring-[var(--color-secondary)]'
+  primary: 'hover:shadow-md',
+  secondary: 'hover:shadow-md',
+  outline: 'border-2 hover:shadow-md'
 };
 
-const sizeClasses = {
-  sm: 'px-4 py-2 text-sm',
-  md: 'px-6 py-3 text-base',
-  lg: 'px-8 py-4 text-lg'
+const sizeStyles = {
+  sm: 'padding: 0.5rem 1rem; font-size: 0.875rem; white-space: nowrap;',
+  md: 'padding: 0.75rem 1.5rem; font-size: 1rem; white-space: nowrap;',
+  lg: 'padding: 1rem 2rem; font-size: 1.125rem; white-space: nowrap;'
 };
 
-const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
+const variantStyles = {
+  primary: 'background-color: #7B9E89; color: white;',
+  secondary: 'background-color: #E8D5C4; color: #2C3E50;',
+  outline: 'background-color: transparent; color: #7B9E89; border-color: #7B9E89;'
+};
+
+const combinedStyles = `${variantStyles[variant]} ${sizeStyles[size]}`;
+const classes = `${baseClasses} ${variantClasses[variant]} ${className} btn-${variant}`;
 ---
 
+<style>
+  .btn-primary,
+  .btn-secondary,
+  .btn-outline {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .btn-primary:hover,
+  .btn-secondary:hover,
+  .btn-outline:hover {
+    transform: translateY(-1px);
+    opacity: 0.95;
+  }
+
+  .btn-primary:active,
+  .btn-secondary:active,
+  .btn-outline:active {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .btn-primary::before,
+  .btn-secondary::before,
+  .btn-outline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.06);
+    opacity: 0;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+  }
+
+  .btn-primary:hover::before,
+  .btn-secondary:hover::before {
+    opacity: 1;
+  }
+
+  .btn-outline {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .btn-outline:hover {
+    background-color: #7B9E89 !important;
+    color: white !important;
+  }
+
+  .btn-outline:hover::before {
+    opacity: 0;
+  }
+</style>
+
 {href ? (
-  <a href={href} class={classes}>
+  <a href={href} class={classes} style={combinedStyles}>
     <slot />
   </a>
 ) : (
-  <button type={type} class={classes}>
+  <button type={type} class={classes} style={combinedStyles}>
     <slot />
   </button>
 )}

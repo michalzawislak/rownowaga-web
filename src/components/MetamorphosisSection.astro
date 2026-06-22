@@ -4,23 +4,27 @@ import metamorphosisData from '../data/metamorphosis.json';
 ---
 
 <section id="metamorfozy" class="py-16 lg:py-24 bg-[var(--color-background)]">
-  <div class="container mx-auto px-4 md:px-8 lg:px-16">
-    <div class="text-center mb-12 lg:mb-16">
-      <h2 class="text-4xl lg:text-5xl font-bold text-[var(--color-text-dark)] mb-4">
-        Metamorfozy moich podopiecznych
-      </h2>
-      <p class="text-lg text-[var(--color-text-light)] max-w-2xl mx-auto">
-        To nie tylko zdjęcia - to historie odzyskanej wolności i zdrowia
-      </p>
-    </div>
+  <div class="container mx-auto px-4 md:px-8 lg:px-16 flex justify-center">
+    <div class="max-w-4xl w-full">
+      <div class="text-center mb-12 lg:mb-16 animate-on-scroll">
+        <h2 class="text-4xl lg:text-5xl font-bold text-[var(--color-text-dark)] mb-4">
+          Metamorfozy moich podopiecznych
+        </h2>
+        <p class="text-lg text-[var(--color-text-light)]">
+          To nie tylko zdjęcia - to historie odzyskanej wolności i zdrowia
+        </p>
+      </div>
 
-    <CompareSlider items={metamorphosisData} client:load />
+      <div class="animate-on-scroll" style="animation-delay: 100ms">
+        <CompareSlider items={metamorphosisData} client:only="react" />
+      </div>
 
-    <div class="mt-12 text-center">
-      <p class="text-lg text-[var(--color-text-light)] max-w-3xl mx-auto">
-        Każda historia jest wyjątkowa. Nie koncentrujemy się tylko na wadze, 
-        ale na całościowej zmianie - zdrowiu, energii i relacji z jedzeniem.
-      </p>
+      <div class="mt-12 text-center animate-on-scroll" style="animation-delay: 200ms">
+        <p class="text-lg text-[var(--color-text-light)]">
+          Każda historia jest wyjątkowa. Nie koncentrujemy się tylko na wadze, 
+          ale na całościowej zmianie - zdrowiu, energii i relacji z jedzeniem.
+        </p>
+      </div>
     </div>
   </div>
 </section>

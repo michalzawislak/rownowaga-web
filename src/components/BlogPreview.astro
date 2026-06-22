@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Button from './ui/Button.astro';
 import Card from './ui/Card.astro';
+import { Image } from 'astro:assets';
 
 const blogPosts = await getCollection('blog');
 const featuredPost = blogPosts.find(post => post.data.featured);
@@ -10,7 +11,7 @@ const featuredPost = blogPosts.find(post => post.data.featured);
 {featuredPost && (
   <section id="blog-preview" class="py-16 lg:py-24 bg-[var(--color-background)]">
     <div class="container mx-auto px-4 md:px-8 lg:px-16">
-      <div class="text-center mb-12">
+      <div class="text-center mb-12 animate-on-scroll">
         <h2 class="text-4xl lg:text-5xl font-bold text-[var(--color-text-dark)] mb-4">
           Wiedza i inspiracje
         </h2>
@@ -19,14 +20,17 @@ const featuredPost = blogPosts.find(post => post.data.featured);
         </p>
       </div>
 
-      <Card class="max-w-4xl mx-auto overflow-hidden">
+      <Card class="max-w-4xl mx-auto overflow-hidden hover-lift animate-on-scroll" style="animation-delay: 100ms">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
           {featuredPost.data.image && (
-            <div class="h-64 md:h-auto">
-              <img
+            <div class="h-64 md:h-auto image-hover">
+              <Image
                 src={featuredPost.data.image}
                 alt={featuredPost.data.imageAlt || featuredPost.data.title}
-                class="w-full h-full object-cover"
+                width={600}
+                height={400}
+                class="w-full h-full object-cover transition-transform duration-700"
+                loading="lazy"
               />
             </div>
           )}
@@ -62,7 +66,7 @@ const featuredPost = blogPosts.find(post => post.data.featured);
         </div>
       </Card>
 
-      <div class="text-center mt-12">
+      <div class="text-center mt-12 animate-on-scroll" style="animation-delay: 200ms">
         <Button href="/blog" variant="outline" size="lg">
           Zobacz wszystkie artykuły
         </Button>

@@ -14,21 +14,21 @@ const navItems = [
   <div class="container mx-auto px-4 md:px-8 lg:px-16">
     <div class="flex items-center justify-between h-20">
       <a href="/" class="flex items-center space-x-2">
-        <div class="text-2xl font-bold font-[var(--font-heading)] text-[var(--color-secondary)]">
+        <div class="text-xl md:text-2xl font-bold font-[var(--font-heading)] text-[var(--color-secondary)]">
           Gabinet Dietetyczny
         </div>
       </a>
 
-      <div class="hidden lg:flex items-center space-x-8">
+      <div class="hidden lg:flex items-center gap-8">
         {navItems.map(item => (
           <a 
             href={item.href}
-            class="text-[var(--color-text-dark)] hover:text-[var(--color-secondary)] transition-colors duration-200 font-medium"
+            class="nav-link text-[var(--color-text-dark)] hover:text-[var(--color-secondary)] transition-colors duration-200 font-medium whitespace-nowrap"
           >
             {item.label}
           </a>
         ))}
-        <Button href="#kontakt" size="sm">
+        <Button href="#kontakt" size="sm" class="ml-2">
           Umów konsultację
         </Button>
       </div>
@@ -88,3 +88,24 @@ const navItems = [
     });
   });
 </script>
+
+<style>
+  .nav-link {
+    position: relative;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-secondary);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+</style>
