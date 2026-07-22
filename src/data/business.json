@@ -1,0 +1,38 @@
+{
+  "name": "Dietetyk i Psychodietetyk Szczecin Elżbieta Kuczyńska-Zawiślak",
+  "alternateName": "Równowaga Dietetyka i Psychodietetyka",
+  "shortName": "Równowaga",
+  "description": "Psychodietetyka i terapia żywieniowa bez restrykcji i diet. Odzyskaj zdrową relację z jedzeniem.",
+  "url": "https://rownowaga-dietyka.pl",
+  "telephone": "+48 720 851 299",
+  "email": "gabinet@rownowaga-dietyka.pl",
+  "image": "/images/about/profile.jpg",
+  "priceRange": "$$",
+  "address": {
+    "streetAddress": "Jacka Malczewskiego 34/1",
+    "addressLocality": "Szczecin",
+    "postalCode": "71-612",
+    "addressCountry": "PL"
+  },
+  "geo": {
+    "latitude": 53.43486,
+    "longitude": 14.55703
+  },
+  "openingHours": [
+    { "day": "poniedziałek", "dayOfWeek": "Monday", "opens": "10:00", "closes": "17:00" },
+    { "day": "wtorek", "dayOfWeek": "Tuesday", "opens": "08:30", "closes": "14:00" },
+    { "day": "środa", "dayOfWeek": "Wednesday", "opens": "11:00", "closes": "17:00" },
+    { "day": "czwartek", "dayOfWeek": "Thursday", "opens": "11:30", "closes": "19:30" },
+    { "day": "piątek", "dayOfWeek": "Friday", "opens": "10:00", "closes": "15:00" }
+  ],
+  "closedDays": ["sobota", "niedziela"],
+  "specialist": {
+    "name": "Elżbieta Kuczyńska-Zawiślak",
+    "jobTitle": "Dietetyk i psychodietetyk",
+    "image": "/images/about/profile.jpg"
+  },
+  "sameAs": [
+    "https://www.instagram.com/rownowaga_dietetyka_szczecin/",
+    "https://www.facebook.com/profile.php?id=61591929699377"
+  ]
+}

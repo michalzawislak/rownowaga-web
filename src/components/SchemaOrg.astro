@@ -1,0 +1,65 @@
+---
+import business from '../data/business.json';
+
+const siteUrl = Astro.site?.href.replace(/\/$/, '') ?? business.url;
+const imageUrl = new URL(business.image, siteUrl).href;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': ['LocalBusiness', 'Dietitian'],
+      '@id': `${siteUrl}/#business`,
+      name: business.name,
+      alternateName: business.alternateName,
+      description: business.description,
+      url: siteUrl,
+      telephone: business.telephone,
+      email: business.email,
+      image: imageUrl,
+      priceRange: business.priceRange,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: business.address.streetAddress,
+        addressLocality: business.address.addressLocality,
+        postalCode: business.address.postalCode,
+        addressCountry: business.address.addressCountry,
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: business.geo.latitude,
+        longitude: business.geo.longitude,
+      },
+      openingHoursSpecification: business.openingHours.map((hours) => ({
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: hours.dayOfWeek,
+        opens: hours.opens,
+        closes: hours.closes,
+      })),
+      sameAs: business.sameAs,
+      employee: { '@id': `${siteUrl}/#person` },
+    },
+    {
+      '@type': 'Person',
+      '@id': `${siteUrl}/#person`,
+      name: business.specialist.name,
+      jobTitle: business.specialist.jobTitle,
+      image: new URL(business.specialist.image, siteUrl).href,
+      worksFor: { '@id': `${siteUrl}/#business` },
+      url: siteUrl,
+      sameAs: business.sameAs,
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}/#website`,
+      url: siteUrl,
+      name: business.alternateName,
+      description: business.description,
+      publisher: { '@id': `${siteUrl}/#business` },
+      inLanguage: 'pl-PL',
+    },
+  ],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

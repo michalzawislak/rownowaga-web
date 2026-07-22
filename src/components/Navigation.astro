@@ -1,5 +1,6 @@
 ---
 import Button from './ui/Button.astro';
+import business from '../data/business.json';
 
 const navItems = [
   { label: 'O mnie', href: '/#o-mnie' },
@@ -15,7 +16,7 @@ const navItems = [
     <div class="flex items-center justify-between h-20">
       <a href="/" class="flex items-center space-x-2">
         <div class="text-xl md:text-2xl font-bold font-[var(--font-heading)] text-[var(--color-secondary)]">
-          Gabinet Dietetyczny
+          {business.shortName}
         </div>
       </a>
 

@@ -9,11 +9,12 @@ import MetamorphosisSection from '../components/MetamorphosisSection.astro';
 import FAQ from '../components/FAQ.astro';
 import BlogPreview from '../components/BlogPreview.astro';
 import ContactSection from '../components/ContactSection.astro';
+import business from '../data/business.json';
 ---
 
 <Layout 
-  title="Gabinet Dietetyczny | Psychodietetyka i intuicyjne jedzenie"
-  description="Odzyskaj zdrową relację z jedzeniem dzięki psychodietetyce. Bez diet, restrykcji i liczenia kalorii. Spotkania online."
+  title={`${business.shortName} | Psychodietetyka i intuicyjne jedzenie`}
+  description="Odzyskaj zdrową relację z jedzeniem dzięki psychodietetyce. Bez diet, restrykcji i liczenia kalorii. Gabinet w Szczecinie."
 >
   <Hero />
   <ProblemSection />

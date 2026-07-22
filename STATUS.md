@@ -3,11 +3,12 @@
 ## ✅ Ukończone zadania
 
 ### 1. Setup projektu
-- ✅ Utworzono projekt Astro 5.x
+- ✅ Utworzono projekt Astro 6.x
 - ✅ Zainstalowano Tailwind CSS 4.x
 - ✅ Zainstalowano React 19.x (dla interaktywnych komponentów)
-- ✅ Zainstalowano biblioteki: AOS, motion, react-compare-slider, @astrojs/sitemap
+- ✅ Zainstalowano biblioteki: motion (Motion One), react-compare-slider, @astrojs/sitemap
 - ✅ Skonfigurowano wszystkie integracje
+- ✅ Utworzono .nvmrc z wersją Node.js (22.12.0)
 
 ### 2. Design tokens
 - ✅ Zdefiniowano kolorystykę (inspirowaną Truly Real Nutrition)
@@ -66,12 +67,21 @@
 - ✅ Canonical URLs
 - ✅ Semantic HTML
 
-## ⚠️ Częściowo ukończone
-
-### Animacje
+### 11. Animacje i interaktywność
 - ✅ Tailwind transitions (hover, focus states)
-- ❌ AOS (Animate On Scroll) - biblioteka zainstalowana, wymaga inicjalizacji
-- ❌ Motion One - biblioteka zainstalowana, wymaga implementacji w Hero
+- ✅ Motion One (motion/react) dla animacji React
+- ✅ Utworzono komponenty React:
+  - `AnimatedHero.tsx` - animacje hero z parallax scrollem
+  - `AnimatedSection.tsx` - uniwersalny wrapper animacji
+  - `AnimatedCard.tsx` - animowane karty
+- ✅ Utworzono `src/lib/animations.ts` z konfiguracją animacji (fadeInUp, fadeInScale, stagger)
+- ✅ Własny IntersectionObserver w Layout.astro dla klasy `.animate-on-scroll`
+- ✅ Wszystkie sekcje używają animacji z opóźnieniami (animation-delay)
+- ✅ Parallax effect w Hero section z scroll-linked animations
+- ✅ Wsparcie dla `prefers-reduced-motion`
+- 📝 AOS zainstalowane, ale nie używane (można usunąć z package.json)
+
+## ⚠️ Częściowo ukończone
 
 ### Integracje
 - ✅ Sitemap
@@ -81,34 +91,47 @@
 
 ## ❌ Do zrobienia
 
-### Animacje (TODO #9)
-1. Dodać AOS init w Layout.astro
-2. Dodać data-aos attributes do sekcji
-3. Zaimplementować Motion One w Hero dla sequence animations
-4. Dodać parallax effect w About section
-
-### Integracje (TODO #10)
+### Integracje (TODO #9)
 1. Dodać Calendly modal dla CTA buttons
 2. Google Analytics 4 setup
 3. Microsoft Clarity (opcjonalnie)
-4. Schema.org JSON-LD markup
+4. Schema.org JSON-LD markup (LocalBusiness, Person)
 
-### Przykładowe treści (TODO #11)
+### Przykładowe treści (TODO #10) - NIE JEST PRIORYTETEM
 - ✅ JSON z danymi (FAQ, oferty, metamorfozy)
 - ✅ Przykładowy post blogowy
-- ⚠️ Potrzebne prawdziwe zdjęcia (obecnie placeholders)
-- ⚠️ Potrzebne prawdziwe treści w sekcjach (imię, bio, ceny)
+- ✅ Część obrazów (hero-main.png, obrazy problem section)
+- ⚠️ Brakujące obrazy:
+  - `/images/metamorphosis/anna-before.jpg` i `anna-after.jpg`
+  - `/images/metamorphosis/karolina-before.jpg` i `karolina-after.jpg`
+  - `/images/metamorphosis/magda-before.jpg` i `magda-after.jpg`
+  - `/images/solution/mindful-eating.jpg`
+- ⚠️ Placeholdery w kodzie:
+  - `src/components/AboutSection.astro` - "licencja nr XXXX"
+  - `src/components/Footer.astro` - "+48 XXX XXX XXX"
+  - `src/components/ContactSection.astro` - numery telefonu
+  - Web3Forms API key: "YOUR_ACCESS_KEY_HERE"
 
-### Optymalizacja (TODO #12)
+### Optymalizacja (TODO #11)
 1. Konwersja obrazów do WebP/AVIF
-2. Lazy loading dla obrazów
-3. Font optimization (font-display: swap jest już)
+2. Lazy loading dla obrazów (częściowo zrobione)
+3. ✅ Font optimization (font-display: swap)
 4. Critical CSS inline
 5. Lighthouse audit i poprawa wyników
-6. Preload hero image
-7. Minifikacja HTML/CSS/JS (Astro robi to automatycznie)
+6. ✅ Preload hero image (w Layout.astro)
+7. ✅ Minifikacja HTML/CSS/JS (Astro robi to automatycznie)
+8. ✅ CSS minify i esbuild minify w vite config
 
 ## 📝 Dodatkowe notatki
+
+### Animacje - implementacja
+Projekt używa **Motion One** (biblioteka `motion`) zamiast AOS:
+- Komponenty React z animacjami: `AnimatedHero.tsx`, `AnimatedSection.tsx`, `AnimatedCard.tsx`
+- Biblioteka animacji: `src/lib/animations.ts`
+- IntersectionObserver dla `.animate-on-scroll` w `Layout.astro`
+- Parallax scroll effects w Hero section
+- Wsparcie dla `prefers-reduced-motion`
+- **Uwaga**: Biblioteka `aos` jest zainstalowana, ale nie jest używana (można usunąć)
 
 ### Web3Forms konfiguracja
 1. Zarejestruj się na https://web3forms.com
@@ -120,46 +143,73 @@
 2. Skopiuj link do booking page
 3. Dodaj do CTA buttons jako href lub modal
 
-### Prawdziwe zdjęcia
-Wymień w `public/images/`:
-- `hero/hero-main.jpg`
-- `about/profile.jpg`  
-- `solution/mindful-eating.jpg`
-- `metamorphosis/*.jpg` (przed i po)
-- `blog/*.jpg`
+### Konfiguracja astro.config.mjs
+- Zmień `site: 'https://example.com'` na właściwy URL produkcyjny
+- Pozostała konfiguracja jest już gotowa (Tailwind, React, Sitemap)
 
-### Prawdziwe treści
+### Node.js version
+- Projekt wymaga Node.js >= 22.12.0 (określone w `.nvmrc` i `package.json`)
+- Użyj `nvm use` aby aktywować odpowiednią wersję Node.js
+
+### Prawdziwe zdjęcia (NIE JEST PRIORYTETEM)
+Wymień/dodaj w `public/images/`:
+- ✅ `hero/hero-main.png` (już dodane)
+- ✅ `problem/dieta-jojo.png` (już dodane)
+- ✅ `problem/obsesja-jedzenie.png` (już dodane)
+- ✅ `problem/walka-z-cialem.png` (już dodane)
+- ❌ `about/profile.jpg`  
+- ❌ `solution/mindful-eating.jpg`
+- ❌ `metamorphosis/*.jpg` (6 plików: przed i po dla 3 osób)
+- ❌ `blog/*.jpg`
+
+### Prawdziwe treści (NIE JEST PRIORYTETEM)
 Edytuj w:
-- `src/components/AboutSection.astro` - bio
+- `src/components/AboutSection.astro` - bio, imię, "licencja nr XXXX"
 - `src/data/offers.json` - ceny
 - `src/data/metamorphosis.json` - prawdziwe historie
-- `src/components/ContactSection.astro` - email, telefon
-- `src/components/Footer.astro` - social media links
+- `src/components/ContactSection.astro` - email, telefon ("+48 XXX XXX XXX"), Web3Forms API key
+- `src/components/Footer.astro` - social media links, telefon ("+48 XXX XXX XXX")
+- `astro.config.mjs` - site URL (obecnie: "https://example.com")
 
 ## 🚀 Deployment checklist
 
-- [ ] Zamień wszystkie placeholders na prawdziwe treści
-- [ ] Dodaj prawdziwe zdjęcia
-- [ ] Skonfiguruj Web3Forms API key
-- [ ] Dodaj Calendly link
-- [ ] Dodaj Google Analytics
-- [ ] Zmień site URL w astro.config.mjs
+### Przed deployem (KRYTYCZNE):
+- [ ] Dodaj brakujące obrazy metamorfoz (6 plików JPG)
+- [ ] Dodaj obraz `/images/solution/mindful-eating.jpg`
+- [ ] Skonfiguruj Web3Forms API key w `ContactSection.astro`
+- [ ] Zamień placeholdery telefonów i licencji na prawdziwe dane
+- [ ] Zmień site URL w `astro.config.mjs`
+
+### Zalecane przed deployem:
+- [ ] Dodaj Calendly link do przycisków CTA
+- [ ] Dodaj Google Analytics 4
 - [ ] Przetestuj formularz kontaktowy
-- [ ] Lighthouse audit
 - [ ] Test na różnych urządzeniach (mobile, tablet, desktop)
 - [ ] Sprawdź wszystkie linki
+
+### Opcjonalne (można po deployu):
+- [ ] Lighthouse audit i optymalizacje
+- [ ] Konwersja obrazów do WebP
+- [ ] Schema.org JSON-LD markup
+- [ ] Microsoft Clarity
+- [ ] Usunąć `aos` z package.json (nie jest używane)
+
+### Deploy:
 - [ ] Deploy na Vercel/Netlify
 
 ## 💡 Zalecenia
 
-1. **Priorytet**: Najpierw dodaj prawdziwe treści i zdjęcia
-2. **Animacje**: Mogą poczekać - strona działa bez nich
-3. **Analytics**: Dodaj przed launch żeby śledzić ruch od początku
-4. **SEO**: Dodaj Schema.org markup dla lepszych rich snippets
-5. **Performance**: Konwersja obrazów do WebP przed launch
+1. **Animacje**: ✅ Ukończone! Obecna implementacja z Motion One jest nowoczesna i wydajna
+2. **Obrazy i treści**: Obecnie nie jest priorytetem, strona działa z placeholderami
+3. **Integracje**: Calendly i Google Analytics można dodać przed lub po deployu
+4. **Analytics**: Zalecane dodanie przed launch żeby śledzić ruch od początku
+5. **SEO**: Schema.org markup opcjonalnie dla lepszych rich snippets
+6. **Performance**: Obecna konfiguracja jest dobra, konwersja do WebP opcjonalna
+7. **Cleanup**: Można usunąć bibliotekę `aos` z package.json (nie jest używana)
 
 ---
 
-**Status ogólny**: ~85% ukończone
-**Gotowe do deploy**: Tak, po dodaniu prawdziwych treści i konfiguracji Web3Forms
-**Czas do production-ready**: 2-4h pracy (głównie content + zdjęcia)
+**Status ogólny**: ~92% ukończone (implementacja techniczna)
+**Status treści**: ~60% ukończone (obrazy i placeholdery)
+**Gotowe do deploy**: Tak, po dodaniu brakujących obrazów, treści i konfiguracji Web3Forms
+**Gotowe do testów**: Tak, można testować funkcjonalność już teraz

@@ -2,7 +2,7 @@
 title: "5 znaków, że potrzebujesz psychodietetyka (a nie kolejnej diety)"
 description: "Ciągle liczysz kalorie? Jesz w ukryciu? Sprawdź, czy to czas na wsparcie psychodietetyka zamiast kolejnej diety."
 publishDate: 2026-05-15
-author: "Anna Kowalska"
+author: "Elżbieta Kuczyńska-Zawiślak"
 featured: true
 image: "/images/blog/psychodietician-signs.jpg"
 imageAlt: "Kobieta zastanawiająca się nad swoją relacją z jedzeniem"
@@ -100,4 +100,4 @@ Pamiętaj: szukanie pomocy to oznaka siły, nie słabości. Zasługujesz na życ
 
 ---
 
-**O autorce:** Anna Kowalska to certyfikowany psychodietetyk i dietetyk kliniczny z 8-letnim doświadczeniem w pracy z osobami zmagającymi się z zaburzeniami odżywiania i dietą mentalności.
+**O autorce:** Elżbieta Kuczyńska-Zawiślak to certyfikowany psychodietetyk i dietetyk kliniczny z 8-letnim doświadczeniem w pracy z osobami zmagającymi się z zaburzeniami odżywiania i dietą mentalności.

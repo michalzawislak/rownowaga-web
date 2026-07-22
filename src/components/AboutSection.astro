@@ -1,6 +1,7 @@
 ---
 import Button from './ui/Button.astro';
 import { Image } from 'astro:assets';
+import business from '../data/business.json';
 
 const credentials = [
   'Dietetyk kliniczny (licencja nr XXXX)',
@@ -22,8 +23,8 @@ const credentials = [
       <div class="lg:col-span-2 animate-on-scroll">
         <div class="rounded-2xl overflow-hidden shadow-xl image-hover">
           <Image 
-            src="/images/about/profile.jpg" 
-            alt="Anna Kowalska - psychodietetyk"
+            src={business.specialist.image} 
+            alt={`${business.specialist.name} - ${business.specialist.jobTitle}`}
             width={600}
             height={500}
             class="w-full h-[350px] md:h-[450px] lg:h-[500px] object-cover transition-transform duration-700"
@@ -35,7 +36,7 @@ const credentials = [
       <div class="lg:col-span-3 space-y-6">
         <div class="prose prose-lg max-w-none">
           <p class="text-lg text-[var(--color-text-light)] leading-relaxed animate-on-scroll" style="animation-delay: 100ms">
-            Jestem <strong class="text-[var(--color-text-dark)]">Anna Kowalska</strong>, 
+            Jestem <strong class="text-[var(--color-text-dark)]">{business.specialist.name}</strong>, 
             dietetykiem i psychodietetykiem.
           </p>
           

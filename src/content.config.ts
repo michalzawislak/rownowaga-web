@@ -7,7 +7,7 @@ const blogCollection = defineCollection({
     title: z.string(),
     description: z.string(),
     publishDate: z.coerce.date(),
-    author: z.string().default('Anna Kowalska'),
+    author: z.string().default('Elżbieta Kuczyńska-Zawiślak'),
     featured: z.boolean().default(false),
     image: z.string().optional(),
     imageAlt: z.string().optional(),

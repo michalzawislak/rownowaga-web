@@ -1,5 +1,8 @@
 ---
 import Button from './ui/Button.astro';
+import business from '../data/business.json';
+
+const addressLine = `${business.address.streetAddress}, ${business.address.postalCode} ${business.address.addressLocality}`;
 ---
 
 <section id="kontakt" class="py-16 lg:py-24 bg-[var(--color-background-alt)]">
@@ -27,7 +30,7 @@ import Button from './ui/Button.astro';
         >
           <input type="hidden" name="access_key" value="f45148a7-4158-4c49-ae37-8036702271bc" />
           <input type="hidden" name="subject" value="Nowa wiadomość ze strony gabinetu" />
-          <input type="hidden" name="from_name" value="Gabinet Dietetyczny - Formularz kontaktowy" />
+          <input type="hidden" name="from_name" value={`${business.alternateName} - Formularz kontaktowy`} />
           <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
 
           <div>
@@ -54,7 +57,7 @@ import Button from './ui/Button.astro';
               name="email"
               required
               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--color-secondary)] focus:border-transparent transition-colors"
-              placeholder="twoj@email.com"
+              placeholder={business.email}
             />
           </div>
 
@@ -67,7 +70,7 @@ import Button from './ui/Button.astro';
               id="phone"
               name="phone"
               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--color-secondary)] focus:border-transparent transition-colors"
-              placeholder="+48 XXX XXX XXX"
+              placeholder={business.telephone}
             />
           </div>
 
@@ -124,8 +127,8 @@ import Button from './ui/Button.astro';
               </div>
               <div>
                 <p class="font-medium text-[var(--color-text-dark)]">Email</p>
-                <a href="mailto:kontakt@example.com" class="text-[var(--color-text-light)] hover:text-[var(--color-secondary)]">
-                  kontakt@example.com
+                <a href={`mailto:${business.email}`} class="text-[var(--color-text-light)] hover:text-[var(--color-secondary)]">
+                  {business.email}
                 </a>
               </div>
             </div>
@@ -138,8 +141,8 @@ import Button from './ui/Button.astro';
               </div>
               <div>
                 <p class="font-medium text-[var(--color-text-dark)]">Telefon</p>
-                <a href="tel:+48XXXXXXXXX" class="text-[var(--color-text-light)] hover:text-[var(--color-secondary)]">
-                  +48 XXX XXX XXX
+                <a href={`tel:${business.telephone.replace(/\s/g, '')}`} class="text-[var(--color-text-light)] hover:text-[var(--color-secondary)]">
+                  {business.telephone}
                 </a>
               </div>
             </div>
@@ -147,14 +150,14 @@ import Button from './ui/Button.astro';
             <div class="flex items-start gap-4">
               <div class="bg-[var(--color-primary)] p-3 rounded-lg">
                 <svg class="w-6 h-6 text-[var(--color-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                 </svg>
               </div>
               <div>
-                <p class="font-medium text-[var(--color-text-dark)]">Spotkania</p>
-                <p class="text-[var(--color-text-light)]">
-                  Online (Zoom/Google Meet)
-                </p>
+                <p class="font-medium text-[var(--color-text-dark)]">Adres</p>
+                <p class="text-[var(--color-text-light)]">{addressLine}</p>
+                <p class="text-sm text-[var(--color-text-light)] mt-1">Możliwe też spotkania online</p>
               </div>
             </div>
 
@@ -165,10 +168,16 @@ import Button from './ui/Button.astro';
                 </svg>
               </div>
               <div>
-                <p class="font-medium text-[var(--color-text-dark)]">Godziny</p>
-                <p class="text-[var(--color-text-light)]">
-                  Pn-Pt: 9:00-18:00
-                </p>
+                <p class="font-medium text-[var(--color-text-dark)]">Godziny otwarcia</p>
+                <div class="text-[var(--color-text-light)] text-sm space-y-0.5 mt-1">
+                  {business.openingHours.map((hours) => (
+                    <p>
+                      <span class="inline-block w-28 capitalize">{hours.day}</span>
+                      {hours.opens}–{hours.closes}
+                    </p>
+                  ))}
+                  <p><span class="inline-block w-28">sob–niedz</span> zamknięte</p>
+                </div>
               </div>
             </div>
           </div>
