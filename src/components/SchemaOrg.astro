@@ -1,19 +1,24 @@
 ---
 import business from '../data/business.json';
+import { withBase } from '../lib/paths';
 
-const siteUrl = Astro.site?.href.replace(/\/$/, '') ?? business.url;
-const imageUrl = new URL(business.image, siteUrl).href;
+const siteOrigin = (Astro.site?.href ?? business.url).replace(/\/$/, '');
+const siteRoot = `${siteOrigin}${import.meta.env.BASE_URL}`.replace(/\/$/, '') || siteOrigin;
+const toAbsolute = (path: string) => `${siteOrigin}${withBase(path)}`;
+
+const imageUrl = toAbsolute(business.image);
+const specialistImageUrl = toAbsolute(business.specialist.image);
 
 const schema = {
   '@context': 'https://schema.org',
   '@graph': [
     {
       '@type': ['LocalBusiness', 'Dietitian'],
-      '@id': `${siteUrl}/#business`,
+      '@id': `${siteRoot}/#business`,
       name: business.name,
       alternateName: business.alternateName,
       description: business.description,
-      url: siteUrl,
+      url: siteRoot,
       telephone: business.telephone,
       email: business.email,
       image: imageUrl,
@@ -37,25 +42,25 @@ const schema = {
         closes: hours.closes,
       })),
       sameAs: business.sameAs,
-      employee: { '@id': `${siteUrl}/#person` },
+      employee: { '@id': `${siteRoot}/#person` },
     },
     {
       '@type': 'Person',
-      '@id': `${siteUrl}/#person`,
+      '@id': `${siteRoot}/#person`,
       name: business.specialist.name,
       jobTitle: business.specialist.jobTitle,
-      image: new URL(business.specialist.image, siteUrl).href,
-      worksFor: { '@id': `${siteUrl}/#business` },
-      url: siteUrl,
+      image: specialistImageUrl,
+      worksFor: { '@id': `${siteRoot}/#business` },
+      url: siteRoot,
       sameAs: business.sameAs,
     },
     {
       '@type': 'WebSite',
-      '@id': `${siteUrl}/#website`,
-      url: siteUrl,
+      '@id': `${siteRoot}/#website`,
+      url: siteRoot,
       name: business.alternateName,
       description: business.description,
-      publisher: { '@id': `${siteUrl}/#business` },
+      publisher: { '@id': `${siteRoot}/#business` },
       inLanguage: 'pl-PL',
     },
   ],

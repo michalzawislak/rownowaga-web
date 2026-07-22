@@ -1,6 +1,7 @@
 ---
 import Button from './ui/Button.astro';
 import business from '../data/business.json';
+import { withBase } from '../lib/paths';
 
 const addressLine = `${business.address.streetAddress}, ${business.address.postalCode} ${business.address.addressLocality}`;
 ---
@@ -98,7 +99,7 @@ const addressLine = `${business.address.streetAddress}, ${business.address.posta
             />
             <label for="consent" class="text-sm text-[var(--color-text-light)]">
               Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z 
-              <a href="/polityka-prywatnosci" class="text-[var(--color-secondary)] hover:underline">
+              <a href={withBase('/polityka-prywatnosci')} class="text-[var(--color-secondary)] hover:underline">
                 polityką prywatności
               </a> *
             </label>

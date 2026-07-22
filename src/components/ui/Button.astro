@@ -1,4 +1,6 @@
 ---
+import { withBase } from '../../lib/paths';
+
 interface Props {
   href?: string;
   variant?: 'primary' | 'secondary' | 'outline';
@@ -14,6 +16,8 @@ const {
   class: className = '',
   type = 'button'
 } = Astro.props;
+
+const resolvedHref = href ? withBase(href) : undefined;
 
 const baseClasses = 'inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2';
 
@@ -102,8 +106,8 @@ const classes = `${baseClasses} ${variantClasses[variant]} ${className} btn-${va
   }
 </style>
 
-{href ? (
-  <a href={href} class={classes} style={combinedStyles}>
+{resolvedHref ? (
+  <a href={resolvedHref} class={classes} style={combinedStyles}>
     <slot />
   </a>
 ) : (

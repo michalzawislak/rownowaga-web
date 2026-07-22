@@ -1,20 +1,21 @@
 ---
 import Card from './ui/Card.astro';
 import { Image } from 'astro:assets';
+import { withBase } from '../lib/paths';
 
 const problems = [
   {
-    image: '/images/problem/dieta-jojo.png',
+    image: withBase('/images/problem/dieta-jojo.png'),
     title: 'Niekończące się diety',
     description: 'Tracisz i odzyskujesz te same kilogramy. Jo-jo stało się Twoją codziennością, a każda kolejna dieta kończy się porażką.'
   },
   {
-    image: '/images/problem/obsesja-jedzenie.png',
+    image: withBase('/images/problem/obsesja-jedzenie.png'),
     title: 'Obsesja na punkcie jedzenia',
     description: 'Każdy posiłek to stres. Ciągle myślisz o kaloriach, gramach i zakazanych produktach. Jedzenie kontroluje Twoje życie.'
   },
   {
-    image: '/images/problem/walka-z-cialem.png',
+    image: withBase('/images/problem/walka-z-cialem.png'),
     title: 'Walka z własnym ciałem',
     description: 'Nie akceptujesz swojego wyglądu. Dieta jest jedynym rozwiązaniem, jakie znasz, ale nic nie działa na dłuższą metę.'
   }

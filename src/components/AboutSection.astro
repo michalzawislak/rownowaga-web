@@ -2,6 +2,7 @@
 import Button from './ui/Button.astro';
 import { Image } from 'astro:assets';
 import business from '../data/business.json';
+import { withBase } from '../lib/paths';
 
 const credentials = [
   'Dietetyk kliniczny (licencja nr XXXX)',
@@ -23,7 +24,7 @@ const credentials = [
       <div class="lg:col-span-2 animate-on-scroll">
         <div class="rounded-2xl overflow-hidden shadow-xl image-hover">
           <Image 
-            src={business.specialist.image} 
+            src={withBase(business.specialist.image)} 
             alt={`${business.specialist.name} - ${business.specialist.jobTitle}`}
             width={600}
             height={500}

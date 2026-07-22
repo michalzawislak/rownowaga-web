@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Button from '../../components/ui/Button.astro';
+import { withBase } from '../../lib/paths';
 
 export async function getStaticPaths() {
   const blogPosts = await getCollection('blog');
@@ -34,7 +35,7 @@ const relatedPosts = allPosts
     <div class="container mx-auto px-4 md:px-8 max-w-4xl">
       <div class="mb-8">
         <a 
-          href="/blog"
+          href={withBase('/blog')}
           class="inline-flex items-center text-[var(--color-secondary)] hover:underline mb-6"
         >
           <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -110,7 +111,7 @@ const relatedPosts = allPosts
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             {relatedPosts.map((relatedPost) => (
               <a
-                href={`/blog/${relatedPost.id}`}
+                href={withBase(`/blog/${relatedPost.id}`)}
                 class="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all p-6"
               >
                 <span class="inline-block bg-[var(--color-primary)] text-[var(--color-text-dark)] px-3 py-1 rounded-full text-sm font-medium mb-3">

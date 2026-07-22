@@ -1,6 +1,13 @@
 ---
 import CompareSlider from './ui/CompareSlider';
 import metamorphosisData from '../data/metamorphosis.json';
+import { withBase } from '../lib/paths';
+
+const items = metamorphosisData.map((item) => ({
+  ...item,
+  beforeImage: withBase(item.beforeImage),
+  afterImage: withBase(item.afterImage),
+}));
 ---
 
 <section id="metamorfozy" class="py-16 lg:py-24 bg-[var(--color-background)]">
@@ -16,7 +23,7 @@ import metamorphosisData from '../data/metamorphosis.json';
       </div>
 
       <div class="animate-on-scroll" style="animation-delay: 100ms">
-        <CompareSlider items={metamorphosisData} client:only="react" />
+        <CompareSlider items={items} client:only="react" />
       </div>
 
       <div class="mt-12 text-center animate-on-scroll" style="animation-delay: 200ms">

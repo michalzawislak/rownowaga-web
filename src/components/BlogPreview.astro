@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Button from './ui/Button.astro';
 import Card from './ui/Card.astro';
 import { Image } from 'astro:assets';
+import { withBase } from '../lib/paths';
 
 const blogPosts = await getCollection('blog');
 const featuredPost = blogPosts.find(post => post.data.featured);
@@ -25,7 +26,7 @@ const featuredPost = blogPosts.find(post => post.data.featured);
           {featuredPost.data.image && (
             <div class="h-64 md:h-auto image-hover">
               <Image
-                src={featuredPost.data.image}
+                src={withBase(featuredPost.data.image)}
                 alt={featuredPost.data.imageAlt || featuredPost.data.title}
                 width={600}
                 height={400}

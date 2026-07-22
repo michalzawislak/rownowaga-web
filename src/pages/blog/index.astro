@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Card from '../../components/ui/Card.astro';
 import Button from '../../components/ui/Button.astro';
+import { withBase } from '../../lib/paths';
 
 const allPosts = await getCollection('blog');
 const sortedPosts = allPosts.sort((a, b) => 
@@ -42,7 +43,7 @@ const sortedPosts = allPosts.sort((a, b) =>
               {post.data.image && (
                 <div class="h-48 overflow-hidden">
                   <img
-                    src={post.data.image}
+                    src={withBase(post.data.image)}
                     alt={post.data.imageAlt || post.data.title}
                     class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                   />

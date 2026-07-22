@@ -1,14 +1,15 @@
 ---
 import business from '../data/business.json';
+import { withBase } from '../lib/paths';
 
 const currentYear = new Date().getFullYear();
 
 const footerLinks = [
-  { label: 'O mnie', href: '/#o-mnie' },
-  { label: 'Oferta', href: '/#oferta' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Polityka prywatności', href: '/polityka-prywatnosci' },
-  { label: 'Regulamin', href: '/regulamin' },
+  { label: 'O mnie', href: withBase('/#o-mnie') },
+  { label: 'Oferta', href: withBase('/#oferta') },
+  { label: 'Blog', href: withBase('/blog') },
+  { label: 'Polityka prywatności', href: withBase('/polityka-prywatnosci') },
+  { label: 'Regulamin', href: withBase('/regulamin') },
 ];
 
 const socialLinks = [

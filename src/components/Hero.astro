@@ -2,6 +2,7 @@
 import Button from './ui/Button.astro';
 import { Image } from 'astro:assets';
 import { AnimatedHeroImage, AnimatedCheckmarks } from './ui/AnimatedHero';
+import { withBase } from '../lib/paths';
 
 const checkmarks = [
   { icon: 'check', text: 'Spotkania online' },
@@ -36,7 +37,7 @@ const checkmarks = [
       
       <div class="order-1 lg:order-2">
         <AnimatedHeroImage 
-          src="/images/hero/hero-main.png" 
+          src={withBase('/images/hero/hero-main.png')} 
           alt="Psychodietetyka - zdrowa relacja z jedzeniem"
           client:load
         />
