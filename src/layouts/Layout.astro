@@ -1,6 +1,8 @@
 ---
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import StickyCallCTA from '../components/StickyCallCTA.astro';
+import CookieConsent from '../components/CookieConsent.astro';
 import SchemaOrg from '../components/SchemaOrg.astro';
 import { withBase } from '../lib/paths';
 import '../styles/global.css';
@@ -33,6 +35,24 @@ const ogImage = new URL(withBase(image).replace(/^\//, ''), Astro.site);
     <link rel="apple-touch-icon" sizes="180x180" href={withBase('/images/favicon/apple-touch-icon.png')} />
     <link rel="manifest" href={withBase('/images/favicon/site.webmanifest')} />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Google Consent Mode v2 – domyślnie denied, przed jakimkolwiek tagiem -->
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        functionality_storage: 'denied',
+        personalization_storage: 'denied',
+        security_storage: 'granted',
+        wait_for_update: 500
+      });
+      gtag('set', 'ads_data_redaction', true);
+      gtag('set', 'url_passthrough', true);
+    </script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -59,6 +79,7 @@ const ogImage = new URL(withBase(image).replace(/^\//, ''), Astro.site);
     <SchemaOrg />
   </head>
   <body>
+    <CookieConsent />
     <Navigation />
     
     <main class="pt-20">
@@ -66,6 +87,7 @@ const ogImage = new URL(withBase(image).replace(/^\//, ''), Astro.site);
     </main>
     
     <Footer />
+    <StickyCallCTA />
     
     <script>
       const observerOptions = {

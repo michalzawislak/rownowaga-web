@@ -1,0 +1,198 @@
+---
+import Layout from '../layouts/Layout.astro';
+import business from '../data/business.json';
+import { withBase } from '../lib/paths';
+
+const phoneHref = `tel:${business.telephone.replace(/\s/g, '')}`;
+---
+
+<Layout
+  title={`Polityka prywatności | ${business.shortName}`}
+  description="Polityka prywatności i informacje o przetwarzaniu danych osobowych oraz plikach cookies."
+>
+  <article class="py-16 lg:py-24">
+    <div class="container mx-auto px-4 md:px-8 lg:px-16 max-w-3xl">
+      <h1 class="text-4xl md:text-5xl font-bold text-[var(--color-text-dark)] mb-4">
+        Polityka prywatności
+      </h1>
+      <p class="text-[var(--color-text-light)] mb-12">
+        Ostatnia aktualizacja: 3 sierpnia 2026 r.
+      </p>
+
+      <div class="privacy-content space-y-8 text-[var(--color-text-light)] leading-relaxed">
+        <section>
+          <h2>1. Administrator danych</h2>
+          <p>
+            Administratorem Twoich danych osobowych jest {business.specialist.name},
+            prowadząca działalność pod marką {business.alternateName},
+            z siedzibą przy ul. {business.address.streetAddress},
+            {business.address.postalCode} {business.address.addressLocality}.
+          </p>
+          <p>
+            Kontakt:
+            <a href={`mailto:${business.email}`}>{business.email}</a>,
+            tel. <a href={phoneHref}>{business.telephone}</a>.
+          </p>
+        </section>
+
+        <section>
+          <h2>2. Jakie dane zbieramy i w jakich celach</h2>
+          <ul>
+            <li>
+              <strong>Formularz kontaktowy</strong> — imię, adres e-mail, treść wiadomości
+              oraz ewentualnie numer telefonu. Cel: odpowiedź na zapytanie i umówienie konsultacji
+              (art. 6 ust. 1 lit. b lub f RODO).
+            </li>
+            <li>
+              <strong>Połączenia telefoniczne</strong> — numer telefonu widoczny u operatora.
+              Cel: obsługa zgłoszeń i umówienie wizyty.
+            </li>
+            <li>
+              <strong>Dane analityczne i marketingowe</strong> — identyfikatory cookies / urządzenia,
+              przybliżona lokalizacja, źródło ruchu. Cel: statystyka odwiedzin oraz pomiar
+              skuteczności reklam Google Ads — wyłącznie po wyrażeniu zgody
+              (art. 6 ust. 1 lit. a RODO).
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>3. Pliki cookies i Google Consent Mode v2</h2>
+          <p>
+            Strona wykorzystuje pliki cookies. Cookies niezbędne są zawsze aktywne.
+            Cookies analityczne i marketingowe uruchamiamy dopiero po Twojej zgodzie
+            wyrażonej w banerze cookies.
+          </p>
+          <p>
+            Wdrożyliśmy <strong>Google Consent Mode v2</strong>. Oznacza to, że tagi Google
+            (m.in. Google Tag Manager, Google Ads, Google Analytics — jeśli są skonfigurowane)
+            domyślnie działają w trybie ograniczonego pomiaru, a pełne śledzenie włączamy
+            dopiero po udzieleniu zgody na odpowiednie kategorie.
+          </p>
+          <p>Kategorie cookies:</p>
+          <ul>
+            <li><strong>Niezbędne</strong> — bezpieczeństwo, zapamiętanie wyboru zgody, podstawowe działanie strony.</li>
+            <li><strong>Analityczne</strong> — pomiar ruchu i jakości korzystania ze strony.</li>
+            <li><strong>Marketingowe</strong> — pomiar konwersji kampanii reklamowych i remarketing.</li>
+          </ul>
+          <p>
+            Zgodę możesz zmienić w dowolnym momencie, klikając
+            <button type="button" class="privacy-link-btn" id="open-cookie-settings">
+              Ustawienia cookies
+            </button>
+            lub korzystając z ustawień przeglądarki.
+          </p>
+        </section>
+
+        <section>
+          <h2>4. Odbiorcy danych</h2>
+          <p>Dane mogą być przekazywane zaufanym podmiotom przetwarzającym je w naszym imieniu, w szczególności:</p>
+          <ul>
+            <li>dostawcy hostingu i poczty e-mail,</li>
+            <li>dostawcy formularza kontaktowego (przetwarzanie zgłoszeń),</li>
+            <li>
+              Google Ireland Limited / Google LLC — w zakresie narzędzi analitycznych i reklamowych,
+              wyłącznie gdy wyrazisz na to zgodę.
+            </li>
+          </ul>
+          <p>
+            W przypadku korzystania z narzędzi Google dane mogą być przekazywane poza EOG.
+            Google stosuje mechanizmy zgodne z prawem UE (m.in. standardowe klauzule umowne).
+          </p>
+        </section>
+
+        <section>
+          <h2>5. Okres przechowywania</h2>
+          <ul>
+            <li>Zapytania z formularza — do czasu zakończenia korespondencji, a następnie maksymalnie 12 miesięcy (lub dłużej, jeśli wymagają tego przepisy).</li>
+            <li>Zgoda na cookies — do czasu jej wycofania lub wyczyszczenia danych przeglądarki.</li>
+            <li>Dane rozliczeniowe i dokumentacja medyczna/żywieniowa — zgodnie z obowiązującymi przepisami, jeśli dojdzie do zawarcia umowy o świadczenie usług.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>6. Twoje prawa</h2>
+          <p>Przysługuje Ci prawo do:</p>
+          <ul>
+            <li>dostępu do danych,</li>
+            <li>sprostowania danych,</li>
+            <li>usunięcia danych („prawo do bycia zapomnianym”),</li>
+            <li>ograniczenia przetwarzania,</li>
+            <li>przenoszenia danych,</li>
+            <li>sprzeciwu wobec przetwarzania,</li>
+            <li>cofnięcia zgody w dowolnym momencie (bez wpływu na zgodność z prawem przetwarzania przed jej cofnięciem).</li>
+          </ul>
+          <p>
+            Masz też prawo wnieść skargę do Prezesa Urzędu Ochrony Danych Osobowych
+            (ul. Stawki 2, 00-193 Warszawa, <a href="https://uodo.gov.pl" target="_blank" rel="noopener noreferrer">uodo.gov.pl</a>).
+          </p>
+        </section>
+
+        <section>
+          <h2>7. Dobrowolność podania danych</h2>
+          <p>
+            Podanie danych w formularzu kontaktowym jest dobrowolne, ale niezbędne,
+            abyśmy mogli odpowiedzieć na wiadomość. Brak zgody na cookies analityczne
+            lub marketingowe nie ogranicza korzystania z podstawowych funkcji strony.
+          </p>
+        </section>
+
+        <section>
+          <h2>8. Zmiany polityki</h2>
+          <p>
+            Polityka prywatności może być aktualizowana. Aktualna wersja zawsze jest dostępna
+            pod adresem <a href={withBase('/polityka-prywatnosci')}>{business.url}/polityka-prywatnosci</a>.
+          </p>
+        </section>
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<script>
+  document.getElementById('open-cookie-settings')?.addEventListener('click', () => {
+    window.openCookieSettings?.();
+  });
+</script>
+
+<style>
+  .privacy-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-text-dark);
+  }
+
+  .privacy-content p + p,
+  .privacy-content ul {
+    margin-top: 0.75rem;
+  }
+
+  .privacy-content ul {
+    list-style: disc;
+    padding-left: 1.25rem;
+  }
+
+  .privacy-content li + li {
+    margin-top: 0.5rem;
+  }
+
+  .privacy-content a,
+  .privacy-link-btn {
+    color: var(--color-secondary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .privacy-link-btn {
+    appearance: none;
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .privacy-link-btn:hover {
+    color: var(--color-secondary-dark);
+  }
+</style>

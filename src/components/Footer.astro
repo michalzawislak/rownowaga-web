@@ -99,7 +99,14 @@ const socialLinks = [
         © {currentYear} {business.alternateName}. Wszystkie prawa zastrzeżone.
       </p>
 
-      <div class="flex gap-1">
+      <div class="flex items-center gap-2">
+        <button
+          type="button"
+          id="footer-cookie-settings"
+          class="text-sm text-[var(--color-text-light)] hover:text-[var(--color-secondary)] transition-colors px-2 py-1"
+        >
+          Ustawienia cookies
+        </button>
         {socialLinks.map(social => (
           <a 
             href={social.href}
@@ -115,5 +122,11 @@ const socialLinks = [
         ))}
       </div>
     </div>
+
+    <script>
+      document.getElementById('footer-cookie-settings')?.addEventListener('click', () => {
+        window.openCookieSettings?.();
+      });
+    </script>
   </div>
 </footer>

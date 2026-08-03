@@ -1,0 +1,104 @@
+---
+import business from '../data/business.json';
+
+const phoneHref = `tel:${business.telephone.replace(/\s/g, '')}`;
+---
+
+<a
+  href={phoneHref}
+  class="sticky-call-cta"
+  aria-label={`Zadzwoń teraz: ${business.telephone}`}
+>
+  <svg class="sticky-call-cta__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+  </svg>
+  <span class="sticky-call-cta__label">Zadzwoń teraz</span>
+  <span class="sticky-call-cta__phone">{business.telephone}</span>
+</a>
+
+<style>
+  .sticky-call-cta {
+    display: none;
+  }
+
+  @media (max-width: 767px) {
+    .sticky-call-cta {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.625rem;
+      min-height: 3.5rem;
+      padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom, 0px));
+      background-color: var(--color-secondary);
+      color: #fff;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      box-shadow: 0 -4px 20px rgba(44, 62, 80, 0.15);
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .sticky-call-cta:hover,
+    .sticky-call-cta:focus-visible {
+      background-color: var(--color-secondary-dark);
+      color: #fff;
+    }
+
+    .sticky-call-cta:active {
+      transform: scale(0.995);
+    }
+
+    .sticky-call-cta__icon {
+      width: 1.25rem;
+      height: 1.25rem;
+      flex-shrink: 0;
+      animation: sticky-call-pulse 2.4s ease-in-out infinite;
+    }
+
+    .sticky-call-cta__phone {
+      display: none;
+    }
+
+    @media (min-width: 380px) {
+      .sticky-call-cta__phone {
+        display: inline;
+        font-weight: 500;
+        opacity: 0.9;
+      }
+
+      .sticky-call-cta__phone::before {
+        content: '·';
+        margin-right: 0.625rem;
+        opacity: 0.7;
+      }
+    }
+  }
+
+  @keyframes sticky-call-pulse {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.08);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sticky-call-cta__icon {
+      animation: none;
+    }
+  }
+
+  :global(body.has-cookie-banner) .sticky-call-cta {
+    opacity: 0;
+    pointer-events: none;
+  }
+</style>
