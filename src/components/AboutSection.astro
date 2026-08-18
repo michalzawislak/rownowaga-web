@@ -3,13 +3,6 @@ import Button from './ui/Button.astro';
 import { Image } from 'astro:assets';
 import business from '../data/business.json';
 import { withBase } from '../lib/paths';
-
-const credentials = [
-  'Dietetyk kliniczny (licencja nr XXXX)',
-  'Certyfikowany psychodietetyk',
-  'Członek Polskiego Towarzystwa Dietetyki',
-  'Specjalista intuicyjnego jedzenia'
-];
 ---
 
 <section id="o-mnie" class="py-16 lg:py-24 bg-[var(--color-background)]">
@@ -20,8 +13,8 @@ const credentials = [
       </h2>
     </div>
     
-    <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
-      <div class="lg:col-span-2 animate-on-scroll">
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
+      <div class="lg:col-span-2 lg:sticky lg:top-24 animate-on-scroll">
         <div class="rounded-2xl overflow-hidden shadow-xl image-hover">
           <Image 
             src={withBase(business.specialist.image)} 
@@ -34,44 +27,111 @@ const credentials = [
         </div>
       </div>
       
-      <div class="lg:col-span-3 space-y-6">
-        <div class="prose prose-lg max-w-none">
-          <p class="text-lg text-[var(--color-text-light)] leading-relaxed animate-on-scroll" style="animation-delay: 100ms">
-            Jestem <strong class="text-[var(--color-text-dark)]">{business.specialist.name}</strong>, 
-            dietetykiem i psychodietetykiem.
+      <div class="lg:col-span-3 space-y-10">
+        <div class="space-y-4">
+          <div class="animate-on-scroll" style="animation-delay: 100ms">
+            <h3 class="text-2xl lg:text-3xl font-bold text-[var(--color-text-dark)]">
+              {business.specialist.name}
+            </h3>
+            <p class="mt-1 text-lg font-medium text-[var(--color-secondary)]">
+              {business.specialist.jobTitle}
+            </p>
+          </div>
+          
+          <p class="text-lg text-[var(--color-text-light)] leading-relaxed animate-on-scroll" style="animation-delay: 150ms">
+            Od 13 lat pracuję jako dietetyk, towarzysząc moim pacjentom w drodze do lepszego zdrowia, samopoczucia i bardziej świadomego podejścia do jedzenia.
           </p>
           
           <p class="text-lg text-[var(--color-text-light)] leading-relaxed animate-on-scroll" style="animation-delay: 200ms">
-            Od 8 lat pomagam osobom, które zmęczyły się walką z jedzeniem i własnym ciałem. 
-            Sama przez lata byłam w pułapce diet, więc doskonale rozumiem, przez co przechodzisz. 
-            Wiem, jak frustrujące może być odzyskiwanie tych samych kilogramów i jak wyczerpujące 
-            jest ciągłe myślenie o jedzeniu.
+            Przez te lata zdobyłam nie tylko wiedzę i doświadczenie, ale przede wszystkim nauczyłam się, że każdy człowiek i każda historia są inne. Nie ma jednego rozwiązania, które sprawdzi się u każdego. Dlatego w swojej pracy patrzę na pacjenta całościowo – jego potrzeby, możliwości, codzienne życie, emocje i relację z jedzeniem.
+          </p>
+        </div>
+        
+        <div class="space-y-4 animate-on-scroll" style="animation-delay: 250ms">
+          <h3 class="text-xl lg:text-2xl font-semibold text-[var(--color-text-dark)]">
+            Wiedza, doświadczenie i… człowiek
+          </h3>
+          
+          <p class="text-lg text-[var(--color-text-light)] leading-relaxed">
+            Jako dietetyk i psychodietetyk łączę wiedzę z zakresu żywienia z podejściem, które uwzględnia psychologiczną stronę zmiany.
           </p>
           
-          <p class="text-lg text-[var(--color-text-light)] leading-relaxed animate-on-scroll" style="animation-delay: 300ms">
-            W mojej pracy łączę wiedzę naukową z empatią i holistycznym podejściem. 
-            Nie liczę kalorii i nie ważę posiłków. Zamiast tego, uczymy się słuchać ciała, 
-            rozpoznawać prawdziwe potrzeby i budować trwałe zdrowe nawyki.
+          <p class="text-lg text-[var(--color-text-light)] leading-relaxed">
+            Wiem, że zmiana nawyków żywieniowych nie zawsze jest prosta. Czasami problemem nie jest brak wiedzy o tym, co powinniśmy jeść, ale trudność w zastosowaniu tej wiedzy w codziennym życiu.
+          </p>
+          
+          <p class="text-lg text-[var(--color-text-light)] leading-relaxed">
+            Dlatego podczas współpracy ze mną nie znajdziesz oceniania, krytyki czy wyrzutów sumienia.
+          </p>
+          
+          <p class="text-lg text-[var(--color-text-light)] leading-relaxed">
+            Znajdziesz za to uważność, empatię, zrozumienie i wspólne poszukiwanie rozwiązania.
+          </p>
+          
+          <p class="text-lg text-[var(--color-text-light)] leading-relaxed">
+            Zależy mi na tym, abyśmy razem znaleźli takie sposoby działania, które będą możliwe do zastosowania w Twoim życiu – nie tylko przez kilka tygodni, ale na dłużej.
           </p>
         </div>
         
-        <div class="bg-[var(--color-background-alt)] rounded-xl p-6 space-y-3 animate-on-scroll" style="animation-delay: 400ms">
-          <h3 class="text-xl font-semibold text-[var(--color-text-dark)] mb-4">
-            Kwalifikacje:
+        <div class="space-y-4 animate-on-scroll" style="animation-delay: 300ms">
+          <h3 class="text-xl lg:text-2xl font-semibold text-[var(--color-text-dark)]">
+            Nie kolejna dieta. Trwała zmiana.
           </h3>
-          <ul class="space-y-2">
-            {credentials.map((credential, index) => (
-              <li class="flex items-center gap-3 text-[var(--color-text-light)] animate-on-scroll" style={`animation-delay: ${500 + index * 80}ms`}>
-                <svg class="w-5 h-5 text-[var(--color-secondary)] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                </svg>
-                {credential}
-              </li>
-            ))}
-          </ul>
+          
+          <p class="text-lg text-[var(--color-text-light)] leading-relaxed">
+            Wierzę, że skuteczna zmiana nie powinna być tymczasowym „przejściem na dietę”.
+          </p>
+          
+          <p class="text-lg text-[var(--color-text-light)] leading-relaxed">
+            Moim celem jest pomaganie w budowaniu zdrowych i realnych nawyków, które można utrzymać również wtedy, gdy kończy się początkowa motywacja, pojawia się stres, mniej czasu czy codzienne trudności.
+          </p>
+          
+          <p class="text-lg text-[var(--color-text-light)] leading-relaxed">
+            Nie chodzi o perfekcję. Chodzi o to, aby znaleźć rozwiązania, które są dopasowane do Ciebie i które możesz z powodzeniem stosować w swoim życiu.
+          </p>
         </div>
         
-        <div class="pt-4 animate-on-scroll" style="animation-delay: 800ms">
+        <div class="space-y-4 animate-on-scroll" style="animation-delay: 350ms">
+          <h3 class="text-xl lg:text-2xl font-semibold text-[var(--color-text-dark)]">
+            Cały czas się uczę
+          </h3>
+          
+          <p class="text-lg text-[var(--color-text-light)] leading-relaxed">
+            Mimo 13 lat doświadczenia wiem, że w zawodzie dietetyka nie można się zatrzymać.
+          </p>
+          
+          <p class="text-lg text-[var(--color-text-light)] leading-relaxed">
+            Nauka i rozwój są dla mnie ważną częścią pracy. Regularnie poszerzam swoją wiedzę, uczestnicząc w konferencjach, kursach i szkoleniach, śledząc najnowsze doniesienia oraz rozwijając swoje kompetencje.
+          </p>
+          
+          <p class="text-lg text-[var(--color-text-light)] leading-relaxed">
+            Chcę, aby wiedza, którą przekazuję moim pacjentom, była nie tylko oparta na doświadczeniu, ale również aktualna i zgodna ze współczesną wiedzą.
+          </p>
+        </div>
+        
+        <div class="space-y-4 animate-on-scroll" style="animation-delay: 400ms">
+          <h3 class="text-xl lg:text-2xl font-semibold text-[var(--color-text-dark)]">
+            Jestem tutaj, żeby Ci pomóc
+          </h3>
+          
+          <p class="text-lg text-[var(--color-text-light)] leading-relaxed">
+            Jeśli szukasz osoby, która nie będzie Cię oceniać, narzucać nierealnych zasad ani wymagać perfekcji – zapraszam.
+          </p>
+          
+          <p class="text-lg text-[var(--color-text-light)] leading-relaxed">
+            Chcę pomóc Ci zrozumieć swoje potrzeby, znaleźć rozwiązania dopasowane do Twojego życia i krok po kroku wprowadzać zmiany, które zostaną z Tobą na dłużej.
+          </p>
+          
+          <p class="text-lg text-[var(--color-text-light)] leading-relaxed">
+            Bo zdrowe odżywianie nie powinno być kolejnym obowiązkiem.
+          </p>
+          
+          <p class="text-lg text-[var(--color-text-dark)] font-medium leading-relaxed">
+            Powinno stać się naturalną częścią Twojego życia.
+          </p>
+        </div>
+        
+        <div class="pt-2 animate-on-scroll" style="animation-delay: 450ms">
           <Button href="#oferta" size="lg">
             Zobacz ofertę
           </Button>
