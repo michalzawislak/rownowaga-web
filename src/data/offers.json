@@ -17,24 +17,6 @@
     "ctaLink": "#kontakt"
   },
   {
-    "id": "monthly-package",
-    "name": "Pakiet miesięczny (4 wizyty)",
-    "subtitle": "na pierwszy miesiąc współpracy",
-    "price": "390 zł",
-    "popular": true,
-    "badge": "ZALECANY",
-    "features": [
-      "Wizyty w trybie cotygodniowym",
-      "Weryfikacja i omówienie dzienniczka żywieniowego",
-      "Zalecenia na każdy tydzień współpracy",
-      "Wprowadzenie nowych przepisów dostosowanych do indywidualnych potrzeb oraz sezonowości produktów",
-      "Wsparcie i motywacja",
-      "Dostęp do aplikacji dietetycznej"
-    ],
-    "ctaText": "Umów się",
-    "ctaLink": "#kontakt"
-  },
-  {
     "id": "weekly-followup",
     "name": "Wizyty kontrolne",
     "subtitle": "tryb cotygodniowy",
@@ -83,6 +65,37 @@
       "Wprowadzenie nowych przepisów dostosowanych do indywidualnych potrzeb oraz sezonowości produktów",
       "Wsparcie i motywacja",
       "Dostęp do aplikacji dietetycznej"
+    ],
+    "ctaText": "Umów się",
+    "ctaLink": "#kontakt"
+  },
+  {
+    "id": "monthly-package",
+    "name": "Pakiet miesięczny (4 wizyty)",
+    "subtitle": "na pierwszy miesiąc współpracy",
+    "price": "390 zł",
+    "popular": true,
+    "badge": "ZALECANY",
+    "features": [
+      "Wizyty w trybie cotygodniowym",
+      "Weryfikacja i omówienie dzienniczka żywieniowego",
+      "Zalecenia na każdy tydzień współpracy",
+      "Wprowadzenie nowych przepisów dostosowanych do indywidualnych potrzeb oraz sezonowości produktów",
+      "Wsparcie i motywacja",
+      "Dostęp do aplikacji dietetycznej"
+    ],
+    "ctaText": "Umów się",
+    "ctaLink": "#kontakt"
+  },
+  {
+    "id": "weekly-menu",
+    "name": "Ścisły jadłospis tygodniowy",
+    "subtitle": "",
+    "price": "180 zł",
+    "popular": false,
+    "badge": "",
+    "features": [
+      "Indywidualnie skomponowane przepisy na każdy dzień tygodnia"
     ],
     "ctaText": "Umów się",
     "ctaLink": "#kontakt"

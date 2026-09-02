@@ -10,9 +10,6 @@ import offers from '../data/offers.json';
       <h2 class="text-4xl lg:text-5xl font-bold text-[var(--color-text-dark)] mb-4">
         Jak mogę Ci pomóc?
       </h2>
-      <p class="text-lg text-[var(--color-text-light)] max-w-2xl mx-auto">
-        Cennik współpracy
-      </p>
     </div>
     
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
@@ -34,13 +31,10 @@ import offers from '../data/offers.json';
                   {offer.subtitle}
                 </p>
               )}
-              <div class="text-2xl md:text-3xl font-bold text-[var(--color-secondary)] mt-4">
-                {offer.price}
-              </div>
             </div>
             
             {offer.features.length > 0 ? (
-              <ul class="space-y-4 mb-8 flex-1">
+              <ul class="space-y-4 mb-6 flex-1">
                 {offer.features.map((feature) => (
                   <li class="flex items-start gap-3">
                     <svg class="w-5 h-5 text-[var(--color-secondary)] flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
@@ -54,13 +48,18 @@ import offers from '../data/offers.json';
               <div class="flex-1"></div>
             )}
             
-            <Button 
-              href={offer.ctaLink} 
-              variant={offer.popular ? 'primary' : 'secondary'}
-              class="w-full mt-auto"
-            >
-              {offer.ctaText}
-            </Button>
+            <div class="mt-auto text-center">
+              <div class="text-2xl md:text-3xl font-bold text-[var(--color-secondary)] mb-4">
+                {offer.price}
+              </div>
+              <Button 
+                href={offer.ctaLink} 
+                variant={offer.popular ? 'primary' : 'secondary'}
+                class="w-full"
+              >
+                {offer.ctaText}
+              </Button>
+            </div>
           </Card>
         </div>
       ))}
