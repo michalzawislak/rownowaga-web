@@ -72,13 +72,14 @@
   {
     "id": "monthly-package",
     "name": "Pakiet miesięczny (4 wizyty)",
-    "subtitle": "na pierwszy miesiąc współpracy",
+    "subtitle": "zalecany na pierwszy miesiąc współpracy",
     "price": "390 zł",
     "popular": true,
-    "badge": "ZALECANY",
+    "badge": "Najpopularniejszy",
     "features": [
       "Wizyty w trybie cotygodniowym",
       "Weryfikacja i omówienie dzienniczka żywieniowego",
+      "Analiza składu ciała i monitoring postępów",
       "Zalecenia na każdy tydzień współpracy",
       "Wprowadzenie nowych przepisów dostosowanych do indywidualnych potrzeb oraz sezonowości produktów",
       "Wsparcie i motywacja",
