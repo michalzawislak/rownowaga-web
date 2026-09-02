@@ -5,8 +5,8 @@ import { AnimatedHeroImage, AnimatedCheckmarks } from './ui/AnimatedHero';
 import { withBase } from '../lib/paths';
 
 const checkmarks = [
-  { icon: 'check', text: 'Spotkania online' },
-  { icon: 'check', text: 'Bez liczenia kalorii' }
+  { icon: 'check', text: 'Online i stacjonarnie w Szczecinie' },
+  { icon: 'check', text: 'Indywidualny schemat diety' }
 ];
 ---
 
@@ -15,12 +15,11 @@ const checkmarks = [
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-24 items-center">
       <div class="order-2 lg:order-1 hero-content">
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight animate-fade-in-up" style="margin-bottom: 2.5rem;">
-          Odzyskaj zdrową <span class="text-[var(--color-secondary)]">relację z jedzeniem</span>
+          Dieta dopasowana do <span class="text-[var(--color-secondary)]">Twojego życia</span>
         </h1>
         
         <p class="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed animate-fade-in-up animation-delay-100" style="margin-bottom: 3rem;">
-          Psychodietetyka i terapia żywieniowa bez restrykcji i diet. 
-          Przestań walczyć ze sobą i zacznij słuchać swojego ciała.
+          Gabinet dietetyczny w Szczecinie. Układam indywidualną dietę na podstawie wywiadu i analizy składu ciała, a potem regularnie ją dopasowujemy — z przepisami, dzienniczkiem i aplikacją.
         </p>
         
         <div class="flex flex-col sm:flex-row gap-6 animate-fade-in-scale animation-delay-200" style="margin-bottom: 4rem;">
@@ -38,7 +37,7 @@ const checkmarks = [
       <div class="order-1 lg:order-2">
         <AnimatedHeroImage 
           src={withBase('/images/hero/hero-main.png')} 
-          alt="Psychodietetyka - zdrowa relacja z jedzeniem"
+          alt="Gabinet dietetyczny Równowaga w Szczecinie"
           client:load
         />
       </div>

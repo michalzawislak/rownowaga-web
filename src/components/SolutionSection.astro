@@ -4,11 +4,11 @@ import { Image } from 'astro:assets';
 import { withBase } from '../lib/paths';
 
 const benefits = [
-  'Intuicyjnym jedzeniem i słuchaniem ciała',
-  'Uwalnianiem się od diet mentalności',
-  'Budowaniem pozytywnej relacji z jedzeniem',
-  'Akceptacją ciała i self-compassion',
-  'Znajdowaniem równowagi bez restrykcji'
+  'Indywidualnym schematem diety',
+  'Analizą składu ciała i monitoringiem postępów',
+  'Dzienniczkiem żywieniowym i zaleceniami na kolejne tygodnie',
+  'Przepisami dopasowanymi do Ciebie i sezonu',
+  'Utrzymaniem planu — także gdy w grę wchodzą nawyki i emocje'
 ];
 ---
 
@@ -19,7 +19,7 @@ const benefits = [
         <div class="rounded-2xl overflow-hidden shadow-xl image-hover">
           <Image 
             src={withBase('/images/solution/mindful-eating.jpg')} 
-            alt="Intuicyjne jedzenie - spokojne podejście do posiłków"
+            alt="Współpraca z dietetykiem — dieta i regularne wizyty"
             width={700}
             height={500}
             class="w-full h-[300px] md:h-[400px] lg:h-[500px] object-cover transition-transform duration-700"
@@ -30,17 +30,16 @@ const benefits = [
       
       <div class="order-1 lg:order-2 space-y-6">
         <h2 class="text-4xl lg:text-5xl font-bold text-[var(--color-text-dark)] animate-on-scroll">
-          Jest <span class="text-[var(--color-secondary)]">inna droga</span>
+          Dieta jest <span class="text-[var(--color-secondary)]">podstawą współpracy</span>
         </h2>
         
         <p class="text-lg text-[var(--color-text-light)] leading-relaxed animate-on-scroll" style="animation-delay: 100ms">
-          Psychodietetyka to podejście, które łączy wiedzę o żywieniu z psychologią. 
-          Zamiast kolejnej diety, pracujemy nad trwałą zmianą Twojej relacji z jedzeniem.
+          W gabinecie układam dietę na podstawie wywiadu zdrowotnego, żywieniowego i analizy składu ciała. Potem spotykamy się regularnie, żeby plan działał na co dzień — nie tylko przez pierwszy tydzień.
         </p>
         
         <div class="space-y-4 animate-on-scroll" style="animation-delay: 200ms">
           <p class="text-[var(--color-text-dark)] font-medium">
-            Zamiast kolejnej diety, pracujemy nad:
+            W praktyce pracujemy nad:
           </p>
           <ul class="space-y-3">
             {benefits.map((benefit, index) => (

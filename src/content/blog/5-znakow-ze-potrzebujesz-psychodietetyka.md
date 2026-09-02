@@ -1,103 +1,64 @@
 ---
-title: "5 znaków, że potrzebujesz psychodietetyka (a nie kolejnej diety)"
-description: "Ciągle liczysz kalorie? Jesz w ukryciu? Sprawdź, czy to czas na wsparcie psychodietetyka zamiast kolejnej diety."
+title: "5 znaków, że potrzebujesz dietetyka (a nie kolejnej diety z internetu)"
+description: "Kolejny gotowiec i efekt jo-jo? Sprawdź, czy czas na indywidualną dietę, wizyty kontrolne i plan, którego da się trzymać."
 publishDate: 2026-05-15
 author: "Elżbieta Kuczyńska-Zawiślak"
 featured: true
 image: "/images/blog/psychodietician-signs.jpg"
-imageAlt: "Kobieta zastanawiająca się nad swoją relacją z jedzeniem"
-category: "Psychodietetyka"
-tags: ["psychodietetyka", "intuicyjne jedzenie", "zaburzenia odżywiania", "dieta"]
+imageAlt: "Kobieta planująca dietę i listę zakupów"
+category: "Dietetyka"
+tags: ["dietetyka", "dieta", "wizyty kontrolne", "gabinet dietetyczny"]
 ---
 
-Zastanawiasz się, czy zwykły dietetyk wystarczy, czy może potrzebujesz czegoś więcej? Psychodietetyka to podejście, które łączy wiedzę o żywieniu z psychologią i może być kluczem do prawdziwej, trwałej zmiany.
+Zastanawiasz się, czy kolejna dieta z bloga wystarczy, czy czas na gabinet? Dieta jest podstawą mojej pracy. Układam ją indywidualnie, a potem regularnie dopasowujemy na wizytach — z dzienniczkiem, przepisami i analizą składu ciała.
 
-## 1. Ciągle myślisz o jedzeniu
+## 1. Przeskakujesz z diety na dietę
 
-Jedzenie zajmuje większość Twoich myśli przez cały dzień. Nawet gdy jesz śniadanie, planujesz już lunch. Liczysz kalorie, obsesyjnie czytasz etykiety i kategoryzujesz jedzenie na "dobre" i "złe".
+Keto, pudełka, „to, co teraz wszyscy jedzą”. Działa przez chwilę, potem wraca jo-jo i zaczynasz od nowa.
 
-**To nie jest normalne.** Zdrowa relacja z jedzeniem oznacza, że możesz cieszyć się posiłkiem, a potem zapomnieć o jedzeniu do momentu, gdy znowu poczujesz głód.
+**To nie musi być Twoja wina.** Gotowiec z internetu nie zna Twojego zdrowia, dnia ani tego, co naprawdę jesz. W gabinecie dieta powstaje po wywiadzie i — gdy pracujemy stacjonarnie — po analizie składu ciała.
 
-Jeśli jedzenie kontroluje Twoje myśli, psychodietetyka pomoże Ci zrozumieć, skąd bierze się ta obsesja i jak się z niej uwolnić.
+## 2. Nie wiesz, co jeść na co dzień
 
-## 2. Jesz w ukryciu lub czujesz wstyd
+Albo jesz byle co, albo w kółko to samo. Lista zakupów jest chaosem, a gotowanie zjada wieczór.
 
-Zdarza Ci się jeść w łazience? Ukrywasz opakowania po słodyczach? Czujesz wstyd po zjedzeniu czegoś "zakazanego"?
+Dieta ma to uporządkować: schemat, zalecenia na tydzień albo dwa i przepisy dopasowane do Ciebie oraz sezonu. Do tego dostęp do aplikacji dietetycznej, żeby plan był pod ręką.
 
-Wstyd wokół jedzenia jest jednym z najsilniejszych sygnałów, że potrzebujesz wsparcia psychodietetycznego. Nie chodzi tu tylko o edukację żywieniową - chodzi o głębszą pracę nad relacją z jedzeniem i ciałem.
+## 3. Nie ma kontroli ani korekty
 
-Psychodietetyk pomoże Ci:
-- Zrozumieć źródła wstydu
-- Nauczyć się jeść bez osądzania siebie
-- Odbudować zaufanie do własnego ciała
+Zaczynasz z motywacją, a po dwóch tygodniach plan się rozjeżdża. Nikt nie patrzy w dzienniczek, nikt nie mówi, co zmienić.
 
-## 3. Masz za sobą minimum 5 diet
+Dlatego współpraca opiera się na wizytach kontrolnych. Sprawdzamy, co wyszło, co nie, i dajemy zalecenia na kolejny tydzień albo dwa — zamiast zostawiać Cię samą z kartką.
 
-Keto, paleo, niskowęglowodanowa, intermittent fasting, dieta pudełkowa... Wypróbowałaś wszystko. I wszystko działa... przez jakiś czas. Potem wraca efekt jo-jo i zaczynasz od nowa.
+## 4. Stres zjada plan
 
-**To nie Twoja wina.** Badania pokazują, że 95% diet kończy się porażką w ciągu 5 lat. Dlaczego? Bo diety nie dotykają prawdziwego problemu - Twojej relacji z jedzeniem.
+Zły dzień i dieta leci. Wiesz, co „wypadałoby” jeść, ale w praktyce się nie da.
 
-Psychodietetyka oferuje inne podejście:
-- Zamiast kolejnej diety - praca nad intuicyjnym jedzeniem
-- Zamiast restrykcji - słuchanie sygnałów ciała
-- Zamiast walki - akceptacja i współpraca
+Tu pomaga psychodietetyka — jako wsparcie przy utrzymaniu diety, nie zamiast niej. Rozróżniamy głód od emocji i szukamy rozwiązań, które da się zastosować w Twoim życiu.
 
-## 4. Jedzenie to Twój sposób na stres
+## 5. Nie wiesz, czy idziesz w dobrą stronę
 
-Zły dzień w pracy? Sięgasz po lody. Kłótnia z partnerem? Chipsy. Stres? Pizza o 23:00.
+Waga skacze, energia spada, a Ty zgadujesz. Bez pomiarów i omówienia wyników trudno ocenić, czy dieta działa.
 
-Jedzenie emocjonalne jest normalne - wszyscy czasem jemy z nudów lub stresu. Problem pojawia się, gdy staje się to Twoim **jedynym** sposobem radzenia sobie z emocjami.
+Analiza składu ciała i monitoring postępów dają konkret. Na tej podstawie korygujemy plan, zamiast zrywać wszystko i zaczynać od nowa.
 
-Psychodietetyk pomoże Ci:
-- Rozpoznać prawdziwy głód vs głód emocjonalny
-- Nauczyć się alternatywnych strategii radzenia sobie ze stresem
-- Zrozumieć, jakie potrzeby próbujesz zaspokoić jedzeniem
+## Czy rozpoznałaś się w tych znakach?
 
-## 5. Czujesz, że jedzenie kontroluje Ciebie (nie odwrotnie)
+Jeśli choć jeden punkt brzmi znajomo, warto umówić się do gabinetu. Szukanie pomocy to nie słabość — to decyzja, żeby dieta wreszcie była planem, a nie zgadywaniem.
 
-Czujesz, że straciłaś kontrolę? Że nie możesz przestać jeść, nawet gdy jesteś pełna? Że jedzenie dyktuje Twój dzień, nastrój i plany?
+### Jak wygląda współpraca?
 
-To jest właśnie moment, w którym psychodietetyka może zmienić wszystko.
-
-Psychodietetyk nie da Ci kolejnego planu żywieniowego. Zamiast tego pomaga:
-- Odbudować naturalną regulację głodu i sytości
-- Zrozumieć mechanizmy psychologiczne za Twoim jedzeniem
-- Nauczyć się słuchać ciała zamiast diet mentalności
-
-## Czy rozpoznałeś się w tych znakach?
-
-Jeśli choć jeden z tych punktów brzmi znajomo, warto rozważyć wsparcie psychodietetyka. 
-
-**To nie jest słabość.** To nie znaczy, że "nie potrafisz się kontrolować". To znaczy, że potrzebujesz innego podejścia - takiego, które faktycznie działa.
-
-### Czym jest psychodietetyka?
-
-Psychodietetyka to podejście terapeutyczne łączące:
-- Wiedzę o żywieniu
-- Psychologię i pracę nad emocjami
-- Terapię zaburzeń odżywiania
-- Intuicyjne jedzenie
-- Body positivity i akceptację ciała
-
-### Jak wygląda praca z psychodietetykiem?
-
-Współpraca z psychodietetykiem to nie kolejna dieta. To proces, który:
-- Rozpoczyna się od zrozumienia Twojej historii z jedzeniem
-- Skupia się na **dlaczego** jesz, nie tylko **co** jesz
-- Pomaga odbudować zaufanie do własnego ciała
-- Uczy intuicyjnego jedzenia bez restrykcji
-- Pracuje nad akceptacją ciała i self-compassion
+- Pierwsza konsultacja: wywiad, cele, wstępny schemat diety, analiza składu ciała (wizyta stacjonarna)
+- Wizyty kontrolne: dzienniczek, zalecenia, nowe przepisy, motywacja
+- Pakiet 4 wizyt: zalecany na pierwszy miesiąc współpracy
+- Psychodietetyka: gdy nawyki albo emocje utrudniają trzymanie planu
 
 ## Następne kroki
 
-Gotowa na zmianę? Oto co możesz zrobić:
-
-1. **Umów bezpłatną konsultację** - porozmawiajmy o Twojej sytuacji
-2. **Oceń swoją relację z jedzeniem** - czy potrzebujesz wsparcia?
-3. **Przeczytaj więcej** o psychodietetyce i intuicyjnym jedzeniu
-
-Pamiętaj: szukanie pomocy to oznaka siły, nie słabości. Zasługujesz na życie bez obsesji na punkcie jedzenia i ciągłej walki z własnym ciałem.
+1. **Umów bezpłatną 15-minutową rozmowę wstępną** — to nie jest jeszcze pierwsza wizyta z cennika
+2. **Zobacz ofertę** — pierwsza konsultacja, kontrole i pakiet miesięczny
+3. **Przygotuj pytania** o cele, badania i to, jak jesz na co dzień
 
 ---
 
-**O autorce:** Elżbieta Kuczyńska-Zawiślak to certyfikowany psychodietetyk i dietetyk kliniczny z 8-letnim doświadczeniem w pracy z osobami zmagającymi się z zaburzeniami odżywiania i dietą mentalności.
+**O autorce:** Elżbieta Kuczyńska-Zawiślak to dietetyk i psychodietetyk. Od 13 lat prowadzi gabinet, w którym dieta jest podstawą współpracy.

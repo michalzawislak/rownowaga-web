@@ -2,22 +2,22 @@
   {
     "id": "calories",
     "question": "Czy będę musiała liczyć kalorie?",
-    "answer": "Nie! To przeciwieństwo mojego podejścia. Uczymy się słuchać ciała zamiast liczb. Intuicyjne jedzenie opiera się na sygnałach głodu i sytości, nie na matematyce."
+    "answer": "Dieta jest podstawą współpracy. Dostajesz schemat, przepisy i dzienniczek. Kalorie mogą być narzędziem, gdy są potrzebne — nie muszą być codzienną obsesją."
   },
   {
     "id": "results",
     "question": "Jak szybko zobaczę efekty?",
-    "answer": "To zależy od Twoich celów. Jeśli chodzi o relację z jedzeniem - pierwsze zmiany możesz zauważyć już po 2-3 tygodniach. Jeśli chodzi o zdrowie i samopoczucie - efekty są indywidualne, ale przede wszystkim trwałe."
+    "answer": "To zależy od Twoich celów. Przy diecie i regularnych wizytach pierwsze zmiany w samopoczuciu często widać po 2–3 tygodniach. Skład ciała, waga i energia zmieniają się indywidualnie — ważne, że plan da się utrzymać."
   },
   {
     "id": "weight-loss",
     "question": "Czy to działa, jeśli mam dużo do zrzucenia?",
-    "answer": "Psychodietetyka działa dla każdego, niezależnie od wagi początkowej. Nie skupiamy się tylko na liczbie na wadze, ale na całościowym zdrowiu fizycznym i psychicznym. Wiele osób naturalnie traci wagę, gdy nauczy się słuchać swojego ciała."
+    "answer": "Tak. Dietę układam niezależnie od wagi początkowej. Pracujemy na schemacie żywieniowym, analizie składu ciała i wizytach kontrolnych. Redukcja jest jednym z możliwych celów, nie jedynym."
   },
   {
     "id": "online-stationary",
     "question": "Czy spotkania są online czy stacjonarne?",
-    "answer": "Wszystkie spotkania odbywają się online przez Zoom lub Google Meet, co daje Ci wygodę i elastyczność. Możesz uczestniczyć z dowolnego miejsca, gdzie czujesz się komfortowo."
+    "answer": "Obie formy są dostępne. Pierwsza konsultacja może być stacjonarna w gabinecie w Szczecinie albo online. Wizyty kontrolne z analizą składu ciała odbywają się stacjonarnie, a kontrolę online proponuję w trybie co 2 tygodnie."
   },
   {
     "id": "insurance",
@@ -32,11 +32,11 @@
   {
     "id": "duration",
     "question": "Jak długo trwa współpraca?",
-    "answer": "To zależy od Twoich potrzeb. Oferuję pojedyncze konsultacje (60 min), program 3-miesięczny (6 spotkań) oraz programy indywidualne dostosowane do Twojej sytuacji. Wspólnie ustalimy optymalny plan."
+    "answer": "To zależy od Twoich potrzeb. Współpraca zaczyna się od pierwszej konsultacji, a potem od wizyt kontrolnych co tydzień albo co 2 tygodnie. Na pierwszy miesiąc polecam pakiet 4 wizyt. Wspólnie ustalimy rytm, który ma szansę się utrzymać."
   },
   {
     "id": "preparation",
     "question": "Jak przygotować się do pierwszego spotkania?",
-    "answer": "Nie musisz się specjalnie przygotowywać. Przydatne może być przemyślenie, co chciałabyś zmienić w swojej relacji z jedzeniem i ciałem. Resztę omówimy wspólnie podczas konsultacji."
+    "answer": "Nie musisz się specjalnie przygotowywać. Przydatne będą Twoje cele, to jak jesz na co dzień i — jeśli masz — aktualne wyniki badań. Resztę omówimy na pierwszej konsultacji."
   }
 ]

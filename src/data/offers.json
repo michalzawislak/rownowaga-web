@@ -1,46 +1,101 @@
 [
   {
-    "id": "single",
-    "name": "Konsultacja pojedyncza",
-    "price": "250 zł",
+    "id": "first-consultation",
+    "name": "Pierwsza konsultacja",
+    "subtitle": "stacjonarna / online",
+    "price": "200 zł",
     "popular": false,
+    "badge": "",
     "features": [
-      "60 min spotkanie online",
-      "Analiza nawyków żywieniowych",
-      "Indywidualny plan działania",
-      "Materiały edukacyjne po spotkaniu"
+      "Wywiad zdrowotny i żywieniowy",
+      "Analiza składu ciała + omówienie wyników",
+      "Ustalenie celów współpracy",
+      "Wstępne zalecenia i schemat diety",
+      "Dostęp do aplikacji dietetycznej"
     ],
     "ctaText": "Umów się",
     "ctaLink": "#kontakt"
   },
   {
-    "id": "program-3m",
-    "name": "Program 3-miesięczny",
-    "price": "1200 zł",
+    "id": "monthly-package",
+    "name": "Pakiet miesięczny (4 wizyty)",
+    "subtitle": "na pierwszy miesiąc współpracy",
+    "price": "390 zł",
     "popular": true,
+    "badge": "ZALECANY",
     "features": [
-      "6 spotkań online (co 2 tygodnie)",
-      "Wsparcie mailowe między sesjami",
-      "Materiały edukacyjne i ćwiczenia",
-      "Praca z psychodietetyką",
-      "Monitoring postępów"
+      "Wizyty w trybie cotygodniowym",
+      "Weryfikacja i omówienie dzienniczka żywieniowego",
+      "Zalecenia na każdy tydzień współpracy",
+      "Wprowadzenie nowych przepisów dostosowanych do indywidualnych potrzeb oraz sezonowości produktów",
+      "Wsparcie i motywacja",
+      "Dostęp do aplikacji dietetycznej"
     ],
     "ctaText": "Umów się",
     "ctaLink": "#kontakt"
   },
   {
-    "id": "individual",
-    "name": "Program indywidualny",
-    "price": "Ustalana indywidualnie",
+    "id": "weekly-followup",
+    "name": "Wizyty kontrolne",
+    "subtitle": "tryb cotygodniowy",
+    "price": "110 zł",
     "popular": false,
+    "badge": "",
     "features": [
-      "Dostosowany do Twoich potrzeb",
-      "Elastyczna liczba spotkań",
-      "Wsparcie długoterminowe",
-      "Kompleksowe podejście",
-      "Priorytetowy kontakt"
+      "Weryfikacja i omówienie dzienniczka żywieniowego",
+      "Analiza składu ciała i monitoring postępów",
+      "Zalecenia na kolejny tydzień współpracy",
+      "Wprowadzenie nowych przepisów dostosowanych do indywidualnych potrzeb oraz sezonowości produktów",
+      "Wsparcie i motywacja",
+      "Dostęp do aplikacji dietetycznej"
     ],
-    "ctaText": "Zapytaj o szczegóły",
+    "ctaText": "Umów się",
+    "ctaLink": "#kontakt"
+  },
+  {
+    "id": "biweekly-followup",
+    "name": "Wizyty kontrolne",
+    "subtitle": "co 2 tygodnie",
+    "price": "170 zł",
+    "popular": false,
+    "badge": "",
+    "features": [
+      "Weryfikacja i omówienie dzienniczka żywieniowego",
+      "Analiza składu ciała i monitoring postępów",
+      "Zalecenia na kolejne 2 tygodnie współpracy",
+      "Wprowadzenie nowych przepisów dostosowanych do indywidualnych potrzeb oraz sezonowości produktów",
+      "Wsparcie i motywacja",
+      "Dostęp do aplikacji dietetycznej"
+    ],
+    "ctaText": "Umów się",
+    "ctaLink": "#kontakt"
+  },
+  {
+    "id": "online-followup",
+    "name": "Wizyta kontrolna online",
+    "subtitle": "co 2 tygodnie",
+    "price": "150 zł",
+    "popular": false,
+    "badge": "",
+    "features": [
+      "Weryfikacja i omówienie dzienniczka żywieniowego",
+      "Zalecenia na kolejne 2 tygodnie współpracy",
+      "Wprowadzenie nowych przepisów dostosowanych do indywidualnych potrzeb oraz sezonowości produktów",
+      "Wsparcie i motywacja",
+      "Dostęp do aplikacji dietetycznej"
+    ],
+    "ctaText": "Umów się",
+    "ctaLink": "#kontakt"
+  },
+  {
+    "id": "body-analysis",
+    "name": "Analiza składu ciała",
+    "subtitle": "z omówieniem wyników",
+    "price": "50 zł",
+    "popular": false,
+    "badge": "",
+    "features": [],
+    "ctaText": "Umów się",
     "ctaLink": "#kontakt"
   }
 ]

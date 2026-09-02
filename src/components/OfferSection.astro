@@ -11,17 +11,17 @@ import offers from '../data/offers.json';
         Jak mogę Ci pomóc?
       </h2>
       <p class="text-lg text-[var(--color-text-light)] max-w-2xl mx-auto">
-        Wybierz pakiet dopasowany do Twoich potrzeb
+        Cennik współpracy
       </p>
     </div>
     
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
       {offers.map((offer, index) => (
-        <div class={`animate-on-scroll offer-card-wrapper ${offer.popular ? 'popular-offer' : ''}`} style={`animation-delay: ${index * 100}ms`}>
-          <Card class={`p-8 relative hover-lift ${offer.popular ? 'ring-4 ring-[var(--color-secondary)]' : ''}`}>
-            {offer.popular && (
-              <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-[var(--color-secondary)] text-white px-6 py-2 rounded-full text-sm font-semibold shadow-lg">
-                NAJPOPULARNIEJSZY
+        <div class="animate-on-scroll pt-5 h-full" style={`animation-delay: ${index * 100}ms`}>
+          <Card class={`p-8 relative h-full flex flex-col hover-lift ${offer.popular ? 'ring-4 ring-[var(--color-secondary)]' : ''}`}>
+            {offer.popular && offer.badge && (
+              <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-[var(--color-secondary)] text-white px-6 py-2 rounded-full text-sm font-semibold shadow-lg whitespace-nowrap">
+                {offer.badge}
               </div>
             )}
             
@@ -29,26 +29,35 @@ import offers from '../data/offers.json';
               <h3 class="text-xl md:text-2xl font-bold text-[var(--color-text-dark)] mb-2">
                 {offer.name}
               </h3>
+              {offer.subtitle && (
+                <p class="text-sm text-[var(--color-text-light)]">
+                  {offer.subtitle}
+                </p>
+              )}
               <div class="text-2xl md:text-3xl font-bold text-[var(--color-secondary)] mt-4">
                 {offer.price}
               </div>
             </div>
             
-            <ul class="space-y-4 mb-8">
-              {offer.features.map((feature) => (
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-[var(--color-secondary)] flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                  </svg>
-                  <span class="text-[var(--color-text-light)]">{feature}</span>
-                </li>
-              ))}
-            </ul>
+            {offer.features.length > 0 ? (
+              <ul class="space-y-4 mb-8 flex-1">
+                {offer.features.map((feature) => (
+                  <li class="flex items-start gap-3">
+                    <svg class="w-5 h-5 text-[var(--color-secondary)] flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span class="text-[var(--color-text-light)]">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <div class="flex-1"></div>
+            )}
             
             <Button 
               href={offer.ctaLink} 
               variant={offer.popular ? 'primary' : 'secondary'}
-              class="w-full"
+              class="w-full mt-auto"
             >
               {offer.ctaText}
             </Button>
@@ -59,23 +68,11 @@ import offers from '../data/offers.json';
     
     <div class="mt-12 text-center animate-on-scroll" style="animation-delay: 400ms">
       <p class="text-[var(--color-text-light)]">
-        Nie jesteś pewna, który pakiet wybrać? 
+        Nie wiesz, od czego zacząć? 
         <a href="#kontakt" class="text-[var(--color-secondary)] font-medium hover:underline link-underline">
-          Umów bezpłatną konsultację
+          Umów bezpłatną 15-minutową rozmowę
         </a>
       </p>
     </div>
   </div>
 </section>
-
-<style>
-  .offer-card-wrapper {
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  @media (min-width: 768px) {
-    .popular-offer {
-      transform: scale(1.05);
-    }
-  }
-</style>
