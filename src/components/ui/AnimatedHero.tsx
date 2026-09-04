@@ -55,29 +55,24 @@ export default function AnimatedHero({ title, titleHighlight, description, child
 }
 
 export function AnimatedHeroImage({ src, alt }: { src: string; alt: string }) {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"]
-  });
-  
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '15%']);
-
   return (
     <motion.div
-      ref={containerRef}
-      initial={{ opacity: 0, scale: 0.95 }}
+      initial={{ opacity: 0, scale: 0.96 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.2 }}
-      className="relative rounded-2xl overflow-hidden shadow-2xl"
+      className="relative mx-auto w-full max-w-md lg:max-w-xl"
     >
-      <motion.img
-        src={src}
-        alt={alt}
-        style={{ y }}
-        className="w-full h-[300px] md:h-[400px] lg:h-[600px] object-cover"
+      <div
+        className="pointer-events-none absolute -inset-8 rounded-[2.5rem] bg-[var(--color-primary)]/70 blur-3xl"
+        aria-hidden="true"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+      <div className="relative overflow-hidden rounded-3xl shadow-[0_24px_48px_-16px_rgba(180,150,120,0.45)] ring-1 ring-[var(--color-secondary)]/15">
+        <img
+          src={src}
+          alt={alt}
+          className="aspect-square w-full object-cover"
+        />
+      </div>
     </motion.div>
   );
 }

@@ -1,16 +1,25 @@
 ---
 import business from '../data/business.json';
+import features from '../data/features.json';
 import { withBase } from '../lib/paths';
 
 const currentYear = new Date().getFullYear();
 
-const footerLinks = [
+type FooterLink = {
+  label: string;
+  href: string;
+  feature?: keyof typeof features;
+};
+
+const allFooterLinks: FooterLink[] = [
   { label: 'O mnie', href: withBase('/#o-mnie') },
   { label: 'Oferta', href: withBase('/#oferta') },
-  { label: 'Blog', href: withBase('/blog') },
+  { label: 'Blog', href: withBase('/blog'), feature: 'blog' },
   { label: 'Polityka prywatności', href: withBase('/polityka-prywatnosci') },
   { label: 'Regulamin', href: withBase('/regulamin') },
 ];
+
+const footerLinks = allFooterLinks.filter((link) => link.feature === undefined || features[link.feature]);
 
 const socialLinks = [
   { 

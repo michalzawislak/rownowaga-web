@@ -3,9 +3,16 @@ import Button from './ui/Button.astro';
 import { Image } from 'astro:assets';
 import business from '../data/business.json';
 import { withBase } from '../lib/paths';
+import { sectionBackground, type SectionTone } from '../lib/section-tone';
+
+interface Props {
+  tone?: SectionTone;
+}
+
+const { tone = 'default' } = Astro.props;
 ---
 
-<section id="o-mnie" class="py-16 lg:py-24 bg-[var(--color-background)]">
+<section id="o-mnie" class={`py-16 lg:py-24 ${sectionBackground(tone)}`}>
   <div class="container mx-auto px-4 md:px-8 lg:px-16">
     <div class="text-center mb-12 animate-on-scroll">
       <h2 class="text-4xl lg:text-5xl font-bold text-[var(--color-text-dark)] mb-4">
@@ -33,105 +40,71 @@ import { withBase } from '../lib/paths';
             <h3 class="text-2xl lg:text-3xl font-bold text-[var(--color-text-dark)]">
               {business.specialist.name}
             </h3>
-            <p class="mt-1 text-lg font-medium text-[var(--color-secondary)]">
+            <p class="mt-1 text-lg font-medium italic text-[var(--color-secondary)]">
               {business.specialist.jobTitle}
             </p>
           </div>
           
           <p class="text-lg text-[var(--color-text-light)] leading-relaxed animate-on-scroll" style="animation-delay: 150ms">
-            Od 13 lat pracuję jako dietetyk, towarzysząc moim pacjentom w drodze do lepszego zdrowia, samopoczucia i bardziej świadomego podejścia do jedzenia.
+            Od 13 lat pomagam moim pacjentom lepiej zadbać o zdrowie, samopoczucie i relację z jedzeniem.
           </p>
           
           <p class="text-lg text-[var(--color-text-light)] leading-relaxed animate-on-scroll" style="animation-delay: 200ms">
-            Przez te lata zdobyłam nie tylko wiedzę i doświadczenie, ale przede wszystkim nauczyłam się, że każdy człowiek i każda historia są inne. Nie ma jednej diety, która sprawdzi się u każdego. Dlatego plan układam pod Twoje potrzeby, możliwości, codzienne życie i to, jak naprawdę jesz.
+            W swojej pracy wiem jedno: <em>nie ma jednej diety dla wszystkich</em>. Każdy z nas ma inne potrzeby, możliwości, nawyki i codzienne życie. Dlatego zalecenia zawsze staram się dopasować do Ciebie — a nie odwrotnie.
           </p>
         </div>
         
         <div class="space-y-4 animate-on-scroll" style="animation-delay: 250ms">
           <h3 class="text-xl lg:text-2xl font-semibold text-[var(--color-text-dark)]">
-            Wiedza, doświadczenie i… człowiek
+            Dieta bez oceniania i perfekcji
           </h3>
           
           <p class="text-lg text-[var(--color-text-light)] leading-relaxed">
-            Jako dietetyk i psychodietetyk opieram pracę na diecie, a psychodietetykę traktuję jako wsparcie, gdy nawyki albo emocje utrudniają trzymanie planu.
+            Jako dietetyk i psychodietetyk wiem, że trudność często nie polega na tym, że nie wiemy, co powinniśmy jeść. Wyzwaniem jest zastosowanie tej wiedzy w codziennym życiu — kiedy brakuje czasu, pojawia się stres albo spada motywacja.
           </p>
           
           <p class="text-lg text-[var(--color-text-light)] leading-relaxed">
-            Wiem, że zmiana nawyków żywieniowych nie zawsze jest prosta. Czasami problemem nie jest brak wiedzy o tym, co powinniśmy jeść, ale trudność w zastosowaniu tej wiedzy w codziennym życiu.
+            Dlatego podczas współpracy ze mną nie znajdziesz oceniania, krytyki ani wyrzutów sumienia. Znajdziesz <em>uważność, empatię i wspólne szukanie rozwiązań</em>, które naprawdę możesz wprowadzić w swoje życie.
           </p>
           
           <p class="text-lg text-[var(--color-text-light)] leading-relaxed">
-            Dlatego podczas współpracy ze mną nie znajdziesz oceniania, krytyki czy wyrzutów sumienia.
-          </p>
-          
-          <p class="text-lg text-[var(--color-text-light)] leading-relaxed">
-            Znajdziesz za to uważność, empatię, zrozumienie i wspólne poszukiwanie rozwiązania.
-          </p>
-          
-          <p class="text-lg text-[var(--color-text-light)] leading-relaxed">
-            Zależy mi na tym, abyśmy razem znaleźli takie sposoby działania, które będą możliwe do zastosowania w Twoim życiu – nie tylko przez kilka tygodni, ale na dłużej.
+            Nie chodzi o perfekcję. Chodzi o zmiany, które możesz utrzymać na dłużej.
           </p>
         </div>
         
         <div class="space-y-4 animate-on-scroll" style="animation-delay: 300ms">
           <h3 class="text-xl lg:text-2xl font-semibold text-[var(--color-text-dark)]">
-            Dieta, którą da się utrzymać
+            Wiedza i doświadczenie
           </h3>
           
           <p class="text-lg text-[var(--color-text-light)] leading-relaxed">
-            Dieta nie powinna być dwutygodniową akcją. Ma być planem, który dopasowujemy na kolejnych wizytach — także wtedy, gdy spada motywacja, pojawia się stres albo mniej czasu.
+            Przez 13 lat pracy zdobyłam doświadczenie, które cały czas uzupełniam aktualną wiedzą. Regularnie uczestniczę w szkoleniach, kursach i konferencjach dietetycznych oraz śledzę najnowsze doniesienia naukowe.
           </p>
           
           <p class="text-lg text-[var(--color-text-light)] leading-relaxed">
-            Moim celem jest dieta, która działa w Twoim realnym życiu, a nie tylko na kartce.
-          </p>
-          
-          <p class="text-lg text-[var(--color-text-light)] leading-relaxed">
-            Nie chodzi o perfekcję. Chodzi o to, aby znaleźć rozwiązania, które są dopasowane do Ciebie i które możesz z powodzeniem stosować w swoim życiu.
+            Chcę, aby moje podejście łączyło <em>wiedzę, doświadczenie i uważność na człowieka</em>.
           </p>
         </div>
         
         <div class="space-y-4 animate-on-scroll" style="animation-delay: 350ms">
           <h3 class="text-xl lg:text-2xl font-semibold text-[var(--color-text-dark)]">
-            Cały czas się uczę
-          </h3>
-          
-          <p class="text-lg text-[var(--color-text-light)] leading-relaxed">
-            Mimo 13 lat doświadczenia wiem, że w zawodzie dietetyka nie można się zatrzymać.
-          </p>
-          
-          <p class="text-lg text-[var(--color-text-light)] leading-relaxed">
-            Nauka i rozwój są dla mnie ważną częścią pracy. Regularnie poszerzam swoją wiedzę, uczestnicząc w konferencjach, kursach i szkoleniach, śledząc najnowsze doniesienia oraz rozwijając swoje kompetencje.
-          </p>
-          
-          <p class="text-lg text-[var(--color-text-light)] leading-relaxed">
-            Chcę, aby wiedza, którą przekazuję moim pacjentom, była nie tylko oparta na doświadczeniu, ale również aktualna i zgodna ze współczesną wiedzą.
-          </p>
-        </div>
-        
-        <div class="space-y-4 animate-on-scroll" style="animation-delay: 400ms">
-          <h3 class="text-xl lg:text-2xl font-semibold text-[var(--color-text-dark)]">
             Jestem tutaj, żeby Ci pomóc
           </h3>
           
           <p class="text-lg text-[var(--color-text-light)] leading-relaxed">
-            Jeśli szukasz osoby, która nie będzie Cię oceniać, narzucać nierealnych zasad ani wymagać perfekcji – zapraszam.
+            Jeśli szukasz dietetyka, który nie narzuca nierealnych zasad i nie wymaga perfekcji — zapraszam.
           </p>
           
           <p class="text-lg text-[var(--color-text-light)] leading-relaxed">
-            Chcę pomóc Ci ułożyć dietę dopasowaną do Twojego życia i krok po kroku ją dopasowywać, żeby zmiany zostały na dłużej.
+            Wspólnie znajdziemy sposób odżywiania dopasowany do Twojego życia i będziemy go krok po kroku zmieniać, tak aby zdrowe odżywianie stało się jego naturalną częścią.
           </p>
           
-          <p class="text-lg text-[var(--color-text-light)] leading-relaxed">
-            Bo zdrowe odżywianie nie powinno być kolejnym obowiązkiem.
-          </p>
-          
-          <p class="text-lg text-[var(--color-text-dark)] font-medium leading-relaxed">
-            Powinno stać się naturalną częścią Twojego życia.
+          <p class="text-lg text-[var(--color-text-dark)] font-medium italic leading-relaxed">
+            Bez presji. Bez wyrzutów sumienia. Z troską o Ciebie.
           </p>
         </div>
         
-        <div class="pt-2 animate-on-scroll" style="animation-delay: 450ms">
+        <div class="pt-2 animate-on-scroll" style="animation-delay: 400ms">
           <Button href="#oferta" size="lg">
             Zobacz ofertę
           </Button>

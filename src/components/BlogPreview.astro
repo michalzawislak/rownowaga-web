@@ -4,13 +4,19 @@ import Button from './ui/Button.astro';
 import Card from './ui/Card.astro';
 import { Image } from 'astro:assets';
 import { withBase } from '../lib/paths';
+import { sectionBackground, type SectionTone } from '../lib/section-tone';
 
+interface Props {
+  tone?: SectionTone;
+}
+
+const { tone = 'default' } = Astro.props;
 const blogPosts = await getCollection('blog');
 const featuredPost = blogPosts.find(post => post.data.featured);
 ---
 
 {featuredPost && (
-  <section id="blog-preview" class="py-16 lg:py-24 bg-[var(--color-background)]">
+  <section id="blog-preview" class={`py-16 lg:py-24 ${sectionBackground(tone)}`}>
     <div class="container mx-auto px-4 md:px-8 lg:px-16">
       <div class="text-center mb-12 animate-on-scroll">
         <h2 class="text-4xl lg:text-5xl font-bold text-[var(--color-text-dark)] mb-4">

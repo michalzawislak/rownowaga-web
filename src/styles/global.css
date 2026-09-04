@@ -170,6 +170,10 @@ html {
   scroll-behavior: smooth;
 }
 
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
 body {
   font-family: var(--font-body);
   color: var(--color-text-dark);
@@ -237,6 +241,20 @@ section {
 @media (min-width: 768px) {
   section {
     padding: var(--spacing-section) 0;
+  }
+}
+
+main {
+  padding-top: 5rem;
+}
+
+#hero {
+  padding-top: 6rem;
+}
+
+@media (min-width: 768px) {
+  #hero {
+    padding-top: 7rem;
   }
 }
 

@@ -2,11 +2,17 @@
 import Button from './ui/Button.astro';
 import business from '../data/business.json';
 import { withBase } from '../lib/paths';
+import { sectionBackground, type SectionTone } from '../lib/section-tone';
 
+interface Props {
+  tone?: SectionTone;
+}
+
+const { tone = 'alt' } = Astro.props;
 const addressLine = `${business.address.streetAddress}, ${business.address.postalCode} ${business.address.addressLocality}`;
 ---
 
-<section id="kontakt" class="py-16 lg:py-24 bg-[var(--color-background-alt)]">
+<section id="kontakt" class={`py-16 lg:py-24 ${sectionBackground(tone)}`}>
   <div class="container mx-auto px-4 md:px-8 lg:px-16">
     <div class="text-center mb-12 animate-on-scroll">
       <h2 class="text-4xl lg:text-5xl font-bold text-[var(--color-text-dark)] mb-4">

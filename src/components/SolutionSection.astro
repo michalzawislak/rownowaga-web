@@ -2,6 +2,13 @@
 import Button from './ui/Button.astro';
 import { Image } from 'astro:assets';
 import { withBase } from '../lib/paths';
+import { sectionBackground, type SectionTone } from '../lib/section-tone';
+
+interface Props {
+  tone?: SectionTone;
+}
+
+const { tone = 'alt' } = Astro.props;
 
 const benefits = [
   'Indywidualnym schematem diety',
@@ -12,7 +19,7 @@ const benefits = [
 ];
 ---
 
-<section id="solution" class="py-16 lg:py-24 bg-[var(--color-background-alt)]">
+<section id="solution" class={`py-16 lg:py-24 ${sectionBackground(tone)}`}>
   <div class="container mx-auto px-4 md:px-8 lg:px-16">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
       <div class="order-2 lg:order-1 animate-on-scroll">

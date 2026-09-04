@@ -1,15 +1,26 @@
 ---
 import Button from './ui/Button.astro';
 import business from '../data/business.json';
+import features from '../data/features.json';
 import { withBase } from '../lib/paths';
 
-const navItems = [
-  { label: 'O mnie', href: withBase('/#o-mnie') },
-  { label: 'Oferta', href: withBase('/#oferta') },
-  { label: 'Metamorfozy', href: withBase('/#metamorfozy') },
-  { label: 'Blog', href: withBase('/blog') },
-  { label: 'Kontakt', href: withBase('/#kontakt') },
+type NavItem = {
+  label: string;
+  href: string;
+  feature?: keyof typeof features;
+  section?: string;
+  path?: string;
+};
+
+const allNavItems: NavItem[] = [
+  { label: 'O mnie', href: withBase('/#o-mnie'), section: 'o-mnie' },
+  { label: 'Oferta', href: withBase('/#oferta'), section: 'oferta' },
+  { label: 'Metamorfozy', href: withBase('/#metamorfozy'), feature: 'metamorphosis', section: 'metamorfozy' },
+  { label: 'Blog', href: withBase('/blog'), feature: 'blog', path: withBase('/blog') },
+  { label: 'Kontakt', href: withBase('/#kontakt'), section: 'kontakt' },
 ];
+
+const navItems = allNavItems.filter((item) => item.feature === undefined || features[item.feature]);
 ---
 
 <nav class="fixed top-0 left-0 right-0 bg-[var(--color-background)]/95 backdrop-blur-sm shadow-md z-50">
@@ -26,6 +37,8 @@ const navItems = [
           <a 
             href={item.href}
             class="nav-link text-[var(--color-text-dark)] hover:text-[var(--color-secondary)] transition-colors duration-200 font-medium whitespace-nowrap"
+            data-nav-section={item.section}
+            data-nav-path={item.path}
           >
             {item.label}
           </a>
@@ -52,14 +65,16 @@ const navItems = [
     class="hidden lg:hidden bg-[var(--color-background)] border-t border-gray-200"
   >
     <div class="container mx-auto px-4 py-4 space-y-3">
-      {navItems.map(item => (
-        <a 
-          href={item.href}
-          class="block py-2 text-[var(--color-text-dark)] hover:text-[var(--color-secondary)] transition-colors duration-200 font-medium"
-        >
-          {item.label}
-        </a>
-      ))}
+        {navItems.map(item => (
+          <a 
+            href={item.href}
+            class="nav-mobile-link block py-2 text-[var(--color-text-dark)] hover:text-[var(--color-secondary)] transition-colors duration-200 font-medium"
+            data-nav-section={item.section}
+            data-nav-path={item.path}
+          >
+            {item.label}
+          </a>
+        ))}
       <div class="pt-2">
         <Button href="#kontakt" size="sm" class="w-full">
           Umów konsultację
@@ -72,6 +87,8 @@ const navItems = [
 <script>
   const button = document.getElementById('mobile-menu-button');
   const menu = document.getElementById('mobile-menu');
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>('[data-nav-section], [data-nav-path]');
+  const headerOffset = 80;
 
   button?.addEventListener('click', () => {
     menu?.classList.toggle('hidden');
@@ -89,6 +106,81 @@ const navItems = [
       menu?.classList.add('hidden');
     });
   });
+
+  function pathMatches(navPath: string): boolean {
+    const current = window.location.pathname.replace(/\/$/, '') || '/';
+    const target = navPath.replace(/\/$/, '') || '/';
+    return current === target || current.startsWith(`${target}/`);
+  }
+
+  function setActiveSection(sectionId: string | null) {
+    navLinks.forEach((link) => {
+      const sectionActive = sectionId !== null && link.dataset.navSection === sectionId;
+      const pathActive = sectionId === null && !!link.dataset.navPath && pathMatches(link.dataset.navPath);
+      const isActive = sectionActive || pathActive;
+
+      link.classList.toggle('is-active', isActive);
+
+      if (isActive) {
+        link.setAttribute('aria-current', 'location');
+      } else {
+        link.removeAttribute('aria-current');
+      }
+    });
+  }
+
+  const sections = [...navLinks]
+    .map((link) => link.dataset.navSection)
+    .filter((id, index, all): id is string => Boolean(id) && all.indexOf(id) === index)
+    .map((id) => document.getElementById(id))
+    .filter((section): section is HTMLElement => section !== null);
+
+  function updateActiveNav() {
+    if (sections.length === 0) {
+      setActiveSection(null);
+      return;
+    }
+
+    const spyLine = Math.max(headerOffset + 24, Math.round(window.innerHeight * 0.4));
+    let current: string | null = null;
+
+    for (const section of sections) {
+      if (section.getBoundingClientRect().top <= spyLine) {
+        current = section.id;
+      }
+    }
+
+    setActiveSection(current);
+  }
+
+  navLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      if (link.dataset.navSection) {
+        setActiveSection(link.dataset.navSection);
+      }
+    });
+  });
+
+  let ticking = false;
+
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      updateActiveNav();
+      ticking = false;
+    });
+  };
+
+  document.addEventListener('scroll', onScroll, { passive: true, capture: true });
+
+  const observer = new IntersectionObserver(onScroll, {
+    rootMargin: `-${headerOffset}px 0px -40% 0px`,
+    threshold: [0, 0.25, 0.5, 0.75, 1],
+  });
+
+  sections.forEach((section) => observer.observe(section));
+  updateActiveNav();
 </script>
 
 <style>
@@ -107,7 +199,13 @@ const navItems = [
     transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .nav-link:hover::after {
+  .nav-link:hover::after,
+  .nav-link.is-active::after {
     width: 100%;
+  }
+
+  .nav-link.is-active,
+  .nav-mobile-link.is-active {
+    color: var(--color-secondary);
   }
 </style>

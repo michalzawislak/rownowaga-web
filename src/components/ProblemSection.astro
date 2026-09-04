@@ -2,6 +2,13 @@
 import Card from './ui/Card.astro';
 import { Image } from 'astro:assets';
 import { withBase } from '../lib/paths';
+import { sectionBackground, type SectionTone } from '../lib/section-tone';
+
+interface Props {
+  tone?: SectionTone;
+}
+
+const { tone = 'default' } = Astro.props;
 
 const problems = [
   {
@@ -22,15 +29,12 @@ const problems = [
 ];
 ---
 
-<section id="problem" class="py-16 lg:py-24 bg-[var(--color-background)]">
+<section id="problem" class={`py-16 lg:py-24 ${sectionBackground(tone)}`}>
   <div class="container mx-auto px-4 md:px-8 lg:px-16">
     <div class="text-center mb-12 lg:mb-16 animate-on-scroll">
       <h2 class="text-4xl lg:text-5xl font-bold text-[var(--color-text-dark)] mb-4">
         Czy to brzmi znajomo?
       </h2>
-      <p class="text-lg text-[var(--color-text-light)] max-w-2xl mx-auto">
-        Jeśli rozpoznajesz się w którejkolwiek z tych sytuacji, nie jesteś sama
-      </p>
     </div>
     
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
@@ -60,7 +64,7 @@ const problems = [
     
     <div class="mt-12 text-center animate-on-scroll" style="animation-delay: 400ms">
       <p class="text-lg text-[var(--color-text-dark)] font-medium">
-        Nie musisz układać tego sama — od tego jest gabinet.
+        Nie musisz układać tego samodzielnie — od tego jest gabinet.
       </p>
     </div>
   </div>

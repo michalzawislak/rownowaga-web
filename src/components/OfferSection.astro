@@ -2,9 +2,17 @@
 import Card from './ui/Card.astro';
 import Button from './ui/Button.astro';
 import offers from '../data/offers.json';
+import { sectionBackground, type SectionTone } from '../lib/section-tone';
+
+interface Props {
+  tone?: SectionTone;
+}
+
+const { tone = 'alt' } = Astro.props;
+const visibleOffers = offers.filter((offer) => !('hidden' in offer && offer.hidden));
 ---
 
-<section id="oferta" class="py-16 lg:py-24 bg-[var(--color-background-alt)]">
+<section id="oferta" class={`py-16 lg:py-24 ${sectionBackground(tone)}`}>
   <div class="container mx-auto px-4 md:px-8 lg:px-16">
     <div class="text-center mb-12 lg:mb-16 animate-on-scroll">
       <h2 class="text-4xl lg:text-5xl font-bold text-[var(--color-text-dark)] mb-4">
@@ -13,7 +21,7 @@ import offers from '../data/offers.json';
     </div>
     
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
-      {offers.map((offer, index) => (
+      {visibleOffers.map((offer, index) => (
         <div class="animate-on-scroll pt-5 h-full" style={`animation-delay: ${index * 100}ms`}>
           <Card class={`p-8 relative h-full flex flex-col hover-lift ${offer.popular ? 'ring-4 ring-[var(--color-secondary)]' : ''}`}>
             {offer.popular && offer.badge && (

@@ -94,6 +94,7 @@
     "subtitle": "",
     "price": "180 zł",
     "popular": false,
+    "hidden": true,
     "badge": "",
     "features": [
       "Indywidualnie skomponowane przepisy na każdy dzień tygodnia"

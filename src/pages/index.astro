@@ -10,6 +10,10 @@ import FAQ from '../components/FAQ.astro';
 import BlogPreview from '../components/BlogPreview.astro';
 import ContactSection from '../components/ContactSection.astro';
 import business from '../data/business.json';
+import features from '../data/features.json';
+import { getSectionTones } from '../lib/section-tone';
+
+const tone = getSectionTones();
 ---
 
 <Layout 
@@ -17,12 +21,12 @@ import business from '../data/business.json';
   description="Gabinet dietetyczny w Szczecinie. Indywidualna dieta, wizyty kontrolne, analiza składu ciała i przepisy. Stacjonarnie i online."
 >
   <Hero />
-  <ProblemSection />
-  <SolutionSection />
-  <AboutSection />
-  <OfferSection />
-  <MetamorphosisSection />
-  <FAQ />
-  <BlogPreview />
-  <ContactSection />
+  <ProblemSection tone={tone.problem} />
+  <SolutionSection tone={tone.solution} />
+  <AboutSection tone={tone.about} />
+  <OfferSection tone={tone.offer} />
+  {features.metamorphosis && <MetamorphosisSection tone={tone.metamorphosis} />}
+  <FAQ tone={tone.faq} />
+  {features.blog && <BlogPreview tone={tone.blog} />}
+  <ContactSection tone={tone.contact} />
 </Layout>
