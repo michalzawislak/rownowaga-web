@@ -19,6 +19,7 @@ const {
   image = '/images/hero.jpg'
 } = Astro.props;
 
+const isIndexable = import.meta.env.SITE_INDEXABLE;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(withBase(image).replace(/^\//, ''), Astro.site);
 ---
@@ -62,7 +63,11 @@ const ogImage = new URL(withBase(image).replace(/^\//, ''), Astro.site);
     
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonicalURL} />
+    {isIndexable ? (
+      <link rel="canonical" href={canonicalURL} />
+    ) : (
+      <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+    )}
     
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
