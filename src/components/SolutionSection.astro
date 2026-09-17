@@ -15,7 +15,7 @@ const benefits = [
   'Analizą składu ciała i monitoringiem postępów',
   'Dzienniczkiem żywieniowym i zaleceniami na kolejne tygodnie',
   'Przepisami dopasowanymi do Ciebie i sezonu',
-  'Utrzymaniem planu — także gdy w grę wchodzą nawyki i emocje'
+  'Utrzymaniem planu — także gdy w grę wchodzą nawyki i emocje',
 ];
 ---
 
@@ -24,8 +24,8 @@ const benefits = [
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
       <div class="order-2 lg:order-1 animate-on-scroll">
         <div class="rounded-2xl overflow-hidden shadow-xl image-hover">
-          <Image 
-            src={withBase('/images/solution/mindful-eating.jpg')} 
+          <Image
+            src={withBase('/images/solution/mindful-eating.jpg')}
             alt="Współpraca z dietetykiem — dieta i regularne wizyty"
             width={700}
             height={500}
@@ -34,32 +34,48 @@ const benefits = [
           />
         </div>
       </div>
-      
+
       <div class="order-1 lg:order-2 space-y-6">
         <h2 class="text-4xl lg:text-5xl font-semibold text-[var(--color-text-dark)] animate-on-scroll">
-          Dieta jest <span class="text-[var(--color-secondary)]">podstawą współpracy</span>
+          Dieta jest <span class="text-[var(--color-secondary-text)]">podstawą współpracy</span>
         </h2>
-        
-        <p class="text-lg text-[var(--color-text-light)] leading-relaxed animate-on-scroll" style="animation-delay: 100ms">
-          W gabinecie układam dietę na podstawie wywiadu zdrowotnego, żywieniowego i analizy składu ciała. Potem spotykamy się regularnie, żeby plan działał na co dzień — nie tylko przez pierwszy tydzień.
+
+        <p
+          class="text-lg text-[var(--color-text-light)] leading-relaxed animate-on-scroll"
+          style="animation-delay: 100ms"
+        >
+          W gabinecie układam dietę na podstawie wywiadu zdrowotnego, żywieniowego i analizy składu
+          ciała. Potem spotykamy się regularnie, żeby plan działał na co dzień — nie tylko przez
+          pierwszy tydzień.
         </p>
-        
+
         <div class="space-y-4 animate-on-scroll" style="animation-delay: 200ms">
-          <p class="text-[var(--color-text-dark)] font-medium">
-            W praktyce pracujemy nad:
-          </p>
+          <p class="text-[var(--color-text-dark)] font-medium">W praktyce pracujemy nad:</p>
           <ul class="space-y-3">
             {benefits.map((benefit, index) => (
-              <li class="flex items-start gap-3 animate-on-scroll" style={`animation-delay: ${300 + index * 80}ms`}>
-                <svg class="w-6 h-6 text-[var(--color-secondary)] flex-shrink-0 mt-0.5 checkmark-hover" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              <li
+                class="flex items-start gap-3 animate-on-scroll"
+                style={`animation-delay: ${300 + index * 80}ms`}
+              >
+                <svg
+                  class="w-6 h-6 text-[var(--color-secondary-text)] flex-shrink-0 mt-0.5 checkmark-hover"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  />
                 </svg>
                 <span class="text-[var(--color-text-light)]">{benefit}</span>
               </li>
             ))}
           </ul>
         </div>
-        
+
         <div class="pt-4 animate-on-scroll" style="animation-delay: 700ms">
           <Button href="#o-mnie" variant="secondary">
             Zobacz jak pracuję

@@ -4,6 +4,8 @@ import Footer from '../components/Footer.astro';
 import StickyCallCTA from '../components/StickyCallCTA.astro';
 import CookieConsent from '../components/CookieConsent.astro';
 import SchemaOrg from '../components/SchemaOrg.astro';
+import { Font } from 'astro:assets';
+import business from '../data/business.json';
 import { withBase } from '../lib/paths';
 import '../styles/global.css';
 
@@ -16,9 +18,10 @@ interface Props {
 const {
   title,
   description = 'Gabinet dietetyczny w Szczecinie. Indywidualna dieta, wizyty kontrolne, analiza składu ciała i wsparcie w utrzymaniu planu.',
-  image = '/images/hero.jpg'
+  image = '/images/hero.jpg',
 } = Astro.props;
 
+const siteName = business.alternateName;
 const isIndexable = import.meta.env.SITE_INDEXABLE;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(withBase(image).replace(/^\//, ''), Astro.site);
@@ -31,16 +34,32 @@ const ogImage = new URL(withBase(image).replace(/^\//, ''), Astro.site);
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#7B9E89" />
     <link rel="icon" href={withBase('/images/favicon/favicon.ico')} sizes="any" />
-    <link rel="icon" type="image/png" sizes="32x32" href={withBase('/images/favicon/favicon-32x32.png')} />
-    <link rel="icon" type="image/png" sizes="16x16" href={withBase('/images/favicon/favicon-16x16.png')} />
-    <link rel="apple-touch-icon" sizes="180x180" href={withBase('/images/favicon/apple-touch-icon.png')} />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href={withBase('/images/favicon/favicon-32x32.png')}
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href={withBase('/images/favicon/favicon-16x16.png')}
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href={withBase('/images/favicon/apple-touch-icon.png')}
+    />
     <link rel="manifest" href={withBase('/images/favicon/site.webmanifest')} />
     <meta name="generator" content={Astro.generator} />
 
     <!-- Google Consent Mode v2 – domyślnie denied, przed jakimkolwiek tagiem -->
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag() {
+        dataLayer.push(arguments);
+      }
       gtag('consent', 'default', {
         ad_storage: 'denied',
         ad_user_data: 'denied',
@@ -49,18 +68,17 @@ const ogImage = new URL(withBase(image).replace(/^\//, ''), Astro.site);
         functionality_storage: 'denied',
         personalization_storage: 'denied',
         security_storage: 'granted',
-        wait_for_update: 500
+        wait_for_update: 500,
       });
       gtag('set', 'ads_data_redaction', true);
       gtag('set', 'url_passthrough', true);
     </script>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    
+    <!-- Fonty serwujemy z własnej domeny (Astro Fonts API) — bez zapytań do Google. -->
+    <Font cssVariable="--font-heading-family" preload />
+    <Font cssVariable="--font-body-family" preload />
+
     <link rel="preload" as="image" href={withBase('/images/hero/hero-main.jpeg')} />
-    
+
     <title>{title}</title>
     <meta name="description" content={description} />
     {isIndexable ? (
@@ -68,13 +86,15 @@ const ogImage = new URL(withBase(image).replace(/^\//, ''), Astro.site);
     ) : (
       <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
     )}
-    
+
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="pl_PL" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
-    
+
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content={canonicalURL} />
     <meta name="twitter:title" content={title} />
@@ -82,26 +102,42 @@ const ogImage = new URL(withBase(image).replace(/^\//, ''), Astro.site);
     <meta name="twitter:image" content={ogImage} />
 
     <SchemaOrg />
+
+    <!--
+      Bez JavaScriptu IntersectionObserver nie odpali, więc sekcje z animacją
+      wejścia muszą być widoczne od razu.
+    -->
+    <noscript>
+      <style>
+        .animate-on-scroll {
+          opacity: 1 !important;
+          animation: none !important;
+        }
+      </style>
+    </noscript>
   </head>
   <body>
-    <CookieConsent />
+    <a class="skip-link" href="#tresc">
+      Przejdź do treści
+    </a>
     <Navigation />
-    
-    <main class="pt-20">
+
+    <main id="tresc" tabindex="-1" class="pt-20">
       <slot />
     </main>
-    
+
     <Footer />
     <StickyCallCTA />
-    
+    <CookieConsent />
+
     <script>
       const observerOptions = {
         threshold: 0.2,
-        rootMargin: '0px 0px -100px 0px'
+        rootMargin: '0px 0px -100px 0px',
       };
 
       const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('in-view');
             observer.unobserve(entry.target);
@@ -111,7 +147,7 @@ const ogImage = new URL(withBase(image).replace(/^\//, ''), Astro.site);
 
       document.addEventListener('DOMContentLoaded', () => {
         const elements = document.querySelectorAll('.animate-on-scroll');
-        elements.forEach(el => observer.observe(el));
+        elements.forEach((el) => observer.observe(el));
       });
     </script>
   </body>

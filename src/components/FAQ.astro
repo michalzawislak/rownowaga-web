@@ -9,6 +9,11 @@ interface Props {
 const { tone = 'alt' } = Astro.props;
 ---
 
+<!--
+  Akordeon na natywnych `<details>` — obsługa klawiatury, stan „rozwinięte”
+  i ukrywanie treści przed czytnikami ekranu działają bez JavaScriptu.
+  Wspólny atrybut `name` sprawia, że otwarte pozostaje tylko jedno pytanie.
+-->
 <section id="faq" class={`py-16 lg:py-24 ${sectionBackground(tone)}`}>
   <div class="container mx-auto px-4 md:px-8 lg:px-16">
     <div class="text-center mb-12 lg:mb-16 animate-on-scroll">
@@ -22,80 +27,76 @@ const { tone = 'alt' } = Astro.props;
 
     <div class="max-w-3xl mx-auto space-y-4">
       {faqData.map((item, index) => (
-        <div class="faq-item bg-white rounded-xl shadow-md overflow-hidden animate-on-scroll" style={`animation-delay: ${index * 100}ms`}>
-          <button
-            class="faq-button w-full text-left p-4 md:p-6 flex items-center justify-between hover:bg-[var(--color-background-alt)] transition-colors"
-            data-faq-index={index}
-          >
-            <span class="text-base md:text-lg font-semibold text-[var(--color-text-dark)] pr-8">
+        <details
+          name="faq"
+          class="faq-item bg-white rounded-xl shadow-md overflow-hidden animate-on-scroll"
+          style={`animation-delay: ${index * 100}ms`}
+        >
+          <summary class="faq-summary p-4 md:p-6 flex items-center justify-between gap-4 cursor-pointer hover:bg-[var(--color-background-alt)] transition-colors">
+            <span class="text-base md:text-lg font-semibold text-[var(--color-text-dark)]">
               {item.question}
             </span>
             <svg
-              class="faq-icon w-5 h-5 md:w-6 md:h-6 text-[var(--color-secondary)] flex-shrink-0 transition-transform duration-300"
+              class="faq-icon w-5 h-5 md:w-6 md:h-6 text-[var(--color-secondary-text)] flex-shrink-0 transition-transform duration-300"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden="true"
+              focusable="false"
             >
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              />
             </svg>
-          </button>
-          <div class="faq-content">
-            <div class="faq-answer p-4 pt-0 md:p-6 md:pt-0 text-sm md:text-base text-[var(--color-text-light)] leading-relaxed">
-              {item.answer}
-            </div>
+          </summary>
+          <div class="faq-answer p-4 pt-0 md:p-6 md:pt-0 text-sm md:text-base text-[var(--color-text-light)] leading-relaxed">
+            {item.answer}
           </div>
-        </div>
+        </details>
       ))}
     </div>
   </div>
 </section>
 
 <style>
-  .faq-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  .faq-summary {
+    list-style: none;
   }
 
-  .faq-item.open .faq-content {
-    max-height: 500px;
+  /* Ukrycie domyślnego trójkąta w Safari. */
+  .faq-summary::-webkit-details-marker {
+    display: none;
   }
 
-  .faq-answer {
-    opacity: 0;
-    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+  .faq-item[open] .faq-icon {
+    transform: rotate(180deg);
   }
 
-  .faq-item.open .faq-answer {
-    opacity: 1;
+  .faq-item[open] .faq-answer {
+    animation: faq-reveal 0.3s ease-out;
+  }
+
+  @keyframes faq-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faq-icon {
+      transition: none;
+    }
+
+    .faq-item[open] .faq-answer {
+      animation: none;
+    }
   }
 </style>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const faqButtons = document.querySelectorAll('.faq-button');
-
-    faqButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        const item = button.closest('.faq-item');
-        const icon = button.querySelector('.faq-icon');
-
-        if (item && icon) {
-          const isOpen = item.classList.contains('open');
-
-          document.querySelectorAll('.faq-item').forEach((faqItem) => {
-            faqItem.classList.remove('open');
-          });
-          document.querySelectorAll('.faq-icon').forEach((i) => {
-            i.classList.remove('rotate-180');
-          });
-
-          if (!isOpen) {
-            item.classList.add('open');
-            icon.classList.add('rotate-180');
-          }
-        }
-      });
-    });
-  });
-</script>

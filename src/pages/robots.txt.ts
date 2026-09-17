@@ -17,7 +17,10 @@ Allow: /
 
 export const GET: APIRoute = ({ site }) => {
   const isIndexable = import.meta.env.SITE_INDEXABLE;
-  const sitemapUrl = new URL(`${import.meta.env.BASE_URL.replace(/\/$/, '')}/sitemap-index.xml`, site);
+  const sitemapUrl = new URL(
+    `${import.meta.env.BASE_URL.replace(/\/$/, '')}/sitemap-index.xml`,
+    site,
+  );
   const body = isIndexable ? indexableRobots(sitemapUrl) : previewRobots;
 
   return new Response(body, {

@@ -12,27 +12,43 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID ?? '';
   aria-modal="false"
   aria-labelledby="cookie-consent-title"
   aria-describedby="cookie-consent-desc"
+  tabindex="-1"
   hidden
 >
   <div class="cookie-consent__panel">
     <div class="cookie-consent__copy">
-      <h2 id="cookie-consent-title" class="cookie-consent__title">Pliki cookies</h2>
+      <h2 id="cookie-consent-title" class="cookie-consent__title">
+        Pliki cookies
+      </h2>
       <p id="cookie-consent-desc" class="cookie-consent__text">
-        Używamy plików cookies niezbędnych do działania strony oraz – za Twoją zgodą –
-        cookies analitycznych i marketingowych (m.in. Google Ads / Analytics).
-        Szczegóły znajdziesz w
+        Używamy plików cookies niezbędnych do działania strony oraz – za Twoją zgodą – cookies
+        analitycznych i marketingowych (m.in. Google Ads / Analytics). Szczegóły znajdziesz w
         <a href={privacyHref}>Polityce prywatności</a>.
       </p>
     </div>
 
     <div class="cookie-consent__actions">
-      <button type="button" class="cookie-consent__btn cookie-consent__btn--ghost" data-consent="reject">
+      <button
+        type="button"
+        class="cookie-consent__btn cookie-consent__btn--ghost"
+        data-consent="reject"
+      >
         Tylko niezbędne
       </button>
-      <button type="button" class="cookie-consent__btn cookie-consent__btn--secondary" data-consent="customize">
+      <button
+        type="button"
+        class="cookie-consent__btn cookie-consent__btn--secondary"
+        data-consent="customize"
+        aria-expanded="false"
+        aria-controls="cookie-consent-settings"
+      >
         Ustawienia
       </button>
-      <button type="button" class="cookie-consent__btn cookie-consent__btn--primary" data-consent="accept">
+      <button
+        type="button"
+        class="cookie-consent__btn cookie-consent__btn--primary"
+        data-consent="accept"
+      >
         Akceptuję wszystkie
       </button>
     </div>
@@ -59,7 +75,11 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID ?? '';
           <small>Umożliwiają pomiar kampanii Google Ads i personalizację reklam.</small>
         </span>
       </label>
-      <button type="button" class="cookie-consent__btn cookie-consent__btn--primary cookie-consent__btn--save" data-consent="save">
+      <button
+        type="button"
+        class="cookie-consent__btn cookie-consent__btn--primary cookie-consent__btn--save"
+        data-consent="save"
+      >
         Zapisz wybór
       </button>
     </div>
@@ -74,14 +94,14 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID ?? '';
       width="0"
       style="display:none;visibility:hidden"
       title="Google Tag Manager"
-    />
+    ></iframe>
   </noscript>
 )}
 
 <script is:inline define:vars={{ gtmId }}>
   (function () {
-    var STORAGE_KEY = 'rownowaga-cookie-consent';
-    var CONSENT_VERSION = 1;
+    const STORAGE_KEY = 'rownowaga-cookie-consent';
+    const CONSENT_VERSION = 1;
 
     window.dataLayer = window.dataLayer || [];
     function gtag() {
@@ -93,15 +113,15 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID ?? '';
       if (!gtmId || window.__gtmLoaded) return;
       window.__gtmLoaded = true;
       window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-      var script = document.createElement('script');
+      const script = document.createElement('script');
       script.async = true;
       script.src = 'https://www.googletagmanager.com/gtm.js?id=' + encodeURIComponent(gtmId);
       document.head.appendChild(script);
     }
 
     function applyConsent(prefs) {
-      var analytics = prefs.analytics ? 'granted' : 'denied';
-      var marketing = prefs.marketing ? 'granted' : 'denied';
+      const analytics = prefs.analytics ? 'granted' : 'denied';
+      const marketing = prefs.marketing ? 'granted' : 'denied';
 
       gtag('consent', 'update', {
         analytics_storage: analytics,
@@ -109,7 +129,7 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID ?? '';
         ad_user_data: marketing,
         ad_personalization: marketing,
         functionality_storage: 'granted',
-        personalization_storage: analytics
+        personalization_storage: analytics,
       });
 
       loadGtm();
@@ -117,73 +137,84 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID ?? '';
 
     function readStored() {
       try {
-        var raw = localStorage.getItem(STORAGE_KEY);
+        const raw = localStorage.getItem(STORAGE_KEY);
         if (!raw) return null;
-        var parsed = JSON.parse(raw);
+        const parsed = JSON.parse(raw);
         if (!parsed || parsed.version !== CONSENT_VERSION) return null;
         return parsed;
-      } catch (e) {
+      } catch {
         return null;
       }
     }
 
     function savePrefs(prefs) {
-      var payload = {
+      const payload = {
         version: CONSENT_VERSION,
         analytics: !!prefs.analytics,
         marketing: !!prefs.marketing,
-        updatedAt: new Date().toISOString()
+        updatedAt: new Date().toISOString(),
       };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
       applyConsent(payload);
       hideBanner();
     }
 
-    function showBanner() {
-      var banner = document.getElementById('cookie-consent');
+    function showBanner(moveFocus) {
+      const banner = document.getElementById('cookie-consent');
       if (!banner) return;
       banner.hidden = false;
       document.body.classList.add('has-cookie-banner');
+      if (moveFocus) {
+        // Baner jest na końcu dokumentu, więc bez przeniesienia fokusu
+        // osoba korzystająca z klawiatury dotarłaby do niego na samym końcu.
+        banner.focus();
+      }
     }
 
     function hideBanner() {
-      var banner = document.getElementById('cookie-consent');
+      const banner = document.getElementById('cookie-consent');
       if (!banner) return;
       banner.hidden = true;
       document.body.classList.remove('has-cookie-banner');
-      var settings = document.getElementById('cookie-consent-settings');
-      if (settings) settings.hidden = true;
+      setSettingsOpen(false);
+    }
+
+    function setSettingsOpen(isOpen) {
+      const settings = document.getElementById('cookie-consent-settings');
+      const toggle = document.querySelector('[data-consent="customize"]');
+      if (settings) settings.hidden = !isOpen;
+      if (toggle) toggle.setAttribute('aria-expanded', String(isOpen));
     }
 
     function openSettings() {
-      var settings = document.getElementById('cookie-consent-settings');
-      var stored = readStored();
-      var analytics = document.getElementById('consent-analytics');
-      var marketing = document.getElementById('consent-marketing');
+      const stored = readStored();
+      const analytics = document.getElementById('consent-analytics');
+      const marketing = document.getElementById('consent-marketing');
       if (analytics) analytics.checked = !!(stored && stored.analytics);
       if (marketing) marketing.checked = !!(stored && stored.marketing);
-      if (settings) settings.hidden = false;
-      showBanner();
+      showBanner(true);
+      setSettingsOpen(true);
+      if (analytics) analytics.focus();
     }
 
     window.openCookieSettings = openSettings;
 
     function init() {
-      var stored = readStored();
+      const stored = readStored();
       if (stored) {
         applyConsent(stored);
       } else {
-        showBanner();
+        showBanner(false);
         loadGtm();
       }
 
-      var banner = document.getElementById('cookie-consent');
+      const banner = document.getElementById('cookie-consent');
       if (!banner) return;
 
       banner.addEventListener('click', function (event) {
-        var target = event.target.closest('[data-consent]');
+        const target = event.target.closest('[data-consent]');
         if (!target) return;
-        var action = target.getAttribute('data-consent');
+        const action = target.getAttribute('data-consent');
 
         if (action === 'accept') {
           savePrefs({ analytics: true, marketing: true });
@@ -194,16 +225,16 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID ?? '';
           return;
         }
         if (action === 'customize') {
-          var settings = document.getElementById('cookie-consent-settings');
-          if (settings) settings.hidden = !settings.hidden;
+          const settings = document.getElementById('cookie-consent-settings');
+          setSettingsOpen(!!settings && settings.hidden);
           return;
         }
         if (action === 'save') {
-          var analyticsInput = document.getElementById('consent-analytics');
-          var marketingInput = document.getElementById('consent-marketing');
+          const analyticsInput = document.getElementById('consent-analytics');
+          const marketingInput = document.getElementById('consent-marketing');
           savePrefs({
             analytics: !!(analyticsInput && analyticsInput.checked),
-            marketing: !!(marketingInput && marketingInput.checked)
+            marketing: !!(marketingInput && marketingInput.checked),
           });
         }
       });
@@ -264,7 +295,7 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID ?? '';
   }
 
   .cookie-consent__text a {
-    color: var(--color-secondary);
+    color: var(--color-secondary-text);
     text-decoration: underline;
     text-underline-offset: 2px;
   }
@@ -284,16 +315,19 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID ?? '';
     font-weight: 600;
     padding: 0.75rem 1rem;
     cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      opacity 0.2s ease;
   }
 
   .cookie-consent__btn--primary {
-    background: var(--color-secondary);
+    background: var(--color-secondary-text);
     color: #fff;
   }
 
   .cookie-consent__btn--primary:hover {
-    background: var(--color-secondary-dark);
+    background: var(--color-secondary-text-dark);
   }
 
   .cookie-consent__btn--secondary {
@@ -334,7 +368,7 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID ?? '';
 
   .cookie-consent__option input {
     margin-top: 0.2rem;
-    accent-color: var(--color-secondary);
+    accent-color: var(--color-secondary-text);
   }
 
   .cookie-consent__option strong {

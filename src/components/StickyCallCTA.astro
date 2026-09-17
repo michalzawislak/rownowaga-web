@@ -4,17 +4,15 @@ import business from '../data/business.json';
 const phoneHref = `tel:${business.telephone.replace(/\s/g, '')}`;
 ---
 
-<a
-  href={phoneHref}
-  class="sticky-call-cta"
-  aria-label={`Zadzwoń teraz: ${business.telephone}`}
->
-  <svg class="sticky-call-cta__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
-  </svg>
-  <span class="sticky-call-cta__label">Zadzwoń teraz</span>
-  <span class="sticky-call-cta__phone">{business.telephone}</span>
-</a>
+<aside aria-label="Szybki kontakt telefoniczny">
+  <a href={phoneHref} class="sticky-call-cta" aria-label={`Zadzwoń teraz: ${business.telephone}`}>
+    <svg class="sticky-call-cta__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+    </svg>
+    <span class="sticky-call-cta__label">Zadzwoń teraz</span>
+    <span class="sticky-call-cta__phone">{business.telephone}</span>
+  </a>
+</aside>
 
 <style>
   .sticky-call-cta {
@@ -34,7 +32,7 @@ const phoneHref = `tel:${business.telephone.replace(/\s/g, '')}`;
       gap: 0.625rem;
       min-height: 3.5rem;
       padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom, 0px));
-      background-color: var(--color-secondary);
+      background-color: var(--color-secondary-text);
       color: #fff;
       font-family: var(--font-body);
       font-weight: 600;
@@ -42,12 +40,14 @@ const phoneHref = `tel:${business.telephone.replace(/\s/g, '')}`;
       letter-spacing: 0.01em;
       text-decoration: none;
       box-shadow: 0 -4px 20px rgba(44, 62, 80, 0.15);
-      transition: background-color 0.2s ease, transform 0.2s ease;
+      transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
     }
 
     .sticky-call-cta:hover,
     .sticky-call-cta:focus-visible {
-      background-color: var(--color-secondary-dark);
+      background-color: var(--color-secondary-text-dark);
       color: #fff;
     }
 

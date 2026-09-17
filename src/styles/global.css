@@ -1,25 +1,34 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   /* Kolorystyka inspirowana Truly Real Nutrition */
-  --color-primary: #E8D5C4;
-  --color-primary-dark: #D4C0AD;
-  --color-secondary: #7B9E89;
-  --color-secondary-dark: #6A8B76;
-  --color-accent: #D4A574;
-  --color-accent-dark: #BF9260;
+  --color-primary: #e8d5c4;
+  --color-primary-dark: #d4c0ad;
+  /* Jasna zieleń — wyłącznie dekoracja (poświaty, obramowania, tła bez tekstu). */
+  --color-secondary: #7b9e89;
+  --color-secondary-dark: #6a8b76;
+  /*
+   * Ciemniejszy wariant do wszystkiego, co niesie tekst: linki, przyciski,
+   * ikony, wyróżnienia w nagłówkach. Kontrast 5.8:1 na bieli i 5.4:1 na tle
+   * alternatywnym, czyli powyżej progu WCAG AA (4.5:1).
+   */
+  --color-secondary-text: #4a6d59;
+  --color-secondary-text-dark: #3f5e4c;
+  --color-accent: #d4a574;
+  --color-accent-dark: #bf9260;
 
-  --color-text-dark: #2C3E50;
-  --color-text-light: #6B7280;
-  --color-text-muted: #9CA3AF;
+  --color-text-dark: #2c3e50;
+  /* 5.7:1 na tle alternatywnym (#F9F6F3); poprzednie #6B7280 dawało 4.49:1. */
+  --color-text-light: #5b6270;
+  --color-text-muted: #9ca3af;
 
-  --color-background: #FEFEFE;
-  --color-background-alt: #F9F6F3;
-  --color-background-card: #FFFFFF;
+  --color-background: #fefefe;
+  --color-background-alt: #f9f6f3;
+  --color-background-card: #ffffff;
 
-  /* Typografia */
-  --font-heading: 'Cormorant Garamond', serif;
-  --font-body: 'Montserrat', sans-serif;
+  /* Typografia — rodziny wstrzykuje Astro Fonts API (patrz astro.config.mjs). */
+  --font-heading: var(--font-heading-family), Georgia, serif;
+  --font-body: var(--font-body-family), system-ui, sans-serif;
 
   /* Font sizes (Tailwind scale) */
   --font-size-xs: 0.75rem;
@@ -85,7 +94,12 @@
     }
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-heading);
     font-weight: 600;
     line-height: 1.2;
@@ -115,13 +129,20 @@
   }
 
   a {
-    color: var(--color-secondary);
+    color: var(--color-secondary-text);
     text-decoration: none;
     transition: color var(--transition-base);
   }
 
   a:hover {
-    color: var(--color-secondary-dark);
+    color: var(--color-secondary-text-dark);
+  }
+
+  /* Widoczny fokus klawiatury na wszystkich elementach interaktywnych. */
+  :focus-visible {
+    outline: 3px solid var(--color-secondary-text);
+    outline-offset: 2px;
+    border-radius: 0.25rem;
   }
 
   /* Domyślny odstęp sekcji — nadpisywalny klasami `py-*` w komponentach. */
@@ -161,6 +182,97 @@
 }
 
 @layer components {
+  /* Link „Przejdź do treści” — widoczny dopiero po sfokusowaniu klawiaturą. */
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -6rem;
+    z-index: 100;
+    padding: 0.75rem 1.25rem;
+    background: var(--color-background);
+    color: var(--color-secondary-text);
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 8px 24px rgba(44, 62, 80, 0.18);
+    transition: top 0.2s ease-in-out;
+  }
+
+  .skip-link:focus-visible {
+    top: 1rem;
+  }
+
+  /* Przyciski (Button.astro) */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    white-space: nowrap;
+    border-radius: var(--radius-sm);
+    position: relative;
+    overflow: hidden;
+    transition:
+      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn:active {
+    transform: translateY(0);
+  }
+
+  .btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .btn-md {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .btn-lg {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+  }
+
+  .btn-primary {
+    background-color: var(--color-secondary-text);
+    color: #fff;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-secondary-text-dark);
+    color: #fff;
+  }
+
+  .btn-secondary {
+    background-color: var(--color-primary);
+    color: var(--color-text-dark);
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--color-primary-dark);
+    color: var(--color-text-dark);
+  }
+
+  .btn-outline {
+    background-color: transparent;
+    color: var(--color-secondary-text);
+    border: 2px solid var(--color-secondary-text);
+  }
+
+  .btn-outline:hover {
+    background-color: var(--color-secondary-text);
+    color: #fff;
+  }
+
   .animate-on-scroll {
     opacity: 0;
     animation: fadeInUp 0.6s ease-out forwards;
@@ -173,7 +285,9 @@
 
   /* Domyślne uniesienie karty (Card.astro). */
   .card-lift {
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition:
+      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .card-lift:hover {
@@ -182,12 +296,16 @@
 
   /* Mocniejsze uniesienie — wygrywa z `.card-lift`, bo jest niżej. */
   .hover-lift {
-    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition:
+      transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .hover-lift:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    box-shadow:
+      0 20px 25px -5px rgb(0 0 0 / 0.1),
+      0 8px 10px -6px rgb(0 0 0 / 0.1);
   }
 
   .image-hover {
@@ -269,25 +387,13 @@
       transform: none;
     }
 
+    .btn:hover,
+    .btn:active,
     .card-lift:hover,
     .hover-lift:hover,
     .image-hover:hover img,
     .checkmark-hover:hover {
       transform: none;
-    }
-
-    /*
-     * `!important` zostaje tylko tutaj: przyciski stylujemy w Button.astro,
-     * a style scoped w Astro mają wyższą specyficzność niż ta warstwa.
-     */
-    .btn-primary:hover,
-    .btn-secondary:hover,
-    .btn-outline:hover,
-    .btn-primary:active,
-    .btn-secondary:active,
-    .btn-outline:active {
-      transform: none !important;
-      opacity: 1 !important;
     }
   }
 }

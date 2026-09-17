@@ -1,179 +1,110 @@
-# Strona Gabinetu Dietetycznego
+# Równowaga — Dietetyka i Psychodietetyka (Szczecin)
 
-Nowoczesna strona internetowa dla gabinetu dietetycznego i psychodietetycznego zbudowana w Astro z Tailwind CSS.
+Strona wizytówkowa gabinetu dietetycznego: oferta, sekcja „O mnie”, FAQ, formularz kontaktowy
+i (opcjonalnie) blog. Statyczna, budowana Astro.
 
 ## Technologie
 
-- **Framework**: Astro 5.x
-- **Styling**: Tailwind CSS 4.x
-- **Interaktywność**: React 19.x (tylko gdzie potrzeba)
-- **Fonty**: Google Fonts (Cormorant Garamond, Montserrat)
-- **Animacje**: Tailwind transitions + AOS (do dodania)
-- **Blog**: Astro Content Collections (Markdown)
-- **Formularz**: Web3Forms (wymaga klucza API)
+- **Astro 6** — generowanie statyczne (SSG), zero JS tam, gdzie nie jest potrzebny
+- **Tailwind CSS 4** — przez `@tailwindcss/vite`, tokeny w `src/styles/global.css`
+- **React 19** — wyłącznie wyspy interaktywne (`client:load`): animacje hero, slider metamorfoz
+- **Motion One** (`motion`) — animacje komponentów React
+- **Astro Fonts API** — Cormorant Garamond i Montserrat pobierane przy buildzie i serwowane
+  z własnej domeny (bez zapytań do Google Fonts u użytkownika)
+- **Web3Forms** — obsługa formularza kontaktowego
+- **Google Consent Mode v2 + GTM** — ładowane dopiero po decyzji w banerze cookies
 
-## Struktura projektu
+## Wymagania
 
-```
-diet-website/
-├── src/
-│   ├── components/         # Komponenty Astro i React
-│   │   ├── Hero.astro
-│   │   ├── ProblemSection.astro
-│   │   ├── SolutionSection.astro
-│   │   ├── AboutSection.astro
-│   │   ├── OfferSection.astro
-│   │   ├── MetamorphosisSection.astro
-│   │   ├── FAQ.astro
-│   │   ├── BlogPreview.astro
-│   │   ├── ContactSection.astro
-│   │   ├── Navigation.astro
-│   │   ├── Footer.astro
-│   │   └── ui/              # Reusable UI components
-│   ├── layouts/
-│   │   └── Layout.astro     # Główny layout
-│   ├── pages/
-│   │   ├── index.astro      # Strona główna
-│   │   └── blog/
-│   │       ├── index.astro  # Lista postów
-│   │       └── [slug].astro # Pojedynczy post
-│   ├── content/
-│   │   └── blog/            # Posty blogowe (Markdown)
-│   ├── data/                # Dane JSON
-│   │   ├── metamorphosis.json
-│   │   ├── faq.json
-│   │   └── offers.json
-│   └── styles/
-│       └── global.css       # Style globalne + design tokens
-├── public/
-│   └── images/              # Obrazy
-└── astro.config.mjs
-```
-
-## Instalacja
-
-```bash
-npm install
-```
+Node.js zgodny z `.nvmrc` (22.x). Przed pracą: `nvm use`.
 
 ## Uruchomienie
 
 ```bash
-# Dev server
-npm run dev
-
-# Build produkcyjny
-npm run build
-
-# Preview buildu
-npm run preview
+npm install
+npm run dev          # serwer deweloperski
+npm run build        # build produkcyjny do dist/
+npm run preview      # podgląd builda
 ```
 
-## Konfiguracja
-
-### 1. Web3Forms (Formularz kontaktowy)
-
-Edytuj `src/components/ContactSection.astro`:
-```html
-<input type="hidden" name="access_key" value="TWOJ_KLUCZ_WEB3FORMS" />
-```
-
-Zarejestruj się na [web3forms.com](https://web3forms.com) aby otrzymać klucz API.
-
-### 2. Site URL
-
-Edytuj `astro.config.mjs`:
-```javascript
-export default defineConfig({
-  site: 'https://twoja-domena.pl',
-  // ...
-})
-```
-
-### 3. Dane kontaktowe
-
-Edytuj w plikach:
-- `src/components/ContactSection.astro` - email, telefon, godziny
-- `src/components/Footer.astro` - social media links, email, telefon
-
-### 4. Zdjęcia
-
-Wymień placeholder'y w `public/images/` na prawdziwe zdjęcia:
-- `hero/hero-main.jpg` - zdjęcie hero
-- `about/profile.jpg` - zdjęcie o mnie
-- `solution/mindful-eating.jpg` - zdjęcie sekcji solution
-- `metamorphosis/` - zdjęcia przed/po
-- `blog/` - zdjęcia do artykułów
-
-### 5. Treści
-
-Edytuj treści w komponentach:
-- `src/components/AboutSection.astro` - bio dietetyka
-- `src/data/offers.json` - pakiety i ceny
-- `src/data/faq.json` - pytania i odpowiedzi
-- `src/data/metamorphosis.json` - historie metamorfoz
-
-### 6. Blog
-
-Dodaj nowe posty w `src/content/blog/` jako pliki `.md`:
-
-```markdown
----
-title: "Tytuł posta"
-description: "Krótki opis"
-publishDate: 2026-05-20
-author: "Imię Nazwisko"
-featured: false
-image: "/images/blog/post-image.jpg"
-imageAlt: "Opis obrazu"
-category: "Psychodietetyka"
-tags: ["tag1", "tag2"]
----
-
-Treść artykułu w Markdown...
-```
-
-## Kolorystyka
-
-Kolory można zmienić w `src/styles/global.css` w sekcji `@theme`:
-
-```css
---color-primary: #E8D5C4;      /* Soft beige/nude */
---color-secondary: #7B9E89;    /* Sage green */
---color-accent: #D4A574;       /* Warm terracotta */
-```
-
-## Do zrobienia (TODO)
-
-- [ ] Dodać animacje AOS dla sekcji (scroll-triggered fade-in)
-- [ ] Dodać Motion One dla zaawansowanych animacji hero
-- [ ] Integracja Calendly dla rezerwacji wizyt
-- [ ] Dodać Google Analytics
-- [ ] Optymalizacja obrazów (WebP, AVIF)
-- [ ] Dodać robots.txt i sitemap (sitemap jest już generowany)
-- [ ] Schema.org markup dla SEO
-- [ ] Lighthouse testing i optymalizacja performance
-- [ ] Prawdziwe zdjęcia zamiast placeholderów
-- [ ] Prawdziwe treści we wszystkich sekcjach
-
-## Deployment
-
-Projekt jest gotowy do wdrożenia na:
-- **Vercel** (rekomendowane)
-- **Netlify**
-- **Cloudflare Pages**
+Jakość kodu:
 
 ```bash
-# Build
-npm run build
-
-# Folder dist/ zawiera statyczne pliki gotowe do hostowania
+npm run lint         # ESLint
+npm run format       # Prettier (zapis)
+npm run check        # astro check (typy)
+npm run verify       # lint + format:check + check + build (to samo, co CI)
 ```
 
-## Licencja
+> Build pobiera pliki fontów z sieci. Bez dostępu do internetu Astro wypisze ostrzeżenie
+> „No data found for font family…”, a strona wyrenderuje się na fontach zapasowych.
 
-Projekt prywatny dla gabinetu dietetycznego.
+## Struktura
 
----
+```
+src/
+├── components/         # sekcje strony i komponenty UI
+│   └── ui/             # Button, Card, wyspy React
+├── content/blog/       # wpisy bloga (Markdown)
+├── data/               # dane wejściowe: business, offers, faq, features, metamorphosis
+├── layouts/Layout.astro# <head>, SEO, fonty, baner cookies, skip link
+├── lib/                # helpery (withBase, tony sekcji, animacje)
+├── pages/              # trasy: strona główna, polityka prywatności, 404, robots.txt
+├── routes/blog/        # trasy bloga — wstrzykiwane tylko przy włączonej fladze
+└── styles/global.css   # tokeny @theme + @layer base/components
+```
 
-**Kontakt:** kontakt@example.com
+### Ważne: warstwy CSS
+
+Style globalne muszą siedzieć w `@layer base`, a własne klasy w `@layer components`.
+CSS spoza warstw **wygrywa z każdą klasą Tailwinda** — wcześniej właśnie to unieważniało
+warianty `md:`/`lg:` w komponentach. Nie dopisuj reguł globalnych poza warstwami.
+
+## Flagi funkcji (`src/data/features.json`)
+
+```json
+{ "blog": false, "metamorphosis": false }
+```
+
+- `blog` — przy `false` trasy `/blog/` i wpisy **nie powstają** (patrz integracja
+  `blogRoutes` w `astro.config.mjs`), znikają też z menu i sitemapy
+- `metamorphosis` — pokazuje sekcję metamorfoz na stronie głównej
+
+## Dane gabinetu
+
+Wszystko w jednym miejscu: `src/data/business.json` (nazwa, adres, telefon, godziny,
+`areaServed`, `hasMap`, profile społecznościowe). Stąd korzystają nagłówek, stopka,
+kontakt, polityka prywatności i dane strukturalne Schema.org.
+
+Do uzupełnienia prawdziwymi danymi: `specialist.credentials` — lista uprawnień
+(`{ "category": "dyplom", "name": "...", "issuedBy": "..." }`). Pusta lista oznacza,
+że pole `hasCredential` nie trafia do Schema.org.
+
+## Środowisko i deploy
+
+| Zmienna | Znaczenie |
+| --- | --- |
+| `PUBLIC_GTM_ID` | ID kontenera GTM. Bez niej baner i Consent Mode działają, GTM się nie ładuje. |
+| `GITHUB_PAGES` | `true` w buildzie podglądowym na GitHub Pages. |
+
+Build produkcyjny (domena docelowa): canonical, sitemapa i `robots.txt` z `Allow: /`.
+
+Build z `GITHUB_PAGES=true`: prefiks `/rownowaga-web`, `<meta name="robots" content="noindex">`
+na każdej stronie, brak canonicala i brak sitemapy — podgląd nie może trafić do Google
+jako duplikat treści.
+
+- `.github/workflows/ci.yml` — lint, Prettier, typy i build (push i PR)
+- `.github/workflows/deploy.yml` — publikacja podglądu na GitHub Pages
+
+## Formularz kontaktowy
+
+Web3Forms, klucz publiczny w `src/components/ContactSection.astro`. Formularz celowo
+nie zachęca do podawania danych o zdrowiu — zgoda obejmuje art. 9 RODO, a szczegóły
+opisuje polityka prywatności.
+
+## Znane zadania
+
+- obraz hero (2,2 MB) do wymiany na `astro:assets` z AVIF/WebP
+- brakujące zdjęcia: `about/profile.jpg`, `solution/mindful-eating.jpg`, obrazy bloga,
+  `og:image` (domyślnie `/images/hero.jpg`)
+- brak strony `/regulamin`, do której linkuje stopka

@@ -8,11 +8,11 @@ interface AnimatedSectionProps {
   threshold?: number;
 }
 
-export default function AnimatedSection({ 
-  children, 
+export default function AnimatedSection({
+  children,
   className = '',
   delay = 0,
-  threshold = 0.2 
+  threshold = 0.2,
 }: AnimatedSectionProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: threshold });
@@ -22,10 +22,10 @@ export default function AnimatedSection({
       ref={ref}
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{ 
-        duration: 0.5, 
+      transition={{
+        duration: 0.5,
         ease: [0.4, 0, 0.2, 1],
-        delay 
+        delay,
       }}
       className={className}
     >

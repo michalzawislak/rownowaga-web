@@ -15,7 +15,12 @@ type NavItem = {
 const allNavItems: NavItem[] = [
   { label: 'O mnie', href: withBase('/#o-mnie'), section: 'o-mnie' },
   { label: 'Oferta', href: withBase('/#oferta'), section: 'oferta' },
-  { label: 'Metamorfozy', href: withBase('/#metamorfozy'), feature: 'metamorphosis', section: 'metamorfozy' },
+  {
+    label: 'Metamorfozy',
+    href: withBase('/#metamorfozy'),
+    feature: 'metamorphosis',
+    section: 'metamorfozy',
+  },
   { label: 'Blog', href: withBase('/blog'), feature: 'blog', path: withBase('/blog') },
   { label: 'Kontakt', href: withBase('/#kontakt'), section: 'kontakt' },
 ];
@@ -23,20 +28,23 @@ const allNavItems: NavItem[] = [
 const navItems = allNavItems.filter((item) => item.feature === undefined || features[item.feature]);
 ---
 
-<nav class="fixed top-0 left-0 right-0 bg-[var(--color-background)]/95 backdrop-blur-sm shadow-md z-50">
+<nav
+  aria-label="Menu główne"
+  class="fixed top-0 left-0 right-0 bg-[var(--color-background)]/95 backdrop-blur-sm shadow-md z-50"
+>
   <div class="container mx-auto px-4 md:px-8 lg:px-16">
     <div class="flex items-center justify-between h-20">
       <a href={withBase('/')} class="flex items-center space-x-2">
-        <div class="text-xl md:text-2xl font-bold font-[var(--font-heading)] text-[var(--color-secondary)]">
+        <div class="text-xl md:text-2xl font-bold font-[var(--font-heading)] text-[var(--color-secondary-text)]">
           {business.shortName}
         </div>
       </a>
 
       <div class="hidden lg:flex items-center gap-8">
-        {navItems.map(item => (
-          <a 
+        {navItems.map((item) => (
+          <a
             href={item.href}
-            class="nav-link text-[var(--color-text-dark)] hover:text-[var(--color-secondary)] transition-colors duration-200 font-medium whitespace-nowrap"
+            class="nav-link text-[var(--color-text-dark)] hover:text-[var(--color-secondary-text)] transition-colors duration-200 font-medium whitespace-nowrap"
             data-nav-section={item.section}
             data-nav-path={item.path}
           >
@@ -48,33 +56,48 @@ const navItems = allNavItems.filter((item) => item.feature === undefined || feat
         </Button>
       </div>
 
-      <button 
+      <button
         id="mobile-menu-button"
+        type="button"
         class="lg:hidden p-2 rounded-md hover:bg-[var(--color-background-alt)] transition-colors"
-        aria-label="Toggle menu"
+        aria-label="Otwórz menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
       >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
         </svg>
       </button>
     </div>
   </div>
 
-  <div 
+  <div
     id="mobile-menu"
     class="hidden lg:hidden bg-[var(--color-background)] border-t border-gray-200"
   >
     <div class="container mx-auto px-4 py-4 space-y-3">
-        {navItems.map(item => (
-          <a 
-            href={item.href}
-            class="nav-mobile-link block py-2 text-[var(--color-text-dark)] hover:text-[var(--color-secondary)] transition-colors duration-200 font-medium"
-            data-nav-section={item.section}
-            data-nav-path={item.path}
-          >
-            {item.label}
-          </a>
-        ))}
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class="nav-mobile-link block py-2 text-[var(--color-text-dark)] hover:text-[var(--color-secondary-text)] transition-colors duration-200 font-medium"
+          data-nav-section={item.section}
+          data-nav-path={item.path}
+        >
+          {item.label}
+        </a>
+      ))}
       <div class="pt-2">
         <Button href="#kontakt" size="sm" class="w-full">
           Umów konsultację
@@ -87,23 +110,37 @@ const navItems = allNavItems.filter((item) => item.feature === undefined || feat
 <script>
   const button = document.getElementById('mobile-menu-button');
   const menu = document.getElementById('mobile-menu');
-  const navLinks = document.querySelectorAll<HTMLAnchorElement>('[data-nav-section], [data-nav-path]');
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>(
+    '[data-nav-section], [data-nav-path]',
+  );
   const headerOffset = 80;
 
+  function setMenuOpen(isOpen: boolean): void {
+    menu?.classList.toggle('hidden', !isOpen);
+    button?.setAttribute('aria-expanded', String(isOpen));
+    button?.setAttribute('aria-label', isOpen ? 'Zamknij menu' : 'Otwórz menu');
+  }
+
   button?.addEventListener('click', () => {
-    menu?.classList.toggle('hidden');
+    setMenuOpen(menu?.classList.contains('hidden') ?? false);
   });
 
   document.addEventListener('click', (e) => {
     if (!button?.contains(e.target as Node) && !menu?.contains(e.target as Node)) {
-      menu?.classList.add('hidden');
+      setMenuOpen(false);
     }
   });
 
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape' || menu?.classList.contains('hidden')) return;
+    setMenuOpen(false);
+    button?.focus();
+  });
+
   const menuLinks = menu?.querySelectorAll('a');
-  menuLinks?.forEach(link => {
+  menuLinks?.forEach((link) => {
     link.addEventListener('click', () => {
-      menu?.classList.add('hidden');
+      setMenuOpen(false);
     });
   });
 
@@ -116,7 +153,8 @@ const navItems = allNavItems.filter((item) => item.feature === undefined || feat
   function setActiveSection(sectionId: string | null) {
     navLinks.forEach((link) => {
       const sectionActive = sectionId !== null && link.dataset.navSection === sectionId;
-      const pathActive = sectionId === null && !!link.dataset.navPath && pathMatches(link.dataset.navPath);
+      const pathActive =
+        sectionId === null && !!link.dataset.navPath && pathMatches(link.dataset.navPath);
       const isActive = sectionActive || pathActive;
 
       link.classList.toggle('is-active', isActive);
@@ -195,7 +233,7 @@ const navItems = allNavItems.filter((item) => item.feature === undefined || feat
     bottom: -4px;
     width: 0;
     height: 2px;
-    background-color: var(--color-secondary);
+    background-color: var(--color-secondary-text);
     transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
@@ -206,6 +244,6 @@ const navItems = allNavItems.filter((item) => item.feature === undefined || feat
 
   .nav-link.is-active,
   .nav-mobile-link.is-active {
-    color: var(--color-secondary);
+    color: var(--color-secondary-text);
   }
 </style>

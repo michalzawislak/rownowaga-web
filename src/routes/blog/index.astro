@@ -6,12 +6,12 @@ import Button from '../../components/ui/Button.astro';
 import { withBase } from '../../lib/paths';
 
 const allPosts = await getCollection('blog');
-const sortedPosts = allPosts.sort((a, b) => 
-  b.data.publishDate.getTime() - a.data.publishDate.getTime()
+const sortedPosts = allPosts.sort(
+  (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime(),
 );
 ---
 
-<Layout 
+<Layout
   title="Blog | Dietetyka i zdrowy plan żywieniowy"
   description="Artykuły o diecie, współpracy z dietetykiem i utrzymaniu planu na co dzień. Gabinet w Szczecinie."
 >
@@ -49,7 +49,7 @@ const sortedPosts = allPosts.sort((a, b) =>
                   />
                 </div>
               )}
-              
+
               <div class="p-6 flex flex-col flex-grow">
                 <div class="mb-4">
                   <span class="inline-block bg-[var(--color-primary)] text-[var(--color-text-dark)] px-3 py-1 rounded-full text-sm font-medium">
@@ -70,7 +70,7 @@ const sortedPosts = allPosts.sort((a, b) =>
                     {post.data.publishDate.toLocaleDateString('pl-PL', {
                       year: 'numeric',
                       month: 'long',
-                      day: 'numeric'
+                      day: 'numeric',
                     })}
                   </span>
                   <Button href={`/blog/${post.id}`} variant="secondary" size="sm">

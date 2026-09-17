@@ -1,27 +1,31 @@
 ---
 import Button from './ui/Button.astro';
-import { Image } from 'astro:assets';
 import { AnimatedHeroImage, AnimatedCheckmarks } from './ui/AnimatedHero';
 import { withBase } from '../lib/paths';
 
 const checkmarks = [
   { icon: 'check', text: 'Online i stacjonarnie w Szczecinie' },
-  { icon: 'check', text: 'Indywidualny schemat diety' }
+  { icon: 'check', text: 'Indywidualny schemat diety' },
 ];
 ---
 
-<section id="hero" class="relative min-h-[80vh] md:min-h-[90vh] flex items-start lg:items-center bg-gradient-to-br from-[var(--color-background)] to-[var(--color-background-alt)] pt-24 pb-12 md:pt-28 md:pb-20 overflow-hidden">
+<section
+  id="hero"
+  class="relative min-h-[80vh] md:min-h-[90vh] flex items-start lg:items-center bg-gradient-to-br from-[var(--color-background)] to-[var(--color-background-alt)] pt-24 pb-12 md:pt-28 md:pb-20 overflow-hidden"
+>
   <div class="container mx-auto px-4 md:px-8 lg:px-16">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
       <div class="order-2 lg:order-1 hero-content">
         <h1 class="text-5xl lg:text-6xl font-semibold text-[var(--color-text-dark)] leading-tight mb-10 animate-fade-in-up">
-          Dieta dopasowana do <span class="text-[var(--color-secondary)]">Twojego życia</span>
+          Dieta dopasowana do <span class="text-[var(--color-secondary-text)]">Twojego życia</span>
         </h1>
-        
+
         <p class="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed mb-12 animate-fade-in-up animation-delay-100">
-          Gabinet dietetyczny w Szczecinie. Układam indywidualną dietę na podstawie wywiadu i analizy składu ciała, a potem regularnie ją dopasowujemy — z przepisami, dzienniczkiem i aplikacją.
+          Gabinet dietetyczny w Szczecinie. Układam indywidualną dietę na podstawie wywiadu i
+          analizy składu ciała, a potem regularnie ją dopasowujemy — z przepisami, dzienniczkiem i
+          aplikacją.
         </p>
-        
+
         <div class="flex flex-col sm:flex-row gap-6 mb-16 animate-fade-in-scale animation-delay-200">
           <Button href="#kontakt" size="lg">
             Bezpłatna konsultacja
@@ -30,13 +34,13 @@ const checkmarks = [
             Dowiedz się więcej
           </Button>
         </div>
-        
+
         <AnimatedCheckmarks items={checkmarks} client:load />
       </div>
-      
+
       <div class="order-1 lg:order-2">
-        <AnimatedHeroImage 
-          src={withBase('/images/hero/hero-main.jpeg')} 
+        <AnimatedHeroImage
+          src={withBase('/images/hero/hero-main.jpeg')}
           alt="Waga z miskami pełnymi warzyw, owoców, orzechów i przysmaków — symbol zrównoważonego odżywiania"
           client:load
         />

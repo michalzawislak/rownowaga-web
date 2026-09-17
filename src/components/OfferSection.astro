@@ -19,34 +19,44 @@ const visibleOffers = offers.filter((offer) => !('hidden' in offer && offer.hidd
         Jak mogę Ci pomóc?
       </h2>
     </div>
-    
+
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
       {visibleOffers.map((offer, index) => (
         <div class="animate-on-scroll pt-5 h-full" style={`animation-delay: ${index * 100}ms`}>
-          <Card class={`p-8 relative h-full flex flex-col hover-lift ${offer.popular ? 'ring-4 ring-[var(--color-secondary)]' : ''}`}>
+          <Card
+            class={`p-8 relative h-full flex flex-col hover-lift ${offer.popular ? 'ring-4 ring-[var(--color-secondary)]' : ''}`}
+          >
             {offer.popular && offer.badge && (
-              <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-[var(--color-secondary)] text-white px-6 py-2 rounded-full text-sm font-semibold shadow-lg whitespace-nowrap">
+              <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-[var(--color-secondary-text)] text-white px-6 py-2 rounded-full text-sm font-semibold shadow-lg whitespace-nowrap">
                 {offer.badge}
               </div>
             )}
-            
+
             <div class="text-center mb-6">
               <h3 class="text-xl md:text-2xl font-semibold text-[var(--color-text-dark)] mb-2">
                 {offer.name}
               </h3>
               {offer.subtitle && (
-                <p class="text-sm text-[var(--color-text-light)]">
-                  {offer.subtitle}
-                </p>
+                <p class="text-sm text-[var(--color-text-light)]">{offer.subtitle}</p>
               )}
             </div>
-            
+
             {offer.features.length > 0 ? (
               <ul class="space-y-4 mb-6 flex-1">
                 {offer.features.map((feature) => (
                   <li class="flex items-start gap-3">
-                    <svg class="w-5 h-5 text-[var(--color-secondary)] flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    <svg
+                      class="w-5 h-5 text-[var(--color-secondary-text)] flex-shrink-0 mt-0.5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"
+                      />
                     </svg>
                     <span class="text-[var(--color-text-light)]">{feature}</span>
                   </li>
@@ -55,13 +65,13 @@ const visibleOffers = offers.filter((offer) => !('hidden' in offer && offer.hidd
             ) : (
               <div class="flex-1"></div>
             )}
-            
+
             <div class="mt-auto text-center">
-              <div class="text-2xl md:text-3xl font-bold text-[var(--color-secondary)] mb-4">
+              <div class="text-2xl md:text-3xl font-bold text-[var(--color-secondary-text)] mb-4">
                 {offer.price}
               </div>
-              <Button 
-                href={offer.ctaLink} 
+              <Button
+                href={offer.ctaLink}
                 variant={offer.popular ? 'primary' : 'secondary'}
                 class="w-full"
               >
@@ -72,11 +82,14 @@ const visibleOffers = offers.filter((offer) => !('hidden' in offer && offer.hidd
         </div>
       ))}
     </div>
-    
+
     <div class="mt-12 text-center animate-on-scroll" style="animation-delay: 400ms">
       <p class="text-[var(--color-text-light)]">
-        Nie wiesz, od czego zacząć? 
-        <a href="#kontakt" class="text-[var(--color-secondary)] font-medium hover:underline link-underline">
+        Nie wiesz, od czego zacząć?
+        <a
+          href="#kontakt"
+          class="text-[var(--color-secondary-text)] font-medium hover:underline link-underline"
+        >
           Umów bezpłatną 15-minutową rozmowę
         </a>
       </p>

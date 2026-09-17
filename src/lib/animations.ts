@@ -1,88 +1,94 @@
-const prefersReducedMotion = typeof window !== 'undefined' 
-  ? window.matchMedia('(prefers-reduced-motion: reduce)').matches 
-  : false;
+import type { Transition, Variants } from 'motion/react';
+
+const prefersReducedMotion =
+  typeof window !== 'undefined'
+    ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    : false;
+
+/** Motion oczekuje krotki czterech liczb, nie `number[]`. */
+const EASE_OUT: [number, number, number, number] = [0.4, 0, 0.2, 1];
 
 export const TRANSITION = {
-  fast: { duration: 0.3, ease: [0.4, 0, 0.2, 1] },
-  base: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
-  slow: { duration: 0.7, ease: [0.4, 0, 0.2, 1] },
-};
+  fast: { duration: 0.3, ease: EASE_OUT },
+  base: { duration: 0.5, ease: EASE_OUT },
+  slow: { duration: 0.7, ease: EASE_OUT },
+} satisfies Record<string, Transition>;
 
-export const fadeInUp = {
-  hidden: { 
-    opacity: 0, 
-    y: prefersReducedMotion ? 0 : 30 
+export const fadeInUp: Variants = {
+  hidden: {
+    opacity: 0,
+    y: prefersReducedMotion ? 0 : 30,
   },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: TRANSITION.base
-  }
-};
-
-export const fadeIn = {
-  hidden: { opacity: 0 },
-  visible: { 
+  visible: {
     opacity: 1,
-    transition: TRANSITION.base
-  }
+    y: 0,
+    transition: TRANSITION.base,
+  },
 };
 
-export const fadeInScale = {
-  hidden: { 
-    opacity: 0, 
-    scale: prefersReducedMotion ? 1 : 0.95 
+export const fadeIn: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: TRANSITION.base,
   },
-  visible: { 
-    opacity: 1, 
+};
+
+export const fadeInScale: Variants = {
+  hidden: {
+    opacity: 0,
+    scale: prefersReducedMotion ? 1 : 0.95,
+  },
+  visible: {
+    opacity: 1,
     scale: 1,
-    transition: TRANSITION.base
-  }
-};
-
-export const fadeInLeft = {
-  hidden: { 
-    opacity: 0, 
-    x: prefersReducedMotion ? 0 : -30 
+    transition: TRANSITION.base,
   },
-  visible: { 
-    opacity: 1, 
-    x: 0,
-    transition: TRANSITION.base
-  }
 };
 
-export const fadeInRight = {
-  hidden: { 
-    opacity: 0, 
-    x: prefersReducedMotion ? 0 : 30 
+export const fadeInLeft: Variants = {
+  hidden: {
+    opacity: 0,
+    x: prefersReducedMotion ? 0 : -30,
   },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     x: 0,
-    transition: TRANSITION.base
-  }
+    transition: TRANSITION.base,
+  },
 };
 
-export const staggerContainer = {
+export const fadeInRight: Variants = {
+  hidden: {
+    opacity: 0,
+    x: prefersReducedMotion ? 0 : 30,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: TRANSITION.base,
+  },
+};
+
+export const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
       staggerChildren: 0.1,
-      delayChildren: 0.1
-    }
-  }
+      delayChildren: 0.1,
+    },
+  },
 };
 
-export const staggerItem = {
-  hidden: { 
-    opacity: 0, 
-    y: prefersReducedMotion ? 0 : 20 
+export const staggerItem: Variants = {
+  hidden: {
+    opacity: 0,
+    y: prefersReducedMotion ? 0 : 20,
   },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
-    transition: TRANSITION.base
-  }
+    transition: TRANSITION.base,
+  },
 };

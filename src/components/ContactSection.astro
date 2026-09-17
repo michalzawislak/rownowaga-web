@@ -24,7 +24,10 @@ const addressLine = `${business.address.streetAddress}, ${business.address.posta
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
-      <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 animate-on-scroll" style="animation-delay: 100ms">
+      <div
+        class="bg-white rounded-2xl shadow-xl p-6 md:p-8 animate-on-scroll"
+        style="animation-delay: 100ms"
+      >
         <h3 class="text-xl md:text-2xl font-semibold text-[var(--color-text-dark)] mb-6">
           Wyślij wiadomość
         </h3>
@@ -37,7 +40,11 @@ const addressLine = `${business.address.streetAddress}, ${business.address.posta
         >
           <input type="hidden" name="access_key" value="f45148a7-4158-4c49-ae37-8036702271bc" />
           <input type="hidden" name="subject" value="Nowa wiadomość ze strony gabinetu" />
-          <input type="hidden" name="from_name" value={`${business.alternateName} - Formularz kontaktowy`} />
+          <input
+            type="hidden"
+            name="from_name"
+            value={`${business.alternateName} - Formularz kontaktowy`}
+          />
           <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
 
           <div>
@@ -49,7 +56,7 @@ const addressLine = `${business.address.streetAddress}, ${business.address.posta
               id="name"
               name="name"
               required
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--color-secondary)] focus:border-transparent transition-colors"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--color-secondary-text)] focus:border-transparent transition-colors"
               placeholder="Twoje imię"
             />
           </div>
@@ -63,7 +70,7 @@ const addressLine = `${business.address.streetAddress}, ${business.address.posta
               id="email"
               name="email"
               required
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--color-secondary)] focus:border-transparent transition-colors"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--color-secondary-text)] focus:border-transparent transition-colors"
               placeholder={business.email}
             />
           </div>
@@ -76,38 +83,46 @@ const addressLine = `${business.address.streetAddress}, ${business.address.posta
               type="tel"
               id="phone"
               name="phone"
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--color-secondary)] focus:border-transparent transition-colors"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--color-secondary-text)] focus:border-transparent transition-colors"
               placeholder={business.telephone}
             />
           </div>
 
           <div>
-            <label for="message" class="block text-sm font-medium text-[var(--color-text-dark)] mb-2">
+            <label
+              for="message"
+              class="block text-sm font-medium text-[var(--color-text-dark)] mb-2"
+            >
               Wiadomość *
             </label>
+            <p id="message-hint" class="text-sm text-[var(--color-text-light)] mb-2">
+              Nie musisz tu opisywać swojego stanu zdrowia ani wyników badań — omówimy to na
+              konsultacji. Jeśli jednak je podasz, przetwarzamy je tylko na podstawie zgody poniżej.
+            </p>
             <textarea
               id="message"
               name="message"
               required
               rows="5"
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--color-secondary)] focus:border-transparent transition-colors resize-none"
+              aria-describedby="message-hint"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--color-secondary-text)] focus:border-transparent transition-colors resize-none"
               placeholder="Opisz krótko, czym mogę Ci pomóc..."
             ></textarea>
           </div>
 
           <div class="flex items-start">
-            <input
-              type="checkbox"
-              id="consent"
-              name="consent"
-              required
-              class="mt-1 mr-2"
-            />
+            <input type="checkbox" id="consent" name="consent" required class="mt-1 mr-2" />
             <label for="consent" class="text-sm text-[var(--color-text-light)]">
-              Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z 
-              <a href={withBase('/polityka-prywatnosci')} class="text-[var(--color-secondary)] hover:underline">
+              Wyrażam zgodę na przetwarzanie moich danych osobowych w celu odpowiedzi na wiadomość —
+              w tym informacji o zdrowiu, jeśli sam(a) je podam (art. 9 ust. 2 lit. a RODO) —
+              zgodnie z
+              <a
+                href={withBase('/polityka-prywatnosci')}
+                class="text-[var(--color-secondary-text)] hover:underline"
+              >
                 polityką prywatności
-              </a> *
+              </a>
+              . Zgodę mogę wycofać w każdej chwili. *
             </label>
           </div>
 
@@ -115,12 +130,20 @@ const addressLine = `${business.address.streetAddress}, ${business.address.posta
             Wyślij wiadomość
           </Button>
 
-          <div id="form-result" class="hidden text-center p-4 rounded-lg"></div>
+          <div
+            id="form-result"
+            role="status"
+            aria-live="polite"
+            class="hidden text-center p-4 rounded-lg"
+          ></div>
         </form>
       </div>
 
       <div class="space-y-8">
-        <div class="bg-white rounded-2xl shadow-xl p-8 animate-on-scroll" style="animation-delay: 200ms">
+        <div
+          class="bg-white rounded-2xl shadow-xl p-8 animate-on-scroll"
+          style="animation-delay: 200ms"
+        >
           <h3 class="text-2xl font-semibold text-[var(--color-text-dark)] mb-6">
             Informacje kontaktowe
           </h3>
@@ -128,13 +151,28 @@ const addressLine = `${business.address.streetAddress}, ${business.address.posta
           <div class="space-y-6">
             <div class="flex items-start gap-4">
               <div class="bg-[var(--color-primary)] p-3 rounded-lg">
-                <svg class="w-6 h-6 text-[var(--color-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                <svg
+                  class="w-6 h-6 text-[var(--color-secondary-text)]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
                 </svg>
               </div>
               <div>
                 <p class="font-medium text-[var(--color-text-dark)]">Email</p>
-                <a href={`mailto:${business.email}`} class="text-[var(--color-text-light)] hover:text-[var(--color-secondary)]">
+                <a
+                  href={`mailto:${business.email}`}
+                  class="text-[var(--color-text-light)] hover:text-[var(--color-secondary-text)]"
+                >
                   {business.email}
                 </a>
               </div>
@@ -142,13 +180,28 @@ const addressLine = `${business.address.streetAddress}, ${business.address.posta
 
             <div class="flex items-start gap-4">
               <div class="bg-[var(--color-primary)] p-3 rounded-lg">
-                <svg class="w-6 h-6 text-[var(--color-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                <svg
+                  class="w-6 h-6 text-[var(--color-secondary-text)]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                  />
                 </svg>
               </div>
               <div>
                 <p class="font-medium text-[var(--color-text-dark)]">Telefon</p>
-                <a href={`tel:${business.telephone.replace(/\s/g, '')}`} class="text-[var(--color-text-light)] hover:text-[var(--color-secondary)]">
+                <a
+                  href={`tel:${business.telephone.replace(/\s/g, '')}`}
+                  class="text-[var(--color-text-light)] hover:text-[var(--color-secondary-text)]"
+                >
                   {business.telephone}
                 </a>
               </div>
@@ -156,22 +209,53 @@ const addressLine = `${business.address.streetAddress}, ${business.address.posta
 
             <div class="flex items-start gap-4">
               <div class="bg-[var(--color-primary)] p-3 rounded-lg">
-                <svg class="w-6 h-6 text-[var(--color-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <svg
+                  class="w-6 h-6 text-[var(--color-secondary-text)]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
                 </svg>
               </div>
               <div>
                 <p class="font-medium text-[var(--color-text-dark)]">Adres</p>
                 <p class="text-[var(--color-text-light)]">{addressLine}</p>
-                <p class="text-sm text-[var(--color-text-light)] mt-1">Możliwe też spotkania online</p>
+                <p class="text-sm text-[var(--color-text-light)] mt-1">
+                  Możliwe też spotkania online
+                </p>
               </div>
             </div>
 
             <div class="flex items-start gap-4">
               <div class="bg-[var(--color-primary)] p-3 rounded-lg">
-                <svg class="w-6 h-6 text-[var(--color-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                <svg
+                  class="w-6 h-6 text-[var(--color-secondary-text)]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
                 </svg>
               </div>
               <div>
@@ -183,21 +267,29 @@ const addressLine = `${business.address.streetAddress}, ${business.address.posta
                       {hours.opens}–{hours.closes}
                     </p>
                   ))}
-                  <p><span class="inline-block w-28">sob–niedz</span> zamknięte</p>
+                  <p>
+                    <span class="inline-block w-28">sob–niedz</span> zamknięte
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="bg-[var(--color-secondary)] text-white rounded-2xl shadow-xl p-8 animate-on-scroll" style="animation-delay: 300ms">
-          <h3 class="text-2xl font-semibold mb-4">
-            Bezpłatna rozmowa wstępna
-          </h3>
+        <div
+          class="bg-[var(--color-secondary-text)] text-white rounded-2xl shadow-xl p-8 animate-on-scroll"
+          style="animation-delay: 300ms"
+        >
+          <h3 class="text-2xl font-semibold mb-4">Bezpłatna rozmowa wstępna</h3>
           <p class="mb-6 opacity-90">
-            Nie wiesz, od czego zacząć? Umów się na bezpłatną 15-minutową rozmowę wstępną — to nie jest pierwsza wizyta z cennika. Omówimy Twoją sytuację i dobierzemy pierwszy krok.
+            Nie wiesz, od czego zacząć? Umów się na bezpłatną 15-minutową rozmowę wstępną — to nie
+            jest pierwsza wizyta z cennika. Omówimy Twoją sytuację i dobierzemy pierwszy krok.
           </p>
-          <Button href="#kontakt" variant="outline" class="w-full border-white text-white hover:bg-white hover:text-[var(--color-secondary)]">
+          <Button
+            href="#kontakt"
+            variant="outline"
+            class="w-full border-white text-white hover:bg-white hover:text-[var(--color-secondary-text)]"
+          >
             Umów bezpłatną rozmowę
           </Button>
         </div>
@@ -215,7 +307,7 @@ const addressLine = `${business.address.streetAddress}, ${business.address.posta
 
     const formData = new FormData(form);
     const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
-    
+
     if (submitButton) {
       submitButton.disabled = true;
       submitButton.textContent = 'Wysyłanie...';
@@ -224,7 +316,7 @@ const addressLine = `${business.address.streetAddress}, ${business.address.posta
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        body: formData
+        body: formData,
       });
 
       const data = await response.json();
@@ -232,15 +324,17 @@ const addressLine = `${business.address.streetAddress}, ${business.address.posta
       if (data.success) {
         result?.classList.remove('hidden', 'bg-red-100', 'text-red-700');
         result?.classList.add('bg-green-100', 'text-green-700');
-        if (result) result.textContent = 'Dziękuję za wiadomość! Odpowiem najszybciej jak to możliwe.';
+        if (result)
+          result.textContent = 'Dziękuję za wiadomość! Odpowiem najszybciej jak to możliwe.';
         form.reset();
       } else {
         throw new Error('Submission failed');
       }
-    } catch (error) {
+    } catch {
       result?.classList.remove('hidden', 'bg-green-100', 'text-green-700');
       result?.classList.add('bg-red-100', 'text-red-700');
-      if (result) result.textContent = 'Wystąpił błąd. Spróbuj ponownie lub skontaktuj się mailowo.';
+      if (result)
+        result.textContent = 'Wystąpił błąd. Spróbuj ponownie lub skontaktuj się mailowo.';
     } finally {
       if (submitButton) {
         submitButton.disabled = false;

@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/ui/Button.astro';
+import business from '../data/business.json';
+import { withBase } from '../lib/paths';
+
+const phoneHref = `tel:${business.telephone.replace(/\s/g, '')}`;
+---
+
+<Layout
+  title={`Nie znaleziono strony | ${business.shortName}`}
+  description="Ta strona nie istnieje lub została przeniesiona. Wróć na stronę główną albo skontaktuj się z gabinetem."
+>
+  <section class="py-20 lg:py-28 bg-gradient-to-br from-[var(--color-background)] to-[var(--color-background-alt)]">
+    <div class="container mx-auto px-4 md:px-8 lg:px-16 max-w-2xl text-center">
+      <p class="text-lg font-semibold text-[var(--color-secondary-text)] mb-4">Błąd 404</p>
+
+      <h1 class="text-4xl md:text-5xl font-semibold text-[var(--color-text-dark)] mb-6">
+        Nie znaleźliśmy tej strony
+      </h1>
+
+      <p class="text-lg text-[var(--color-text-light)] leading-relaxed mb-10">
+        Strona mogła zostać przeniesiona albo adres zawiera literówkę. Zajrzyj na stronę główną lub
+        napisz do mnie — chętnie pomogę.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <Button href="/" size="lg">
+          Wróć na stronę główną
+        </Button>
+        <Button href="/#kontakt" variant="outline" size="lg">
+          Przejdź do kontaktu
+        </Button>
+      </div>
+
+      <p class="mt-10 text-[var(--color-text-light)]">
+        Możesz też zadzwonić:
+        <a href={phoneHref} class="font-medium">
+          {business.telephone}
+        </a>
+      </p>
+
+      <nav aria-label="Przydatne odnośniki" class="mt-12">
+        <ul class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-[var(--color-text-light)]">
+          <li>
+            <a href={withBase('/#o-mnie')}>O mnie</a>
+          </li>
+          <li>
+            <a href={withBase('/#oferta')}>Oferta</a>
+          </li>
+          <li>
+            <a href={withBase('/polityka-prywatnosci')}>Polityka prywatności</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+</Layout>

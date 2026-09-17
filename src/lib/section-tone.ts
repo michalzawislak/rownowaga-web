@@ -31,7 +31,5 @@ export function getSectionTones(): Record<SectionId, SectionTone> {
 }
 
 export function sectionBackground(tone: SectionTone): string {
-  return tone === 'alt'
-    ? 'bg-[var(--color-background-alt)]'
-    : 'bg-[var(--color-background)]';
+  return tone === 'alt' ? 'bg-[var(--color-background-alt)]' : 'bg-[var(--color-background)]';
 }

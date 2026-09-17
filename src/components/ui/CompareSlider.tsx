@@ -1,8 +1,5 @@
 import { useState } from 'react';
-import {
-  ReactCompareSlider,
-  ReactCompareSliderImage
-} from 'react-compare-slider';
+import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slider';
 
 interface MetamorphosisItem {
   id: string;
@@ -48,7 +45,7 @@ export default function CompareSlider({ items }: Props) {
               />
             }
           />
-          
+
           <div className="absolute bottom-4 left-4 bg-black/70 text-white px-4 py-2 rounded-lg text-sm">
             Przed
           </div>
@@ -68,9 +65,7 @@ export default function CompareSlider({ items }: Props) {
                   key={index}
                   onClick={() => setCurrentIndex(index)}
                   className={`w-2 h-2 rounded-full transition-all ${
-                    index === currentIndex
-                      ? 'bg-[var(--color-secondary)] w-8'
-                      : 'bg-gray-300'
+                    index === currentIndex ? 'bg-[var(--color-secondary-text)] w-8' : 'bg-gray-300'
                   }`}
                   aria-label={`Przejdź do metamorfozy ${index + 1}`}
                 />
@@ -78,14 +73,12 @@ export default function CompareSlider({ items }: Props) {
             </div>
           </div>
 
-          <blockquote className="text-base md:text-lg italic text-[var(--color-text-light)] mb-4 border-l-4 border-[var(--color-secondary)] pl-4">
+          <blockquote className="text-base md:text-lg italic text-[var(--color-text-light)] mb-4 border-l-4 border-[var(--color-secondary-text)] pl-4">
             "{currentItem.quote}"
           </blockquote>
 
           <div className="bg-[var(--color-background-alt)] rounded-lg p-4">
-            <p className="text-[var(--color-text-dark)] font-medium">
-              {currentItem.result}
-            </p>
+            <p className="text-[var(--color-text-dark)] font-medium">{currentItem.result}</p>
           </div>
         </div>
       </div>
@@ -93,19 +86,38 @@ export default function CompareSlider({ items }: Props) {
       <div className="flex justify-center gap-4 mt-8">
         <button
           onClick={prevSlide}
-          className="bg-[var(--color-secondary)] text-white p-3 rounded-full hover:bg-[var(--color-secondary-dark)] transition-colors shadow-lg"
+          className="bg-[var(--color-secondary-text)] text-white p-3 rounded-full hover:bg-[var(--color-secondary-text-dark)] transition-colors shadow-lg"
           aria-label="Poprzednia metamorfoza"
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
+            />
           </svg>
         </button>
         <button
           onClick={nextSlide}
-          className="bg-[var(--color-secondary)] text-white p-3 rounded-full hover:bg-[var(--color-secondary-dark)] transition-colors shadow-lg"
+          className="bg-[var(--color-secondary-text)] text-white p-3 rounded-full hover:bg-[var(--color-secondary-text-dark)] transition-colors shadow-lg"
           aria-label="Następna metamorfoza"
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            focusable="false"
+          >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>

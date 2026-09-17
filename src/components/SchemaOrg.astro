@@ -1,5 +1,6 @@
 ---
 import business from '../data/business.json';
+import offers from '../data/offers.json';
 import { withBase } from '../lib/paths';
 
 const siteOrigin = (Astro.site?.href ?? business.url).replace(/\/$/, '');
@@ -8,6 +9,49 @@ const toAbsolute = (path: string) => `${siteOrigin}${withBase(path)}`;
 
 const imageUrl = toAbsolute(business.image);
 const specialistImageUrl = toAbsolute(business.specialist.image);
+
+/** „200 zł” → 200. Zwraca null, gdy ceny nie da się odczytać. */
+const parsePrice = (price: string): number | null => {
+  const digits = price.replace(/\s/g, '').match(/\d+(?:[.,]\d+)?/);
+  return digits ? Number(digits[0].replace(',', '.')) : null;
+};
+
+const visibleOffers = offers.filter((offer) => !('hidden' in offer && offer.hidden));
+
+const offerCatalog = {
+  '@type': 'OfferCatalog',
+  name: 'Konsultacje dietetyczne i psychodietetyczne',
+  itemListElement: visibleOffers.map((offer) => {
+    const price = parsePrice(offer.price);
+
+    return {
+      '@type': 'Offer',
+      name: offer.name + (offer.subtitle ? ` (${offer.subtitle})` : ''),
+      ...(price === null ? {} : { price, priceCurrency: 'PLN' }),
+      availability: 'https://schema.org/InStock',
+      itemOffered: {
+        '@type': 'Service',
+        name: offer.name,
+        serviceType: 'Konsultacja dietetyczna',
+        provider: { '@id': `${siteRoot}/#business` },
+        areaServed: business.areaServed,
+      },
+    };
+  }),
+};
+
+interface Credential {
+  /** np. „dyplom”, „certyfikat”, „szkolenie” */
+  category: string;
+  name: string;
+  issuedBy?: string;
+}
+
+/**
+ * `credentials` uzupełnij w `src/data/business.json` prawdziwymi danymi
+ * (nazwa dyplomu/certyfikatu i instytucja). Pusta lista = pomijamy pole.
+ */
+const credentials: Credential[] = business.specialist.credentials ?? [];
 
 const schema = {
   '@context': 'https://schema.org',
@@ -23,6 +67,7 @@ const schema = {
       email: business.email,
       image: imageUrl,
       priceRange: business.priceRange,
+      currenciesAccepted: 'PLN',
       address: {
         '@type': 'PostalAddress',
         streetAddress: business.address.streetAddress,
@@ -35,12 +80,18 @@ const schema = {
         latitude: business.geo.latitude,
         longitude: business.geo.longitude,
       },
+      hasMap: business.hasMap,
+      areaServed: business.areaServed.map((area) => ({
+        '@type': 'Place',
+        name: area,
+      })),
       openingHoursSpecification: business.openingHours.map((hours) => ({
         '@type': 'OpeningHoursSpecification',
         dayOfWeek: hours.dayOfWeek,
         opens: hours.opens,
         closes: hours.closes,
       })),
+      hasOfferCatalog: offerCatalog,
       sameAs: business.sameAs,
       employee: { '@id': `${siteRoot}/#person` },
     },
@@ -52,6 +103,24 @@ const schema = {
       image: specialistImageUrl,
       worksFor: { '@id': `${siteRoot}/#business` },
       url: siteRoot,
+      knowsLanguage: 'pl-PL',
+      ...(credentials.length > 0
+        ? {
+            hasCredential: credentials.map((credential) => ({
+              '@type': 'EducationalOccupationalCredential',
+              credentialCategory: credential.category,
+              name: credential.name,
+              ...(credential.issuedBy
+                ? {
+                    recognizedBy: {
+                      '@type': 'Organization',
+                      name: credential.issuedBy,
+                    },
+                  }
+                : {}),
+            })),
+          }
+        : {}),
       sameAs: business.sameAs,
     },
     {
@@ -67,4 +136,4 @@ const schema = {
 };
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+<script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
