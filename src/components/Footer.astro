@@ -70,12 +70,12 @@ const socialLinks = [
         <h3 class="text-lg font-semibold mb-4 text-[var(--color-text-dark)]">Kontakt</h3>
         <div class="space-y-3 text-sm text-[var(--color-text-light)]">
           <p>
-            <a href={`mailto:${business.email}`} class="hover:text-[var(--color-secondary)] transition-colors break-all">
+            <a href={`mailto:${business.email}`} class="text-[var(--color-text-light)] hover:text-[var(--color-secondary)] transition-colors break-all">
               {business.email}
             </a>
           </p>
           <p>
-            <a href={`tel:${business.telephone.replace(/\s/g, '')}`} class="hover:text-[var(--color-secondary)] transition-colors">
+            <a href={`tel:${business.telephone.replace(/\s/g, '')}`} class="text-[var(--color-text-light)] hover:text-[var(--color-secondary)] transition-colors">
               {business.telephone}
             </a>
           </p>

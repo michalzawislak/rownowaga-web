@@ -15,7 +15,7 @@ const visibleOffers = offers.filter((offer) => !('hidden' in offer && offer.hidd
 <section id="oferta" class={`py-16 lg:py-24 ${sectionBackground(tone)}`}>
   <div class="container mx-auto px-4 md:px-8 lg:px-16">
     <div class="text-center mb-12 lg:mb-16 animate-on-scroll">
-      <h2 class="text-4xl lg:text-5xl font-bold text-[var(--color-text-dark)] mb-4">
+      <h2 class="text-4xl lg:text-5xl font-semibold text-[var(--color-text-dark)] mb-4">
         Jak mogę Ci pomóc?
       </h2>
     </div>
@@ -31,7 +31,7 @@ const visibleOffers = offers.filter((offer) => !('hidden' in offer && offer.hidd
             )}
             
             <div class="text-center mb-6">
-              <h3 class="text-xl md:text-2xl font-bold text-[var(--color-text-dark)] mb-2">
+              <h3 class="text-xl md:text-2xl font-semibold text-[var(--color-text-dark)] mb-2">
                 {offer.name}
               </h3>
               {offer.subtitle && (

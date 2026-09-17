@@ -59,7 +59,7 @@ export default function CompareSlider({ items }: Props) {
 
         <div className="p-8">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-xl md:text-2xl font-bold text-[var(--color-text-dark)]">
+            <h3 className="text-xl md:text-2xl font-semibold text-[var(--color-text-dark)]">
               {currentItem.name}, {currentItem.age} lat
             </h3>
             <div className="flex gap-2">

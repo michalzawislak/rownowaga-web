@@ -50,7 +50,7 @@ const relatedPosts = allPosts
           </span>
         </div>
 
-        <h1 class="text-4xl lg:text-5xl font-bold text-[var(--color-text-dark)] mb-6">
+        <h1 class="text-4xl lg:text-5xl font-semibold text-[var(--color-text-dark)] mb-6">
           {post.data.title}
         </h1>
 
@@ -91,7 +91,7 @@ const relatedPosts = allPosts
       </div>
 
       <div class="mt-12 p-8 bg-[var(--color-background-alt)] rounded-2xl">
-        <h3 class="text-2xl font-bold text-[var(--color-text-dark)] mb-4">
+        <h3 class="text-2xl font-semibold text-[var(--color-text-dark)] mb-4">
           Gotowa na zmianę?
         </h3>
         <p class="text-[var(--color-text-light)] mb-6">
@@ -105,7 +105,7 @@ const relatedPosts = allPosts
 
       {relatedPosts.length > 0 && (
         <div class="mt-16">
-          <h3 class="text-3xl font-bold text-[var(--color-text-dark)] mb-8">
+          <h3 class="text-3xl font-semibold text-[var(--color-text-dark)] mb-8">
             Przeczytaj także
           </h3>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -117,7 +117,7 @@ const relatedPosts = allPosts
                 <span class="inline-block bg-[var(--color-primary)] text-[var(--color-text-dark)] px-3 py-1 rounded-full text-sm font-medium mb-3">
                   {relatedPost.data.category}
                 </span>
-                <h4 class="text-xl font-bold text-[var(--color-text-dark)] mb-2 group-hover:text-[var(--color-secondary)] transition-colors">
+                <h4 class="text-xl font-semibold text-[var(--color-text-dark)] mb-2 group-hover:text-[var(--color-secondary)] transition-colors">
                   {relatedPost.data.title}
                 </h4>
                 <p class="text-[var(--color-text-light)] text-sm line-clamp-2">

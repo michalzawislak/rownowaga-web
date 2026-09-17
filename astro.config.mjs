@@ -20,7 +20,7 @@ const isIndexable = !isGitHubPages;
 export default defineConfig({
   site: isGitHubPages
     ? 'https://michalzawislak.github.io'
-    : 'https://rownowaga-dietyka.pl',
+    : 'https://rownowaga-dietetyka.pl',
   base: isGitHubPages ? '/rownowaga-web' : '/',
   devToolbar: { enabled: false },
   
