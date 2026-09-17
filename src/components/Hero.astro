@@ -1,7 +1,8 @@
 ---
+import { Picture } from 'astro:assets';
 import Button from './ui/Button.astro';
-import { AnimatedHeroImage, AnimatedCheckmarks } from './ui/AnimatedHero';
-import { withBase } from '../lib/paths';
+import { AnimatedCheckmarks } from './ui/AnimatedHero';
+import heroImage from '../assets/images/hero/hero-main.jpeg';
 
 const checkmarks = [
   { icon: 'check', text: 'Online i stacjonarnie w Szczecinie' },
@@ -15,6 +16,38 @@ const checkmarks = [
 >
   <div class="container mx-auto px-4 md:px-8 lg:px-16">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <!--
+        Obraz jest pierwszy w DOM, bo na mobile wyświetla się nad tekstem
+        (`order-1`). Gdyby był drugi, przy wolnym łączu tekst renderowałby się
+        wyżej i przeskakiwał w dół po dojściu obrazu (CLS).
+      -->
+      <div class="order-1 lg:order-2">
+        <div class="relative mx-auto w-full max-w-md lg:max-w-xl hero-image">
+          <div
+            class="pointer-events-none absolute -inset-8 rounded-[2.5rem] bg-[var(--color-primary)]/70 blur-3xl"
+            aria-hidden="true"
+          ></div>
+          <div class="relative overflow-hidden rounded-3xl shadow-[0_24px_48px_-16px_rgba(180,150,120,0.45)] ring-1 ring-[var(--color-secondary)]/15">
+            <!--
+              To jest element LCP: ładujemy go priorytetowo, bez animacji
+              wejścia i bez JavaScriptu. `widths` odpowiadają realnym
+              szerokościom w layoucie (z zapasem na ekrany 2x).
+            -->
+            <Picture
+              src={heroImage}
+              formats={['avif', 'webp']}
+              widths={[360, 480, 576, 720, 960, 1152]}
+              sizes="(min-width: 1024px) 576px, (min-width: 640px) 448px, calc(100vw - 2rem)"
+              alt="Waga z miskami pełnymi warzyw, owoców, orzechów i przysmaków — symbol zrównoważonego odżywiania"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+              class="aspect-square w-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+
       <div class="order-2 lg:order-1 hero-content">
         <h1 class="text-5xl lg:text-6xl font-semibold text-[var(--color-text-dark)] leading-tight mb-10 animate-fade-in-up">
           Dieta dopasowana do <span class="text-[var(--color-secondary-text)]">Twojego życia</span>
@@ -36,14 +69,6 @@ const checkmarks = [
         </div>
 
         <AnimatedCheckmarks items={checkmarks} client:load />
-      </div>
-
-      <div class="order-1 lg:order-2">
-        <AnimatedHeroImage
-          src={withBase('/images/hero/hero-main.jpeg')}
-          alt="Waga z miskami pełnymi warzyw, owoców, orzechów i przysmaków — symbol zrównoważonego odżywiania"
-          client:load
-        />
       </div>
     </div>
   </div>
@@ -90,9 +115,16 @@ const checkmarks = [
     animation-delay: 0.2s;
   }
 
+  /* Sam obraz nie ma animacji wejścia — nie opóźniamy LCP. */
+  .hero-image {
+    animation: fadeInScale 0.6s ease-out both;
+    animation-delay: 0.1s;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .animate-fade-in-up,
-    .animate-fade-in-scale {
+    .animate-fade-in-scale,
+    .hero-image {
       animation: none;
       opacity: 1;
       transform: none;

@@ -1,14 +1,14 @@
 ---
 import business from '../data/business.json';
 import offers from '../data/offers.json';
-import { withBase } from '../lib/paths';
+import { resolveImage } from '../lib/images';
 
 const siteOrigin = (Astro.site?.href ?? business.url).replace(/\/$/, '');
 const siteRoot = `${siteOrigin}${import.meta.env.BASE_URL}`.replace(/\/$/, '') || siteOrigin;
-const toAbsolute = (path: string) => `${siteOrigin}${withBase(path)}`;
+const toAbsolute = (path: string) => `${siteOrigin}${path}`;
 
-const imageUrl = toAbsolute(business.image);
-const specialistImageUrl = toAbsolute(business.specialist.image);
+const imageUrl = toAbsolute(resolveImage(business.image).src);
+const specialistImageUrl = toAbsolute(resolveImage(business.specialist.image).src);
 
 /** „200 zł” → 200. Zwraca null, gdy ceny nie da się odczytać. */
 const parsePrice = (price: string): number | null => {

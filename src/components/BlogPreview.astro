@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import Button from './ui/Button.astro';
 import Card from './ui/Card.astro';
 import { Image } from 'astro:assets';
-import { withBase } from '../lib/paths';
+import { resolveImage } from '../lib/images';
 import { sectionBackground, type SectionTone } from '../lib/section-tone';
 
 interface Props {
@@ -35,7 +35,7 @@ const featuredPost = blogPosts.find((post) => post.data.featured);
           {featuredPost.data.image && (
             <div class="h-64 md:h-auto image-hover">
               <Image
-                src={withBase(featuredPost.data.image)}
+                src={resolveImage(featuredPost.data.image)}
                 alt={featuredPost.data.imageAlt || featuredPost.data.title}
                 width={600}
                 height={400}

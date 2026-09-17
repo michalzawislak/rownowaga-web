@@ -6,6 +6,7 @@ import CookieConsent from '../components/CookieConsent.astro';
 import SchemaOrg from '../components/SchemaOrg.astro';
 import { Font } from 'astro:assets';
 import business from '../data/business.json';
+import { resolveImage } from '../lib/images';
 import { withBase } from '../lib/paths';
 import '../styles/global.css';
 
@@ -18,13 +19,14 @@ interface Props {
 const {
   title,
   description = 'Gabinet dietetyczny w Szczecinie. Indywidualna dieta, wizyty kontrolne, analiza składu ciała i wsparcie w utrzymaniu planu.',
-  image = '/images/hero.jpg',
+  image = '/images/hero/hero-main.jpeg',
 } = Astro.props;
 
 const siteName = business.alternateName;
 const isIndexable = import.meta.env.SITE_INDEXABLE;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const ogImage = new URL(withBase(image).replace(/^\//, ''), Astro.site);
+// Zasób z `src/assets` ma po buildzie własną, hashowaną ścieżkę.
+const ogImage = new URL(resolveImage(image).src.replace(/^\//, ''), Astro.site);
 ---
 
 <!doctype html>
@@ -76,8 +78,6 @@ const ogImage = new URL(withBase(image).replace(/^\//, ''), Astro.site);
     <!-- Fonty serwujemy z własnej domeny (Astro Fonts API) — bez zapytań do Google. -->
     <Font cssVariable="--font-heading-family" preload />
     <Font cssVariable="--font-body-family" preload />
-
-    <link rel="preload" as="image" href={withBase('/images/hero/hero-main.jpeg')} />
 
     <title>{title}</title>
     <meta name="description" content={description} />

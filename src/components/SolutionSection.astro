@@ -1,7 +1,7 @@
 ---
 import Button from './ui/Button.astro';
 import { Image } from 'astro:assets';
-import { withBase } from '../lib/paths';
+import { resolveImage } from '../lib/images';
 import { sectionBackground, type SectionTone } from '../lib/section-tone';
 
 interface Props {
@@ -25,7 +25,7 @@ const benefits = [
       <div class="order-2 lg:order-1 animate-on-scroll">
         <div class="rounded-2xl overflow-hidden shadow-xl image-hover">
           <Image
-            src={withBase('/images/solution/mindful-eating.jpg')}
+            src={resolveImage('/images/solution/mindful-eating.jpg')}
             alt="Współpraca z dietetykiem — dieta i regularne wizyty"
             width={700}
             height={500}

@@ -1,7 +1,9 @@
 ---
 import Card from './ui/Card.astro';
 import { Image } from 'astro:assets';
-import { withBase } from '../lib/paths';
+import dietaJojo from '../assets/images/problem/dieta-jojo.png';
+import obsesjaJedzenie from '../assets/images/problem/obsesja-jedzenie.png';
+import walkaZCialem from '../assets/images/problem/walka-z-cialem.png';
 import { sectionBackground, type SectionTone } from '../lib/section-tone';
 
 interface Props {
@@ -12,19 +14,19 @@ const { tone = 'default' } = Astro.props;
 
 const problems = [
   {
-    image: withBase('/images/problem/dieta-jojo.png'),
+    image: dietaJojo,
     title: 'Diety z internetu i efekt jo-jo',
     description:
       'Kolejny gotowiec, kolejny tydzień restrykcji, potem powrót do punktu wyjścia. Brakuje planu ułożonego pod Ciebie i kogoś, kto go z Tobą utrzyma.',
   },
   {
-    image: withBase('/images/problem/obsesja-jedzenie.png'),
+    image: obsesjaJedzenie,
     title: 'Jedzenie bez ładu',
     description:
       'Albo jesz byle co, albo w kółko to samo. Nie wiesz, co kupić, co ugotować i czy to w ogóle przybliża Cię do celu.',
   },
   {
-    image: withBase('/images/problem/walka-z-cialem.png'),
+    image: walkaZCialem,
     title: 'Brak efektów i kontroli',
     description:
       'Waga stoi, energia spada, a Ty nie masz jak sprawdzić, co się dzieje. Bez diety, analizy składu ciała i wizyt kontrolnych trudno iść dalej.',
