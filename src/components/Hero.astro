@@ -1,13 +1,9 @@
 ---
 import { Picture } from 'astro:assets';
 import Button from './ui/Button.astro';
-import { AnimatedCheckmarks } from './ui/AnimatedHero';
 import heroImage from '../assets/images/hero/hero-main.jpeg';
 
-const checkmarks = [
-  { icon: 'check', text: 'Online i stacjonarnie w Szczecinie' },
-  { icon: 'check', text: 'Indywidualny schemat diety' },
-];
+const checkmarks = ['Online i stacjonarnie w Szczecinie', 'Indywidualny schemat diety'];
 ---
 
 <section
@@ -68,7 +64,30 @@ const checkmarks = [
           </Button>
         </div>
 
-        <AnimatedCheckmarks items={checkmarks} client:load />
+        <!--
+          Lista atutów w czystym HTML i CSS. Wcześniej była wyspą React tylko
+          po to, żeby animować wejście — nie ma tu żadnej interaktywności.
+        -->
+        <ul class="hero-checkmarks flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 text-sm md:text-base text-[var(--color-text-light)]">
+          {checkmarks.map((text, index) => (
+            <li class="flex items-center gap-3" style={`animation-delay: ${500 + index * 150}ms`}>
+              <svg
+                class="w-5 h-5 text-[var(--color-secondary-text)] flex-shrink-0"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <span class="leading-tight font-medium">{text}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   </div>
@@ -115,6 +134,10 @@ const checkmarks = [
     animation-delay: 0.2s;
   }
 
+  .hero-checkmarks li {
+    animation: fadeInUp 0.5s ease-out both;
+  }
+
   /* Sam obraz nie ma animacji wejścia — nie opóźniamy LCP. */
   .hero-image {
     animation: fadeInScale 0.6s ease-out both;
@@ -124,6 +147,7 @@ const checkmarks = [
   @media (prefers-reduced-motion: reduce) {
     .animate-fade-in-up,
     .animate-fade-in-scale,
+    .hero-checkmarks li,
     .hero-image {
       animation: none;
       opacity: 1;

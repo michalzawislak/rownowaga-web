@@ -36,12 +36,20 @@ export default function CompareSlider({ items }: Props) {
               <ReactCompareSliderImage
                 src={currentItem.beforeImage}
                 alt={`${currentItem.name} - przed`}
+                loading="lazy"
+                decoding="async"
+                width={900}
+                height={900}
               />
             }
             itemTwo={
               <ReactCompareSliderImage
                 src={currentItem.afterImage}
                 alt={`${currentItem.name} - po`}
+                loading="lazy"
+                decoding="async"
+                width={900}
+                height={900}
               />
             }
           />

@@ -71,10 +71,15 @@ const phoneHref = `tel:${business.telephone.replace(/\s/g, '')}`;
             cookies.
           </p>
           <p>
-            Wdrożyliśmy <strong>Google Consent Mode v2</strong>. Oznacza to, że tagi Google (m.in.
-            Google Tag Manager, Google Ads, Google Analytics — jeśli są skonfigurowane) domyślnie
-            działają w trybie ograniczonego pomiaru, a pełne śledzenie włączamy dopiero po
-            udzieleniu zgody na odpowiednie kategorie.
+            Tagi Google (Google Tag Manager, a przez niego Google Analytics i Google Ads — jeśli są
+            skonfigurowane) <strong>nie są wczytywane, dopóki nie wyrazisz zgody</strong>. Dopóki
+            jej nie udzielisz albo jeśli wybierzesz „Tylko niezbędne”, Twoja przeglądarka nie łączy
+            się z serwerami Google i nie przekazuje im żadnych danych — także adresu IP.
+          </p>
+          <p>
+            Dodatkowo wdrożyliśmy <strong>Google Consent Mode v2</strong>: wszystkie kategorie zgód
+            są domyślnie ustawione na „odmowa”, a Twój wybór jest przekazywany tagom Google, gdy już
+            zostaną wczytane.
           </p>
           <p>Kategorie cookies:</p>
           <ul>

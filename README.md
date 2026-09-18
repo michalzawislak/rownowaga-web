@@ -12,7 +12,9 @@ i (opcjonalnie) blog. Statyczna, budowana Astro.
 - **Astro Fonts API** — Cormorant Garamond i Montserrat pobierane przy buildzie i serwowane
   z własnej domeny (bez zapytań do Google Fonts u użytkownika)
 - **Web3Forms** — obsługa formularza kontaktowego
-- **Google Consent Mode v2 + GTM** — ładowane dopiero po decyzji w banerze cookies
+- **Google Consent Mode v2 + GTM** — tryb „basic”: kontener GTM wczytuje się dopiero po
+  zgodzie na analitykę lub marketing (art. 399 Prawa komunikacji elektronicznej wymaga
+  zgody uprzedniej). Odmowa oznacza zero żądań do Google.
 
 ## Wymagania
 
@@ -84,7 +86,7 @@ Do uzupełnienia prawdziwymi danymi: `specialist.credentials` — lista uprawnie
 
 | Zmienna | Znaczenie |
 | --- | --- |
-| `PUBLIC_GTM_ID` | ID kontenera GTM. Bez niej baner i Consent Mode działają, GTM się nie ładuje. |
+| `PUBLIC_GTM_ID` | ID kontenera GTM. Bez niej baner i Consent Mode działają, GTM się nie ładuje. GTM startuje wyłącznie po zgodzie użytkownika. |
 | `GITHUB_PAGES` | `true` w buildzie podglądowym na GitHub Pages. |
 
 Build produkcyjny (domena docelowa): canonical, sitemapa i `robots.txt` z `Allow: /`.

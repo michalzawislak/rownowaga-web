@@ -1,7 +1,8 @@
 ---
+import { getImage } from 'astro:assets';
 import CompareSlider from './ui/CompareSlider';
 import metamorphosisData from '../data/metamorphosis.json';
-import { withBase } from '../lib/paths';
+import { resolveImage } from '../lib/images';
 import { sectionBackground, type SectionTone } from '../lib/section-tone';
 
 interface Props {
@@ -10,11 +11,25 @@ interface Props {
 
 const { tone = 'default' } = Astro.props;
 
-const items = metamorphosisData.map((item) => ({
-  ...item,
-  beforeImage: withBase(item.beforeImage),
-  afterImage: withBase(item.afterImage),
-}));
+/**
+ * Slider jest komponentem React, więc nie przyjmie `<Image>`. Optymalizujemy
+ * obrazy w czasie builda przez `getImage()` i przekazujemy gotowe adresy.
+ */
+const optimize = async (path: string) => {
+  const asset = resolveImage(path);
+  // Placeholder (SVG) przepuszczamy bez zmian — nie ma czego optymalizować.
+  if (asset.format === 'svg') return asset.src;
+
+  return (await getImage({ src: asset, format: 'webp', width: 900, height: 900 })).src;
+};
+
+const items = await Promise.all(
+  metamorphosisData.map(async (item) => ({
+    ...item,
+    beforeImage: await optimize(item.beforeImage),
+    afterImage: await optimize(item.afterImage),
+  })),
+);
 ---
 
 <section id="metamorfozy" class={`py-16 lg:py-24 ${sectionBackground(tone)}`}>
@@ -30,7 +45,7 @@ const items = metamorphosisData.map((item) => ({
       </div>
 
       <div class="animate-on-scroll" style="animation-delay: 100ms">
-        <CompareSlider items={items} client:only="react" />
+        <CompareSlider items={items} client:visible />
       </div>
 
       <div class="mt-12 text-center animate-on-scroll" style="animation-delay: 200ms">

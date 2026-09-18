@@ -86,17 +86,10 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID ?? '';
   </div>
 </div>
 
-{gtmId && (
-  <noscript>
-    <iframe
-      src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
-      height="0"
-      width="0"
-      style="display:none;visibility:hidden"
-      title="Google Tag Manager"
-    ></iframe>
-  </noscript>
-)}
+<!--
+  Celowo bez <noscript><iframe src="googletagmanager.com/ns.html">: ten iframe
+  wysyła żądanie do Google natychmiast, bez możliwości uzyskania zgody.
+-->
 
 <script is:inline define:vars={{ gtmId }}>
   (function () {
@@ -132,7 +125,11 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID ?? '';
         personalization_storage: analytics,
       });
 
-      loadGtm();
+      // Tryb „basic”: kontener GTM wczytujemy wyłącznie po zgodzie na
+      // analitykę lub marketing. Sama odmowa nie uruchamia niczego Google.
+      if (prefs.analytics || prefs.marketing) {
+        loadGtm();
+      }
     }
 
     function readStored() {
@@ -204,8 +201,9 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID ?? '';
       if (stored) {
         applyConsent(stored);
       } else {
+        // Przed decyzją użytkownika nie ładujemy GTM-a ani niczego od Google
+        // (art. 399 Prawa komunikacji elektronicznej — zgoda uprzednia).
         showBanner(false);
-        loadGtm();
       }
 
       const banner = document.getElementById('cookie-consent');
@@ -256,7 +254,8 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID ?? '';
     bottom: 0;
     z-index: 60;
     padding: 1rem;
-    padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+    /* Na mobile pod banerem jest CTA „Zadzwoń teraz” (3.5rem) — podnosimy baner ponad nie. */
+    padding-bottom: calc(1rem + 3.5rem + env(safe-area-inset-bottom, 0px));
     pointer-events: none;
   }
 
@@ -392,6 +391,7 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID ?? '';
   @media (min-width: 768px) {
     .cookie-consent {
       padding: 1.25rem;
+      padding-bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
     }
 
     .cookie-consent__panel {

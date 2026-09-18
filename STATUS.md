@@ -30,6 +30,7 @@ Stan na 17 września 2026. Strona nie jest jeszcze opublikowana pod docelową do
 - Menu mobilne: `aria-expanded`, `aria-controls`, zamykanie klawiszem Escape
 - FAQ na natywnych `<details>` — działa bez JavaScriptu
 - Baner cookies na końcu dokumentu, z przeniesieniem fokusu i `aria-expanded` na ustawieniach
+- GTM w trybie „basic” — żadnego kontaktu z serwerami Google przed zgodą użytkownika
 - Dekoracyjne ikony SVG ukryte przed czytnikami ekranu
 - Treści z animacją wejścia widoczne także bez JavaScriptu (`<noscript>`)
 - `prefers-reduced-motion` obsłużone w animacjach i efektach hover
@@ -73,7 +74,6 @@ Stan na 17 września 2026. Strona nie jest jeszcze opublikowana pod docelową do
 - [ ] Podstrony usług pod frazy lokalne (dziś cała oferta jest na jednej stronie)
 - [ ] Google Business Profile ze spójnym NAP
 - [ ] Docelowy hosting z nagłówkami i długim cache (`/_astro/*`) — GitHub Pages tego nie potrafi
-- [ ] Decyzja: GTM po zgodzie („basic”) zamiast obecnego Consent Mode „advanced”
 - [ ] `withBase` w linkach bloga (`/#kontakt`, obraz wpisu) przed włączeniem bloga
 - [ ] `autocomplete` w polach formularza
 - [ ] Lighthouse CI z progiem — sensowne dopiero po optymalizacji hero
