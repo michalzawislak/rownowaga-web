@@ -55,6 +55,7 @@ const addressLine = `${business.address.streetAddress}, ${business.address.posta
               type="text"
               id="name"
               name="name"
+              autocomplete="given-name"
               required
               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--color-secondary-text)] focus:border-transparent transition-colors"
               placeholder="Twoje imię"
@@ -69,6 +70,7 @@ const addressLine = `${business.address.streetAddress}, ${business.address.posta
               type="email"
               id="email"
               name="email"
+              autocomplete="email"
               required
               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--color-secondary-text)] focus:border-transparent transition-colors"
               placeholder={business.email}
@@ -83,6 +85,7 @@ const addressLine = `${business.address.streetAddress}, ${business.address.posta
               type="tel"
               id="phone"
               name="phone"
+              autocomplete="tel"
               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--color-secondary-text)] focus:border-transparent transition-colors"
               placeholder={business.telephone}
             />
@@ -112,17 +115,9 @@ const addressLine = `${business.address.streetAddress}, ${business.address.posta
 
           <div class="flex items-start">
             <input type="checkbox" id="consent" name="consent" required class="mt-1 mr-2" />
+            <!-- prettier-ignore -->
             <label for="consent" class="text-sm text-[var(--color-text-light)]">
-              Wyrażam zgodę na przetwarzanie moich danych osobowych w celu odpowiedzi na wiadomość —
-              w tym informacji o zdrowiu, jeśli sam(a) je podam (art. 9 ust. 2 lit. a RODO) —
-              zgodnie z
-              <a
-                href={withBase('/polityka-prywatnosci')}
-                class="text-[var(--color-secondary-text)] hover:underline"
-              >
-                polityką prywatności
-              </a>
-              . Zgodę mogę wycofać w każdej chwili. *
+              Wyrażam zgodę na przetwarzanie moich danych osobowych w celu odpowiedzi na wiadomość — w tym informacji o zdrowiu, jeśli sam(a) je podam (art. 9 ust. 2 lit. a RODO) — zgodnie z <a href={withBase('/polityka-prywatnosci')} class="link-inline">polityką prywatności</a>. Zgodę mogę wycofać w każdej chwili. *
             </label>
           </div>
 
@@ -280,7 +275,7 @@ const addressLine = `${business.address.streetAddress}, ${business.address.posta
           class="bg-[var(--color-secondary-text)] text-white rounded-2xl shadow-xl p-8 animate-on-scroll"
           style="animation-delay: 300ms"
         >
-          <h3 class="text-2xl font-semibold mb-4">Bezpłatna rozmowa wstępna</h3>
+          <h3 class="text-2xl font-semibold text-white mb-4">Bezpłatna rozmowa wstępna</h3>
           <p class="mb-6 opacity-90">
             Nie wiesz, od czego zacząć? Umów się na bezpłatną 15-minutową rozmowę wstępną — to nie
             jest pierwsza wizyta z cennika. Omówimy Twoją sytuację i dobierzemy pierwszy krok.

@@ -10,12 +10,32 @@ interface Props {
 
 const { tone = 'alt' } = Astro.props;
 
-const benefits = [
-  'Indywidualnym schematem diety',
-  'Analizą składu ciała i monitoringiem postępów',
-  'Dzienniczkiem żywieniowym i zaleceniami na kolejne tygodnie',
-  'Przepisami dopasowanymi do Ciebie i sezonu',
-  'Utrzymaniem planu — także gdy w grę wchodzą nawyki i emocje',
+const appFeatures = [
+  {
+    title: 'Wszystkie swoje przepisy i jadłospisy',
+    description:
+      'Dostęp do swoich posiłków w jednym miejscu — możesz w każdej chwili sprawdzić przepis, składniki i sposób przygotowania.',
+  },
+  {
+    title: 'Dzienniczek żywieniowy',
+    description:
+      'W prosty i wygodny sposób możesz zapisywać swoje posiłki i obserwować swoje codzienne nawyki żywieniowe.',
+  },
+  {
+    title: 'Listę zakupów',
+    description:
+      'Łatwiejsze planowanie zakupów i przygotowywanie posiłków bez konieczności tworzenia dodatkowych list.',
+  },
+  {
+    title: 'Kontakt z dietetykiem',
+    description:
+      'Masz możliwość skorzystania z czatu, kiedy potrzebujesz wsparcia, chcesz o coś zapytać lub rozwiać swoje wątpliwości.',
+  },
+  {
+    title: 'Wsparcie w budowaniu zdrowych nawyków',
+    description:
+      'Aplikacja pomaga Ci również monitorować codzienne nawyki, takie jak regularne picie wody, aktywność fizyczna czy suplementacja.',
+  },
 ];
 ---
 
@@ -26,7 +46,7 @@ const benefits = [
         <div class="rounded-2xl overflow-hidden shadow-xl image-hover">
           <Image
             src={resolveImage('/images/solution/mindful-eating.jpg')}
-            alt="Współpraca z dietetykiem — dieta i regularne wizyty"
+            alt="Aplikacja dietetyczna z jadłospisem, dzienniczkiem i listą zakupów"
             width={700}
             height={500}
             class="w-full h-[300px] md:h-[400px] lg:h-[500px] object-cover transition-transform duration-700"
@@ -37,22 +57,24 @@ const benefits = [
 
       <div class="order-1 lg:order-2 space-y-6">
         <h2 class="text-4xl lg:text-5xl font-semibold text-[var(--color-text-dark)] animate-on-scroll">
-          Dieta jest <span class="text-[var(--color-secondary-text)]">podstawą współpracy</span>
+          Twoja dieta <span class="text-[var(--color-secondary-text)]">zawsze pod ręką</span>
         </h2>
 
         <p
           class="text-lg text-[var(--color-text-light)] leading-relaxed animate-on-scroll"
           style="animation-delay: 100ms"
         >
-          W gabinecie układam dietę na podstawie wywiadu zdrowotnego, żywieniowego i analizy składu
-          ciała. Potem spotykamy się regularnie, żeby plan działał na co dzień — nie tylko przez
-          pierwszy tydzień.
+          Chcę, aby zalecenia, które otrzymujesz podczas współpracy ze mną, były łatwe do
+          zastosowania również w codziennym życiu. Dlatego daję Ci możliwość korzystania z aplikacji
+          dietetycznej, w której wszystkie najważniejsze informacje masz zawsze pod ręką.
         </p>
 
         <div class="space-y-4 animate-on-scroll" style="animation-delay: 200ms">
-          <p class="text-[var(--color-text-dark)] font-medium">W praktyce pracujemy nad:</p>
-          <ul class="space-y-3">
-            {benefits.map((benefit, index) => (
+          <p class="text-[var(--color-text-dark)] font-medium">
+            W aplikacji znajdziesz między innymi:
+          </p>
+          <ul class="space-y-4">
+            {appFeatures.map((feature, index) => (
               <li
                 class="flex items-start gap-3 animate-on-scroll"
                 style={`animation-delay: ${300 + index * 80}ms`}
@@ -70,13 +92,37 @@ const benefits = [
                     clip-rule="evenodd"
                   />
                 </svg>
-                <span class="text-[var(--color-text-light)]">{benefit}</span>
+                <span class="text-[var(--color-text-light)]">
+                  <strong class="text-[var(--color-text-dark)] font-medium">{feature.title}</strong>
+                  {' — '}
+                  {feature.description}
+                </span>
               </li>
             ))}
           </ul>
         </div>
 
-        <div class="pt-4 animate-on-scroll" style="animation-delay: 700ms">
+        <p
+          class="text-lg text-[var(--color-text-light)] leading-relaxed animate-on-scroll"
+          style="animation-delay: 700ms"
+        >
+          Dzięki temu dieta nie jest tylko planem, który otrzymujesz na początku współpracy. Staje
+          się praktycznym wsparciem, które możesz mieć zawsze przy sobie i z którego korzystasz w
+          swoim codziennym rytmie.
+        </p>
+
+        <p
+          class="text-lg text-[var(--color-text-light)] leading-relaxed animate-on-scroll"
+          style="animation-delay: 750ms"
+        >
+          <strong class="text-[var(--color-text-dark)] font-medium">
+            Korzystanie z aplikacji jest całkowicie dobrowolne.
+          </strong>{' '}
+          Jeśli wolisz tradycyjną formę współpracy — oczywiście jest taka możliwość. Najważniejsze
+          jest to, aby sposób współpracy był dopasowany do Twoich potrzeb i preferencji.
+        </p>
+
+        <div class="pt-4 animate-on-scroll" style="animation-delay: 800ms">
           <Button href="#o-mnie" variant="secondary">
             Zobacz jak pracuję
           </Button>

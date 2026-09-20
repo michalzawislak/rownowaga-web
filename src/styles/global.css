@@ -20,7 +20,8 @@
   --color-text-dark: #2c3e50;
   /* 5.7:1 na tle alternatywnym (#F9F6F3); poprzednie #6B7280 dawało 4.49:1. */
   --color-text-light: #5b6270;
-  --color-text-muted: #9ca3af;
+  /* 4,85:1 na bieli i 4,51:1 na tle alternatywnym; poprzednie #9CA3AF dawało 2,53:1. */
+  --color-text-muted: #6a727f;
 
   --color-background: #fefefe;
   --color-background-alt: #f9f6f3;
@@ -326,6 +327,17 @@
 
   .checkmark-hover:hover {
     transform: scale(1.2);
+  }
+
+  /* Link wewnątrz bloku tekstu — wyróżniony podkreśleniem, nie tylko kolorem. */
+  .link-inline {
+    color: var(--color-secondary-text);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .link-inline:hover {
+    color: var(--color-secondary-text-dark);
   }
 
   .link-underline {

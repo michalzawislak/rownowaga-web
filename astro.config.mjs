@@ -43,10 +43,6 @@ export default defineConfig({
   base: isGitHubPages ? '/rownowaga-web' : '/',
   devToolbar: { enabled: false },
 
-  image: {
-    remotePatterns: [{ protocol: 'https' }],
-  },
-
   /**
    * Fonty pobierane w czasie builda i serwowane z własnej domeny.
    * Subset `latin-ext` jest konieczny dla polskich znaków diakrytycznych.

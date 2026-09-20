@@ -1,42 +1,52 @@
 [
   {
-    "id": "calories",
-    "question": "Czy będę musiała liczyć kalorie?",
-    "answer": "Dieta jest podstawą współpracy. Dostajesz schemat, przepisy i dzienniczek. Kalorie mogą być narzędziem, gdy są potrzebne — nie muszą być codzienną obsesją."
+    "id": "preparation",
+    "question": "Jak przygotować się do pierwszej wizyty?",
+    "answer": "Wystarczy, że przyjdziesz z otwartością i informacjami o swoim sposobie odżywiania, codziennych nawykach oraz celu, który chcesz osiągnąć. Warto jedynie przygotować listę przyjmowanych leków i suplementów diety."
   },
   {
-    "id": "results",
-    "question": "Jak szybko zobaczę efekty?",
-    "answer": "To zależy od Twoich celów. Przy diecie i regularnych wizytach pierwsze zmiany w samopoczuciu często widać po 2–3 tygodniach. Skład ciała, waga i energia zmieniają się indywidualnie — ważne, że plan da się utrzymać."
+    "id": "test-results",
+    "question": "Czy na pierwszą wizytę muszę mieć aktualne wyniki badań?",
+    "answer": "Jeśli posiadasz aktualne wyniki badań (do 3 miesięcy), warto je ze sobą zabrać. Nie jest to jednak konieczne. Po przeprowadzonym wywiadzie zdrowotnym i żywieniowym zasugeruję, jakie badania warto wykonać w Twoim przypadku."
   },
   {
-    "id": "weight-loss",
-    "question": "Czy to działa, jeśli mam dużo do zrzucenia?",
-    "answer": "Tak. Dietę układam niezależnie od wagi początkowej. Pracujemy na schemacie żywieniowym, analizie składu ciała i wizytach kontrolnych. Redukcja jest jednym z możliwych celów, nie jedynym."
+    "id": "food-diary",
+    "question": "Czy muszę prowadzić dzienniczek żywieniowy przed wizytą?",
+    "answer": "Nie jest to obowiązkowe, ale pomoże mi lepiej poznać Twoje nawyki. Najlepiej, jeśli przez tydzień (5 dni powszednich i weekend) będziesz zapisywać wszystko, co jesz i pijesz, oraz godziny posiłków. Ważne, żeby pisać wszystko naprawdę szczerze, bez koloryzowania rzeczywistości. Inaczej ciężko będzie mi Tobie pomóc."
+  },
+  {
+    "id": "meal-plan-first-visit",
+    "question": "Czy otrzymam jadłospis już na pierwszej wizycie?",
+    "answer": "Nie. Podczas pierwszego spotkania przede wszystkim poznam Twoje potrzeby, cele, sposób odżywiania i codzienne nawyki, aby zalecenia były rzeczywiście dopasowane do Ciebie."
+  },
+  {
+    "id": "fit-products",
+    "question": "Czy dieta będzie składała się tylko z „fit” produktów?",
+    "answer": "Nie. Zdrowe odżywianie nie musi oznaczać rezygnacji z ulubionych produktów. Wspólnie szukamy rozwiązań, które możesz realnie stosować na co dzień."
+  },
+  {
+    "id": "difficulty",
+    "question": "Czy dieta będzie trudna i czasochłonna?",
+    "answer": "Zależy mi na tym, aby zalecenia pasowały do Twojego stylu życia, możliwości i czasu, którym dysponujesz. Dieta ma być pomocą, a nie kolejnym obowiązkiem."
+  },
+  {
+    "id": "first-visit-length",
+    "question": "Ile trwa pierwsza wizyta?",
+    "answer": "Pierwsza konsultacja trwa około 45 minut. Jest to czas na dokładny wywiad zdrowotno-żywieniowy, analizę składu ciała oraz rozmowę o Twoich potrzebach, a także ustalenie dalszego planu działania."
   },
   {
     "id": "online-stationary",
-    "question": "Czy spotkania są online czy stacjonarne?",
-    "answer": "Obie formy są dostępne. Pierwsza konsultacja może być stacjonarna w gabinecie w Szczecinie albo online. Wizyty kontrolne z analizą składu ciała odbywają się stacjonarnie, a kontrolę online proponuję w trybie co 2 tygodnie."
+    "question": "Czy współpraca odbywa się tylko stacjonarnie?",
+    "answer": "Oferuję zarówno konsultacje stacjonarne, jak i online."
   },
   {
-    "id": "insurance",
-    "question": "Czy akceptujesz NFZ/prywatne ubezpieczenia?",
-    "answer": "Nie współpracuję z NFZ, ale wystawiam faktury, które możesz rozliczyć z prywatnymi ubezpieczycielami. Skontaktuj się ze swoim ubezpieczycielem, aby sprawdzić możliwości refundacji."
+    "id": "not-only-weight-loss",
+    "question": "Czy współpraca jest możliwa tylko z osobami, które chcą schudnąć?",
+    "answer": "Nie. Nadwaga i otyłość to tylko część problemów, z którymi możesz zgłosić się do mnie. Wspieram również osoby, które chcą poprawić swój stan zdrowia. Często pracuję z osobami cierpiącymi m.in. na choroby tarczycy, cukrzycę, insulinooporność, choroby sercowo-naczyniowe czy zmagające się z zaburzeniami pracy jelit. Zalecenia zawsze dopasowuję indywidualnie do Twojego stanu zdrowia, potrzeb i stylu życia."
   },
   {
-    "id": "reschedule",
-    "question": "Co jeśli nie pasuje mi termin spotkania?",
-    "answer": "Możesz zmienić termin do 24 godzin przed umówionym spotkaniem bez dodatkowych opłat. Jesteśmy elastyczni i rozumiemy, że życie bywa nieprzewidywalne."
-  },
-  {
-    "id": "duration",
-    "question": "Jak długo trwa współpraca?",
-    "answer": "To zależy od Twoich potrzeb. Współpraca zaczyna się od pierwszej konsultacji, a potem od wizyt kontrolnych co tydzień albo co 2 tygodnie. Na pierwszy miesiąc polecam pakiet 4 wizyt. Wspólnie ustalimy rytm, który ma szansę się utrzymać."
-  },
-  {
-    "id": "preparation",
-    "question": "Jak przygotować się do pierwszego spotkania?",
-    "answer": "Nie musisz się specjalnie przygotowywać. Przydatne będą Twoje cele, to jak jesz na co dzień i — jeśli masz — aktualne wyniki badań. Resztę omówimy na pierwszej konsultacji."
+    "id": "fear-before-visit",
+    "question": "Czy muszę się czegoś obawiać przed pierwszą wizytą?",
+    "answer": "Nie. To nie jest egzamin ani ocena Twojego sposobu odżywiania. Pierwsza wizyta ma pomóc mi lepiej Cię poznać i znaleźć rozwiązania dopasowane do Twojego życia. Nie musisz być „idealnie przygotowana/y” — wystarczy, że zrobisz pierwszy krok."
   }
 ]

@@ -45,7 +45,8 @@ Stan na 17 września 2026. Strona nie jest jeszcze opublikowana pod docelową do
 
 - ESLint (flat config) + Prettier + `astro check` — bez błędów
 - `npm run verify` uruchamia komplet kontroli
-- CI: `.github/workflows/ci.yml` (lint, format, typy, build)
+- Testy e2e i dostępności (Playwright + axe) na buildzie produkcyjnym, desktop i mobile
+- CI: `.github/workflows/ci.yml` — lint, format, typy, build oraz osobna praca z testami
 
 ## Do zrobienia
 
@@ -74,10 +75,8 @@ Stan na 17 września 2026. Strona nie jest jeszcze opublikowana pod docelową do
 - [ ] Podstrony usług pod frazy lokalne (dziś cała oferta jest na jednej stronie)
 - [ ] Google Business Profile ze spójnym NAP
 - [ ] Docelowy hosting z nagłówkami i długim cache (`/_astro/*`) — GitHub Pages tego nie potrafi
-- [ ] `withBase` w linkach bloga (`/#kontakt`, obraz wpisu) przed włączeniem bloga
-- [ ] `autocomplete` w polach formularza
+- [ ] `og:image` 1200×630 zamiast oryginału hero; rastrowy fallback dla wpisów bloga
 - [ ] Lighthouse CI z progiem — sensowne dopiero po optymalizacji hero
-- [ ] Testy e2e (Playwright + axe)
 
 ## Deployment
 

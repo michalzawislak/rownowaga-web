@@ -7,8 +7,8 @@ i (opcjonalnie) blog. Statyczna, budowana Astro.
 
 - **Astro 6** — generowanie statyczne (SSG), zero JS tam, gdzie nie jest potrzebny
 - **Tailwind CSS 4** — przez `@tailwindcss/vite`, tokeny w `src/styles/global.css`
-- **React 19** — wyłącznie wyspy interaktywne (`client:load`): animacje hero, slider metamorfoz
-- **Motion One** (`motion`) — animacje komponentów React
+- **React 19** — jedna wyspa: slider metamorfoz (`client:visible`). Reszta strony to HTML i CSS
+- **Playwright + axe** — testy e2e i dostępności na buildzie produkcyjnym
 - **Astro Fonts API** — Cormorant Garamond i Montserrat pobierane przy buildzie i serwowane
   z własnej domeny (bez zapytań do Google Fonts u użytkownika)
 - **Web3Forms** — obsługa formularza kontaktowego
@@ -35,7 +35,9 @@ Jakość kodu:
 npm run lint         # ESLint
 npm run format       # Prettier (zapis)
 npm run check        # astro check (typy)
-npm run verify       # lint + format:check + check + build (to samo, co CI)
+npm run verify       # lint + format:check + check + build
+npm run test:e2e     # Playwright: e2e + axe (buduje i podnosi preview sam)
+npm run test:e2e:ui  # ten sam zestaw w trybie interaktywnym
 ```
 
 > Build pobiera pliki fontów z sieci. Bez dostępu do internetu Astro wypisze ostrzeżenie
@@ -50,11 +52,25 @@ src/
 ├── content/blog/       # wpisy bloga (Markdown)
 ├── data/               # dane wejściowe: business, offers, faq, features, metamorphosis
 ├── layouts/Layout.astro# <head>, SEO, fonty, baner cookies, skip link
-├── lib/                # helpery (withBase, tony sekcji, animacje)
-├── pages/              # trasy: strona główna, polityka prywatności, 404, robots.txt
+├── lib/                # helpery (withBase, obrazy, tony sekcji)
+├── pages/              # trasy: strona główna, polityka, 404, robots.txt, site.webmanifest
 ├── routes/blog/        # trasy bloga — wstrzykiwane tylko przy włączonej fladze
 └── styles/global.css   # tokeny @theme + @layer base/components
 ```
+
+### Testy
+
+`tests/e2e/` uruchamia się na buildzie produkcyjnym (Playwright sam robi `build` i `preview`),
+w dwóch profilach: desktop i mobile.
+
+- `accessibility.spec.ts` — axe na stronie głównej, polityce i 404 **po przewinięciu całej
+  strony**. To istotne: sekcje z `animate-on-scroll` są przezroczyste, dopóki nie wejdą
+  w widok, więc audyt bez przewijania (np. sam Lighthouse) po prostu ich nie sprawdza.
+- `strona.spec.ts` — kotwice w nawigacji, FAQ, menu mobilne, baner cookies, przyklejone CTA,
+  brak żądań do Google przed zgodą, obsługa błędu formularza, manifest.
+
+Pierwsze uruchomienie wymaga przeglądarki: `npx playwright install chromium`.
+Jeśli w środowisku jest już Chromium, można wskazać je przez `PLAYWRIGHT_CHROMIUM_PATH`.
 
 ### Ważne: warstwy CSS
 
@@ -106,7 +122,7 @@ opisuje polityka prywatności.
 
 ## Znane zadania
 
-- obraz hero (2,2 MB) do wymiany na `astro:assets` z AVIF/WebP
-- brakujące zdjęcia: `about/profile.jpg`, `solution/mindful-eating.jpg`, obrazy bloga,
-  `og:image` (domyślnie `/images/hero.jpg`)
-- brak strony `/regulamin`, do której linkuje stopka
+- `og:image` wskazuje oryginał hero (2048×2048) — do zastąpienia obrazem 1200×630
+- wpisy bloga bez zdjęć mają `og:image` w SVG, którego nie renderują serwisy społecznościowe
+- brakujące zdjęcia: profilowe, sekcja „Dieta jest podstawą współpracy”, wpisy bloga
+- `specialist.credentials` w `business.json` do uzupełnienia

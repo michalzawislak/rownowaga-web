@@ -25,3 +25,8 @@ dist/
 *.swp
 *.swo
 *~
+
+# testy e2e
+/test-results/
+/playwright-report/
+/playwright/.cache/
