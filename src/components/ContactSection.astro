@@ -134,7 +134,13 @@ const addressLine = `${business.address.streetAddress}, ${business.address.posta
         </form>
       </div>
 
-      <div class="space-y-8">
+      <!--
+        Kolumna jest flexem, a zielona karta rośnie (`flex-1`), żeby jej dolna
+        krawędź kończyła się równo z kartą formularza po lewej. Treść karty
+        wyśrodkowujemy w pionie, aby nadmiar wysokości rozkładał się nad i pod
+        nią, zamiast zostawiać pustkę pod przyciskiem.
+      -->
+      <div class="flex flex-col gap-8">
         <div
           class="bg-white rounded-2xl shadow-xl p-8 animate-on-scroll"
           style="animation-delay: 200ms"
@@ -272,7 +278,7 @@ const addressLine = `${business.address.streetAddress}, ${business.address.posta
         </div>
 
         <div
-          class="bg-[var(--color-secondary-text)] text-white rounded-2xl shadow-xl p-8 animate-on-scroll"
+          class="bg-[var(--color-secondary-text)] text-white rounded-2xl shadow-xl p-8 flex flex-col justify-center lg:flex-1 animate-on-scroll"
           style="animation-delay: 300ms"
         >
           <h3 class="text-2xl font-semibold text-white mb-4">Bezpłatna rozmowa wstępna</h3>
@@ -280,12 +286,17 @@ const addressLine = `${business.address.streetAddress}, ${business.address.posta
             Nie wiesz, od czego zacząć? Umów się na bezpłatną 15-minutową rozmowę wstępną — to nie
             jest pierwsza wizyta z cennika. Omówimy Twoją sytuację i dobierzemy pierwszy krok.
           </p>
+          <!--
+            Do czasu uruchomienia rezerwacji online przycisk prowadzi wprost do
+            telefonu. Wcześniej wskazywał `#kontakt`, czyli sekcję, w której sam
+            się znajduje — kliknięcie nie robiło nic.
+          -->
           <Button
-            href="#kontakt"
+            href={`tel:${business.telephone.replace(/\s/g, '')}`}
             variant="outline"
             class="w-full border-white text-white hover:bg-white hover:text-[var(--color-secondary-text)]"
           >
-            Umów bezpłatną rozmowę
+            Zadzwoń: {business.telephone}
           </Button>
         </div>
       </div>

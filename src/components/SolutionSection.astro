@@ -1,7 +1,7 @@
 ---
 import Button from './ui/Button.astro';
 import { Image } from 'astro:assets';
-import { resolveImage } from '../lib/images';
+import appScreenshot from '../assets/images/solution/aplikacja-dzienniczek.png';
 import { sectionBackground, type SectionTone } from '../lib/section-tone';
 
 interface Props {
@@ -41,21 +41,13 @@ const appFeatures = [
 
 <section id="solution" class={`py-16 lg:py-24 ${sectionBackground(tone)}`}>
   <div class="container mx-auto px-4 md:px-8 lg:px-16">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      <div class="order-2 lg:order-1 animate-on-scroll">
-        <div class="rounded-2xl overflow-hidden shadow-xl image-hover">
-          <Image
-            src={resolveImage('/images/solution/mindful-eating.jpg')}
-            alt="Aplikacja dietetyczna z jadłospisem, dzienniczkiem i listą zakupów"
-            width={700}
-            height={500}
-            class="w-full h-[300px] md:h-[400px] lg:h-[500px] object-cover transition-transform duration-700"
-            loading="lazy"
-          />
-        </div>
-      </div>
-
-      <div class="order-1 lg:order-2 space-y-6">
+    <!--
+      Na mobile kolejność to: nagłówek i wstęp, telefon, a dopiero potem lista
+      możliwości — obraz wspiera treść zamiast zamykać sekcję. Na desktopie
+      układ zostaje dwukolumnowy: telefon po lewej, cały tekst po prawej.
+    -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-[auto_1fr] gap-x-12 gap-y-10 lg:gap-y-6 items-center">
+      <div class="order-1 lg:order-none lg:col-start-2 lg:row-start-1 lg:self-end space-y-6">
         <h2 class="text-4xl lg:text-5xl font-semibold text-[var(--color-text-dark)] animate-on-scroll">
           Twoja dieta <span class="text-[var(--color-secondary-text)]">zawsze pod ręką</span>
         </h2>
@@ -68,7 +60,49 @@ const appFeatures = [
           zastosowania również w codziennym życiu. Dlatego daję Ci możliwość korzystania z aplikacji
           dietetycznej, w której wszystkie najważniejsze informacje masz zawsze pod ręką.
         </p>
+      </div>
 
+      <!--
+        Zrzut z aplikacji pokazujemy w rysowanej CSS-em ramce telefonu.
+        Obudowa, wysepka i przyciski są dekoracją (`aria-hidden`) — treść
+        niesie sam obraz wraz z opisem alternatywnym.
+
+        Na desktopie telefon jest przyklejony (`sticky`) i towarzyszy
+        przewijanej liście możliwości — tak samo jak zdjęcie w sekcji
+        „Poznajmy się". `self-start` jest tu konieczne: bez niego element
+        wypełniłby całą wysokość obszaru siatki i nie miałby jak się
+        przesuwać.
+      -->
+      <div class="order-2 lg:order-none lg:col-start-1 lg:row-start-1 lg:row-span-2 lg:self-start lg:sticky lg:top-24 flex justify-center animate-on-scroll">
+        <div class="relative w-full max-w-[250px] md:max-w-[290px]">
+          <div
+            class="pointer-events-none absolute -inset-10 rounded-[4rem] bg-[var(--color-primary)]/70 blur-3xl"
+            aria-hidden="true"
+          ></div>
+
+          <div class="phone">
+            <span class="phone__button phone__button--volume-up" aria-hidden="true"></span>
+            <span class="phone__button phone__button--volume-down" aria-hidden="true"></span>
+            <span class="phone__button phone__button--power" aria-hidden="true"></span>
+
+            <div class="phone__screen">
+              <Image
+                src={appScreenshot}
+                alt="Ekran dzienniczka w aplikacji dietetycznej: nawodnienie, zaplanowane śniadanie, obiad i kolacja ze zdjęciami potraw, kaloriami i makroskładnikami"
+                widths={[250, 290, 500, 580]}
+                sizes="(min-width: 768px) 290px, 250px"
+                format="webp"
+                class="block h-full w-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="phone__island" aria-hidden="true"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="order-3 lg:order-none lg:col-start-2 lg:row-start-2 lg:self-start space-y-6">
         <div class="space-y-4 animate-on-scroll" style="animation-delay: 200ms">
           <p class="text-[var(--color-text-dark)] font-medium">
             W aplikacji znajdziesz między innymi:
@@ -131,3 +165,72 @@ const appFeatures = [
     </div>
   </div>
 </section>
+
+<style>
+  /*
+   * Obudowa telefonu rysowana CSS-em: metaliczna ramka, ekran o proporcjach
+   * 9:19.5 (takich jak zrzut), wysepka na aparat i przyciski boczne.
+   */
+  .phone {
+    position: relative;
+    padding: 0.5rem;
+    border-radius: 2.75rem;
+    background: linear-gradient(150deg, #47525f 0%, #222c37 45%, #161d25 70%, #3c4754 100%);
+    box-shadow:
+      0 28px 60px -24px rgba(31, 41, 51, 0.55),
+      0 6px 18px -8px rgba(31, 41, 51, 0.35),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+  }
+
+  .phone__screen {
+    position: relative;
+    overflow: hidden;
+    border-radius: 2.3rem;
+    background: #000;
+    aspect-ratio: 1206 / 2622;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Wysepka trafia w przerwę między zegarem a ikonami na pasku stanu. */
+  .phone__island {
+    position: absolute;
+    top: 0.6rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 28%;
+    height: 1.35rem;
+    border-radius: 999px;
+    background: #0b0f14;
+  }
+
+  .phone__button {
+    position: absolute;
+    width: 3px;
+    border-radius: 2px;
+    background: linear-gradient(180deg, #4a5665, #2b343f);
+  }
+
+  .phone__button--volume-up {
+    left: -2px;
+    top: 21%;
+    height: 7%;
+  }
+
+  .phone__button--volume-down {
+    left: -2px;
+    top: 30%;
+    height: 7%;
+  }
+
+  .phone__button--power {
+    right: -2px;
+    top: 26%;
+    height: 11%;
+  }
+
+  @media (min-width: 768px) {
+    .phone__island {
+      height: 1.6rem;
+    }
+  }
+</style>
