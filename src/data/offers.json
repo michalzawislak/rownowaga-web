@@ -19,7 +19,7 @@
   {
     "id": "weekly-followup",
     "name": "Wizyty kontrolne",
-    "subtitle": "tryb cotygodniowy",
+    "subtitle": "co tydzień",
     "price": "110 zł",
     "popular": false,
     "badge": "",
@@ -109,7 +109,10 @@
     "price": "50 zł",
     "popular": false,
     "badge": "",
-    "features": [],
+    "features": [
+      "Wykonana za pomocą analizatora składu ciała inBody 170",
+      "Ocena m.in. : masy tkanki tłuszczowej, masy mięśni szkieletowych, zawartości wody w organizmie, poziomu tłuszczu wisceralnego, podstawowej przemiany materii itp."
+    ],
     "ctaText": "Umów się",
     "ctaLink": "#kontakt"
   }
