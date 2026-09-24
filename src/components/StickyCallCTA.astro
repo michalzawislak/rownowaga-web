@@ -19,6 +19,14 @@ const phoneHref = `tel:${business.telephone.replace(/\s/g, '')}`;
     display: none;
   }
 
+  /*
+   * Przy otwartym menu numer jest już w panelu, więc pasek tylko licytowałby
+   * się o uwagę z przyciskiem „Umów konsultację".
+   */
+  :global(body.menu-open) .sticky-call-cta {
+    display: none;
+  }
+
   @media (max-width: 767px) {
     .sticky-call-cta {
       position: fixed;

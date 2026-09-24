@@ -77,6 +77,40 @@ test('menu mobilne otwiera się, zamyka Escape i oddaje fokus', async ({ page, i
   await expect(button).toBeFocused();
 });
 
+test('menu mobilne niesie kontakt i blokuje przewijanie tła', async ({ page, isMobile }) => {
+  test.skip(!isMobile, 'dotyczy tylko widoku mobilnego');
+  await acceptCookiesUpfront(page);
+  await page.goto('/');
+  /*
+   * `behavior: 'instant'` omija `scroll-behavior: smooth` ze stylów — inaczej
+   * przewijanie trwa jeszcze w chwili kliknięcia i test mierzy ruchomy cel.
+   */
+  await page.evaluate(() => window.scrollTo({ top: 600, behavior: 'instant' }));
+  await page.waitForFunction(() => window.scrollY === 600);
+
+  await page.locator('#mobile-menu-button').click();
+  const menu = page.locator('#mobile-menu');
+  await expect(menu).toBeVisible();
+
+  // Numer i status otwarcia to powód, dla którego panel w ogóle powstał.
+  await expect(menu.locator('a[href^="tel:"]')).toBeVisible();
+  await expect(page.locator('#menu-opening-status')).toHaveText(
+    /Teraz otwarte|Dziś otwarte od|Zamknięte/,
+  );
+
+  // Panel zasłania stronę, więc pasek telefoniczny nie ma się z czym licytować.
+  await expect(page.locator('.sticky-call-cta')).toBeHidden();
+
+  // Tło stoi w miejscu, a po zamknięciu wraca tam, gdzie było.
+  await page.mouse.wheel(0, 400);
+  await page.waitForTimeout(200);
+  expect(await page.evaluate(() => window.scrollY)).toBe(0);
+
+  await page.keyboard.press('Escape');
+  await expect(menu).toBeHidden();
+  expect(await page.evaluate(() => window.scrollY)).toBe(600);
+});
+
 test('przyklejone CTA telefoniczne jest widoczne także przy banerze cookies', async ({
   page,
   isMobile,
