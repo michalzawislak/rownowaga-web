@@ -100,7 +100,7 @@ const socialLinks = [
       <button
         id="mobile-menu-button"
         type="button"
-        class="menu-toggle lg:hidden"
+        class="menu-toggle"
         aria-label="Otwórz menu"
         aria-expanded="false"
         aria-controls="mobile-menu"
@@ -125,7 +125,7 @@ const socialLinks = [
   panel liczyłby swoje `bottom: 0` względem paska o wysokości 5rem i miałby
   zerową wysokość.
 -->
-<nav id="mobile-menu" class="mobile-menu hidden lg:hidden" aria-label="Menu mobilne">
+<nav id="mobile-menu" class="mobile-menu hidden" aria-label="Menu mobilne">
   <div class="mobile-menu__inner container mx-auto px-4">
     <ul class="mobile-menu__list">
       {navItems.map((item) => (
@@ -315,6 +315,16 @@ const socialLinks = [
     link.addEventListener('click', () => {
       setMenuOpen(false);
     });
+  });
+
+  /*
+   * Po obróceniu telefonu albo rozciągnięciu okna do szerokości desktopowej
+   * panel znika z układu, ale blokada przewijania zostałaby na `body` —
+   * strona wyglądałaby na zawieszoną. Dlatego zamykamy menu jawnie.
+   */
+  const desktopView = window.matchMedia('(min-width: 1024px)');
+  desktopView.addEventListener('change', (event) => {
+    if (event.matches) setMenuOpen(false);
   });
 
   /* ------------------------------------------------------ godziny otwarcia --- */
@@ -523,6 +533,12 @@ const socialLinks = [
 
   /* ------------------------------------------------------------ hamburger --- */
 
+  /*
+   * Widoczność sterujemy tu, a nie klasą `lg:hidden`. Style komponentu Astro są
+   * poza `@layer`, a utility Tailwinda siedzą w warstwie `utilities` — reguła
+   * bez warstwy zawsze wygrywa, więc `display: flex` przykrywało `lg:hidden`
+   * i hamburger zostawał widoczny na desktopie obok pełnego menu.
+   */
   .menu-toggle {
     display: flex;
     align-items: center;
@@ -537,6 +553,13 @@ const socialLinks = [
 
   .menu-toggle:hover {
     background-color: var(--color-background-alt);
+  }
+
+  /* Od `lg` w górę widać pełne menu poziome, więc hamburger znika. */
+  @media (min-width: 1024px) {
+    .menu-toggle {
+      display: none;
+    }
   }
 
   .menu-toggle__bars {
@@ -596,6 +619,13 @@ const socialLinks = [
 
   .mobile-menu.hidden {
     display: none;
+  }
+
+  /* Tak samo jak hamburger: panel nie istnieje w widoku desktopowym. */
+  @media (min-width: 1024px) {
+    .mobile-menu {
+      display: none;
+    }
   }
 
   .mobile-menu__inner {

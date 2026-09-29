@@ -77,6 +77,20 @@ test('menu mobilne otwiera się, zamyka Escape i oddaje fokus', async ({ page, i
   await expect(button).toBeFocused();
 });
 
+test('w widoku desktopowym nie ma hamburgera ani panelu mobilnego', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'dotyczy tylko szerokich ekranów');
+  await acceptCookiesUpfront(page);
+  await page.goto('/');
+
+  /*
+   * Styl komponentu Astro jest poza `@layer`, więc potrafi przykryć utility
+   * `lg:hidden` Tailwinda — dokładnie tak hamburger wrócił kiedyś na desktop.
+   */
+  await expect(page.locator('#mobile-menu-button')).toBeHidden();
+  await expect(page.locator('#mobile-menu')).toBeHidden();
+  await expect(page.locator('nav a', { hasText: 'Umów konsultację' }).first()).toBeVisible();
+});
+
 test('menu mobilne niesie kontakt i blokuje przewijanie tła', async ({ page, isMobile }) => {
   test.skip(!isMobile, 'dotyczy tylko widoku mobilnego');
   await acceptCookiesUpfront(page);
