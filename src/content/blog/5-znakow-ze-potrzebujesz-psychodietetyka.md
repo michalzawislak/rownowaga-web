@@ -61,4 +61,4 @@ Jeśli choć jeden punkt brzmi znajomo, warto umówić się do gabinetu. Szukani
 
 ---
 
-**O autorce:** Elżbieta Kuczyńska-Zawiślak to dietetyk i psychodietetyk. Od 13 lat prowadzi gabinet, w którym dieta jest podstawą współpracy.
+**O autorce:** Elżbieta Kuczyńska-Zawiślak to dietetyk i psychodietetyk. Od 2013 roku prowadzi gabinet, w którym dieta jest podstawą współpracy.

@@ -19,12 +19,7 @@
     "longitude": 14.55703
   },
   "hasMap": "https://www.google.com/maps/search/?api=1&query=Jacka+Malczewskiego+34/1%2C+71-612+Szczecin",
-  "areaServed": [
-    "Szczecin",
-    "Police",
-    "Goleniów",
-    "województwo zachodniopomorskie"
-  ],
+  "areaServed": ["Szczecin", "Police", "Goleniów", "województwo zachodniopomorskie"],
   "openingHours": [
     {
       "day": "poniedziałek",
@@ -57,13 +52,11 @@
       "closes": "15:00"
     }
   ],
-  "closedDays": [
-    "sobota",
-    "niedziela"
-  ],
+  "closedDays": ["sobota", "niedziela"],
   "specialist": {
     "name": "Elżbieta Kuczyńska-Zawiślak",
     "jobTitle": "Dietetyk i psychodietetyk",
+    "practiceSince": 2013,
     "image": "/images/about/profile.jpg",
     "credentials": []
   },

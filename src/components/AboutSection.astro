@@ -3,6 +3,7 @@ import Button from './ui/Button.astro';
 import { Image } from 'astro:assets';
 import business from '../data/business.json';
 import { resolveImage } from '../lib/images';
+import { experienceLabel } from '../lib/experience';
 import { sectionBackground, type SectionTone } from '../lib/section-tone';
 
 interface Props {
@@ -10,6 +11,14 @@ interface Props {
 }
 
 const { tone = 'default' } = Astro.props;
+
+/*
+ * Staż liczymy z roku rozpoczęcia praktyki (`business.json`), żeby liczba nie
+ * starzała się w treści. Po „od” rzeczownik idzie w dopełniaczu, po „przez”
+ * w bierniku — stąd dwie formy.
+ */
+const experienceSince = experienceLabel(business.specialist.practiceSince, 'genitive');
+const experienceOver = experienceLabel(business.specialist.practiceSince, 'accusative');
 ---
 
 <section id="o-mnie" class={`py-16 lg:py-24 ${sectionBackground(tone)}`}>
@@ -49,8 +58,8 @@ const { tone = 'default' } = Astro.props;
             class="text-lg text-[var(--color-text-light)] leading-relaxed animate-on-scroll"
             style="animation-delay: 150ms"
           >
-            Od 13 lat pomagam moim pacjentom lepiej zadbać o zdrowie, samopoczucie i relację z
-            jedzeniem.
+            Od {experienceSince} pomagam moim pacjentom lepiej zadbać o zdrowie, samopoczucie i
+            relację z jedzeniem.
           </p>
 
           <p
@@ -92,9 +101,9 @@ const { tone = 'default' } = Astro.props;
           </h3>
 
           <p class="text-lg text-[var(--color-text-light)] leading-relaxed">
-            Przez 13 lat pracy zdobyłam doświadczenie, które cały czas uzupełniam aktualną wiedzą.
-            Regularnie uczestniczę w szkoleniach, kursach i konferencjach dietetycznych oraz śledzę
-            najnowsze doniesienia naukowe.
+            Przez {experienceOver} pracy zdobyłam doświadczenie, które cały czas uzupełniam aktualną
+            wiedzą. Regularnie uczestniczę w szkoleniach, kursach i konferencjach dietetycznych oraz
+            śledzę najnowsze doniesienia naukowe.
           </p>
 
           <p class="text-lg text-[var(--color-text-light)] leading-relaxed">

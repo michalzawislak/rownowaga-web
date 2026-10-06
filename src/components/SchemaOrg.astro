@@ -68,6 +68,8 @@ const schema = {
       image: imageUrl,
       priceRange: business.priceRange,
       currenciesAccepted: 'PLN',
+      // Rok startu praktyki zamiast liczby lat — data się nie starzeje.
+      foundingDate: String(business.specialist.practiceSince),
       address: {
         '@type': 'PostalAddress',
         streetAddress: business.address.streetAddress,

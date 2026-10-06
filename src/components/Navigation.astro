@@ -1,7 +1,9 @@
 ---
 import Button from './ui/Button.astro';
+import { Image } from 'astro:assets';
 import business from '../data/business.json';
 import features from '../data/features.json';
+import logoMark from '../assets/images/logo/sygnet.png';
 import { withBase } from '../lib/paths';
 
 type NavItem = {
@@ -71,7 +73,22 @@ const socialLinks = [
 >
   <div class="container mx-auto px-4 md:px-8 lg:px-16">
     <div class="flex items-center justify-between h-20">
-      <a href={withBase('/')} class="flex items-center space-x-2">
+      <!--
+        Sygnet jest dekoracją: nazwa gabinetu stoi obok jako tekst, więc opis
+        alternatywny tylko dublowałby ją w czytniku ekranu. Ładujemy go
+        priorytetowo — siedzi w pierwszym ekranie i nie może doskoczyć później.
+      -->
+      <a href={withBase('/')} class="flex items-center gap-2.5 md:gap-3">
+        <Image
+          src={logoMark}
+          alt=""
+          widths={[88, 132, 176]}
+          sizes="(min-width: 768px) 58px, 48px"
+          class="h-10 w-auto md:h-12"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
         <div class="text-xl md:text-2xl font-bold font-[var(--font-heading)] text-[var(--color-secondary-text)]">
           {business.shortName}
         </div>

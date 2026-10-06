@@ -1,4 +1,6 @@
 import { test, expect } from '@playwright/test';
+import business from '../../src/data/business.json' with { type: 'json' };
+import { polishYearsNoun } from '../../src/lib/experience';
 import { acceptCookiesUpfront, revealAllSections, waitForImages } from './helpers';
 
 test('kotwice w nawigacji prowadzą na stronę główną także z podstron', async ({ page }) => {
@@ -75,6 +77,22 @@ test('menu mobilne otwiera się, zamyka Escape i oddaje fokus', async ({ page, i
   await expect(button).toHaveAttribute('aria-expanded', 'false');
   await expect(page.locator('#mobile-menu')).toBeHidden();
   await expect(button).toBeFocused();
+});
+
+test('staż liczy się z roku rozpoczęcia praktyki', async ({ page }) => {
+  await acceptCookiesUpfront(page);
+  await page.goto('/');
+
+  const { practiceSince } = business.specialist;
+  const years = new Date().getFullYear() - practiceSince;
+
+  const about = page.locator('#o-mnie');
+  await expect(about).toContainText(
+    new RegExp(`Od ${years} ${polishYearsNoun(years, 'genitive')} pomagam`),
+  );
+  await expect(about).toContainText(
+    new RegExp(`Przez ${years} ${polishYearsNoun(years, 'accusative')} pracy`),
+  );
 });
 
 test('w widoku desktopowym nie ma hamburgera ani panelu mobilnego', async ({ page, isMobile }) => {
