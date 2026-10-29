@@ -1,6 +1,7 @@
 # Status projektu
 
-Stan na 17 września 2026. Strona nie jest jeszcze opublikowana pod docelową domeną.
+Stan na 29 października 2026. Publikacja na `https://rownowaga-dietetyka.pl` (hosting OVH)
+przygotowana - rusza z pierwszym pushem na `main`.
 
 ## Gotowe
 
@@ -21,7 +22,10 @@ Stan na 17 września 2026. Strona nie jest jeszcze opublikowana pod docelową do
 - `robots.txt` generowany z `src/pages/robots.txt.ts` + sitemapa
 - Schema.org: `LocalBusiness`/`Dietitian`, `Person`, `WebSite`, godziny otwarcia, `geo`,
   `hasMap`, `areaServed`, `hasOfferCatalog` z cennikiem
-- Podgląd na GitHub Pages z `noindex` - bez ryzyka duplikatu treści
+- Build podglądowy (`GITHUB_PAGES=true`) z `noindex` - bez ryzyka duplikatu treści
+- `og:image` 1200×630 (kadr od góry z `ekz-hero.jpg`) z `og:image:width/height`
+- `robots.txt`: boty treningowe AI zablokowane, wyszukiwarki i asystenci AI wpuszczeni,
+  `Content-Signal: search=yes, ai-input=yes, ai-train=no`
 
 ### Dostępność
 
@@ -40,28 +44,26 @@ Stan na 17 września 2026. Strona nie jest jeszcze opublikowana pod docelową do
 - Fonty self-hostowane przez Astro Fonts API (subset `latin-ext`, preload)
 - CSS w warstwach: `@layer base` + `@layer components`, bez `!important` i stylów inline
 - React tylko w wyspach; reszta strony to czysty HTML i CSS
+- Hosting OVH (Apache): `.htaccess` z przekierowaniami 301 na `https://` bez `www`,
+  rocznym cache dla `/_astro/*`, kompresją, stroną 404 i nagłówkami bezpieczeństwa
 
 ### Jakość kodu
 
 - ESLint (flat config) + Prettier + `astro check` - bez błędów
 - `npm run verify` uruchamia komplet kontroli
 - Testy e2e i dostępności (Playwright + axe) na buildzie produkcyjnym, desktop i mobile
-- CI: `.github/workflows/ci.yml` - lint, format, typy, build oraz osobna praca z testami
+- CI/CD: `.github/workflows/deploy.yml` - lint, format, typy, build i testy e2e; po ich
+  przejściu deploy przez SFTP na hosting OVH (tylko `main`)
 
 ## Do zrobienia
 
-### Priorytet: wydajność
+### Porządki
 
-- [ ] Hero: obraz 2,2 MB (2048×2048) do wymiany na `astro:assets` (`<Picture>`, AVIF/WebP,
-      `srcset`, `fetchpriority="high"`) i wyjęcie go z wyspy React - dziś LCP czeka na hydratację
 - [ ] `src/assets/images/hero/hero-main.jpeg` (2 MB, zdjęcie wagi) jest nieużywany po wymianie hero - do usunięcia
 
-### Brakujące pliki (404)
+### Brakujące pliki
 
-- [ ] `/images/solution/mindful-eating.jpg`
-- [ ] `/images/hero.jpg` - domyślny `og:image`
 - [ ] `/images/blog/psychodietician-signs.jpg` (przy włączaniu bloga)
-- [ ] strona `/regulamin` albo usunięcie linku ze stopki
 
 ### Treści i dane
 
@@ -73,13 +75,19 @@ Stan na 17 września 2026. Strona nie jest jeszcze opublikowana pod docelową do
 
 - [ ] Podstrony usług pod frazy lokalne (dziś cała oferta jest na jednej stronie)
 - [ ] Google Business Profile ze spójnym NAP
-- [ ] Docelowy hosting z nagłówkami i długim cache (`/_astro/*`) - GitHub Pages tego nie potrafi
-- [ ] `og:image` 1200×630 zamiast oryginału hero; rastrowy fallback dla wpisów bloga
-- [ ] Lighthouse CI z progiem - sensowne dopiero po optymalizacji hero
+- [ ] Rastrowy `og:image` dla wpisów bloga bez zdjęcia (dziś placeholder SVG)
+- [ ] Lighthouse CI z progiem
 
 ## Deployment
 
-1. `npm run verify`
-2. Uzupełnić `PUBLIC_GTM_ID`, jeśli GTM ma działać
-3. Build produkcyjny (`npm run build`) → `dist/`
-4. Po publikacji: Google Search Console, sitemapa, sprawdzenie danych strukturalnych
+Automatycznie: push na `main` → weryfikacja i testy → SFTP do `www/` na OVH (szczegóły
+w README, sekcja „Publikacja”).
+
+Po pierwszej publikacji:
+
+- [ ] W panelu OVH: certyfikat SSL obejmuje `rownowaga-dietetyka.pl` i `www`
+- [ ] Sprawdzić przekierowania (`http://`, `www.`), stronę 404 i nagłówki cache na żywo
+- [ ] Wyłączyć GitHub Pages w ustawieniach repozytorium
+- [ ] Google Search Console i Bing Webmaster Tools: weryfikacja domeny, zgłoszenie sitemapy
+- [ ] Test danych strukturalnych (Rich Results Test) i podglądu linku (Facebook Sharing Debugger)
+- [ ] Wiadomość testowa z formularza kontaktowego

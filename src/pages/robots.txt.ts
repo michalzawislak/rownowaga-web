@@ -1,6 +1,35 @@
 import type { APIRoute } from 'astro';
 
-const indexableRobots = (sitemapUrl: URL): string => `User-agent: *
+/**
+ * Boty, które zbierają treści do trenowania modeli AI. Blokada nie wpływa
+ * na widoczność w wyszukiwarkach ani w odpowiedziach AI: Googlebot,
+ * Bingbot, Applebot, OAI-SearchBot, ChatGPT-User, Claude-SearchBot,
+ * Claude-User czy PerplexityBot dalej mają pełny dostęp przez grupę `*`.
+ * `Google-Extended` i `Applebot-Extended` to nie osobne crawlery, tylko
+ * tokeny zgody na trening - Googlebot i Applebot nadal indeksują stronę.
+ */
+const AI_TRAINING_BOTS = [
+  'GPTBot',
+  'ClaudeBot',
+  'anthropic-ai',
+  'Google-Extended',
+  'Applebot-Extended',
+  'CCBot',
+  'meta-externalagent',
+  'Bytespider',
+];
+
+/**
+ * `Content-Signal` (contentsignals.org) deklaruje, do czego wolno użyć
+ * treści: wyszukiwanie i odpowiedzi AI na bieżąco - tak, trening - nie.
+ */
+const indexableRobots = (sitemapUrl: URL): string => `${AI_TRAINING_BOTS.map(
+  (bot) => `User-agent: ${bot}`,
+).join('\n')}
+Disallow: /
+
+User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
 
 Sitemap: ${sitemapUrl.href}

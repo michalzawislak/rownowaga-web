@@ -103,16 +103,37 @@ Do uzupełnienia prawdziwymi danymi: `specialist.credentials` - lista uprawnień
 | Zmienna | Znaczenie |
 | --- | --- |
 | `PUBLIC_GTM_ID` | ID kontenera GTM. Bez niej baner i Consent Mode działają, GTM się nie ładuje. GTM startuje wyłącznie po zgodzie użytkownika. |
-| `GITHUB_PAGES` | `true` w buildzie podglądowym na GitHub Pages. |
+| `GITHUB_PAGES` | `true` tylko w buildzie podglądowym (prefiks `/rownowaga-web`). Produkcja jej nie ustawia. |
 
-Build produkcyjny (domena docelowa): canonical, sitemapa i `robots.txt` z `Allow: /`.
+Build produkcyjny (domena docelowa): canonical, sitemapa, `robots.txt` blokujący boty
+treningowe AI (wyszukiwarki i asystenci AI mają pełny dostęp) oraz `.htaccess` dla Apache.
 
-Build z `GITHUB_PAGES=true`: prefiks `/rownowaga-web`, `<meta name="robots" content="noindex">`
-na każdej stronie, brak canonicala i brak sitemapy - podgląd nie może trafić do Google
-jako duplikat treści.
+Build z `GITHUB_PAGES=true`: `<meta name="robots" content="noindex">` na każdej stronie,
+brak canonicala i sitemapy - podgląd nie może trafić do Google jako duplikat treści.
 
-- `.github/workflows/ci.yml` - lint, Prettier, typy i build (push i PR)
-- `.github/workflows/deploy.yml` - publikacja podglądu na GitHub Pages
+### Publikacja (hosting OVH)
+
+`.github/workflows/deploy.yml` przy każdym pushu na `main`:
+
+1. `npm run verify` (lint, Prettier, typy, build) i testy e2e - równolegle,
+2. jeśli oba przejdą: build produkcyjny i synchronizacja `dist/` z katalogiem `www/`
+   na hostingu OVH przez SFTP (`lftp mirror --delete`),
+3. kontrola, czy `https://rownowaga-dietetyka.pl/` odpowiada.
+
+Pull requesty przechodzą tylko kroki 1. Wdrożenie można też uruchomić ręcznie
+(Actions → Deploy → Run workflow).
+
+Sekrety repozytorium (Settings → Secrets and variables → Actions):
+
+| Sekret | Wartość |
+| --- | --- |
+| `SFTP_HOST` | serwer FTP z panelu OVH, np. `ftp.cluster0XX.hosting.ovh.net` |
+| `SFTP_USERNAME` | login FTP (katalog domowy `.`, czyli główny katalog hostingu) |
+| `SFTP_PASSWORD` | hasło FTP |
+
+Deploy dotyka wyłącznie `www/` - plik `.ovhconfig` w katalogu wyżej zostaje nietknięty.
+Przekierowania (`http` i `www` → `https://rownowaga-dietetyka.pl`), cache `/_astro/*`
+na rok, strona 404 i nagłówki bezpieczeństwa są w `public/.htaccess`.
 
 ## Formularz kontaktowy
 
@@ -122,7 +143,6 @@ opisuje polityka prywatności.
 
 ## Znane zadania
 
-- `og:image` wskazuje oryginał hero (2048×2048) - do zastąpienia obrazem 1200×630
 - wpisy bloga bez zdjęć mają `og:image` w SVG, którego nie renderują serwisy społecznościowe
-- brakujące zdjęcia: profilowe, sekcja „Dieta jest podstawą współpracy”, wpisy bloga
+- brakujące zdjęcia: wpisy bloga
 - `specialist.credentials` w `business.json` do uzupełnienia
