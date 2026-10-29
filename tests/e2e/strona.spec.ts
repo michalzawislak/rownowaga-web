@@ -102,7 +102,7 @@ test('w widoku desktopowym nie ma hamburgera ani panelu mobilnego', async ({ pag
 
   /*
    * Styl komponentu Astro jest poza `@layer`, więc potrafi przykryć utility
-   * `lg:hidden` Tailwinda — dokładnie tak hamburger wrócił kiedyś na desktop.
+   * `lg:hidden` Tailwinda - dokładnie tak hamburger wrócił kiedyś na desktop.
    */
   await expect(page.locator('#mobile-menu-button')).toBeHidden();
   await expect(page.locator('#mobile-menu')).toBeHidden();
@@ -114,7 +114,7 @@ test('menu mobilne niesie kontakt i blokuje przewijanie tła', async ({ page, is
   await acceptCookiesUpfront(page);
   await page.goto('/');
   /*
-   * `behavior: 'instant'` omija `scroll-behavior: smooth` ze stylów — inaczej
+   * `behavior: 'instant'` omija `scroll-behavior: smooth` ze stylów - inaczej
    * przewijanie trwa jeszcze w chwili kliknięcia i test mierzy ruchomy cel.
    */
   await page.evaluate(() => window.scrollTo({ top: 600, behavior: 'instant' }));

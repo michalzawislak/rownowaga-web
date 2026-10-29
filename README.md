@@ -1,18 +1,18 @@
-# Równowaga — Dietetyka i Psychodietetyka (Szczecin)
+# Równowaga - Dietetyka i Psychodietetyka (Szczecin)
 
 Strona wizytówkowa gabinetu dietetycznego: oferta, sekcja „O mnie”, FAQ, formularz kontaktowy
 i (opcjonalnie) blog. Statyczna, budowana Astro.
 
 ## Technologie
 
-- **Astro 6** — generowanie statyczne (SSG), zero JS tam, gdzie nie jest potrzebny
-- **Tailwind CSS 4** — przez `@tailwindcss/vite`, tokeny w `src/styles/global.css`
-- **React 19** — jedna wyspa: slider metamorfoz (`client:visible`). Reszta strony to HTML i CSS
-- **Playwright + axe** — testy e2e i dostępności na buildzie produkcyjnym
-- **Astro Fonts API** — Cormorant Garamond i Montserrat pobierane przy buildzie i serwowane
+- **Astro 6** - generowanie statyczne (SSG), zero JS tam, gdzie nie jest potrzebny
+- **Tailwind CSS 4** - przez `@tailwindcss/vite`, tokeny w `src/styles/global.css`
+- **React 19** - jedna wyspa: slider metamorfoz (`client:visible`). Reszta strony to HTML i CSS
+- **Playwright + axe** - testy e2e i dostępności na buildzie produkcyjnym
+- **Astro Fonts API** - Cormorant Garamond i Montserrat pobierane przy buildzie i serwowane
   z własnej domeny (bez zapytań do Google Fonts u użytkownika)
-- **Web3Forms** — obsługa formularza kontaktowego
-- **Google Consent Mode v2 + GTM** — tryb „basic”: kontener GTM wczytuje się dopiero po
+- **Web3Forms** - obsługa formularza kontaktowego
+- **Google Consent Mode v2 + GTM** - tryb „basic”: kontener GTM wczytuje się dopiero po
   zgodzie na analitykę lub marketing (art. 399 Prawa komunikacji elektronicznej wymaga
   zgody uprzedniej). Odmowa oznacza zero żądań do Google.
 
@@ -54,7 +54,7 @@ src/
 ├── layouts/Layout.astro# <head>, SEO, fonty, baner cookies, skip link
 ├── lib/                # helpery (withBase, obrazy, tony sekcji)
 ├── pages/              # trasy: strona główna, polityka, 404, robots.txt, site.webmanifest
-├── routes/blog/        # trasy bloga — wstrzykiwane tylko przy włączonej fladze
+├── routes/blog/        # trasy bloga - wstrzykiwane tylko przy włączonej fladze
 └── styles/global.css   # tokeny @theme + @layer base/components
 ```
 
@@ -63,10 +63,10 @@ src/
 `tests/e2e/` uruchamia się na buildzie produkcyjnym (Playwright sam robi `build` i `preview`),
 w dwóch profilach: desktop i mobile.
 
-- `accessibility.spec.ts` — axe na stronie głównej, polityce i 404 **po przewinięciu całej
+- `accessibility.spec.ts` - axe na stronie głównej, polityce i 404 **po przewinięciu całej
   strony**. To istotne: sekcje z `animate-on-scroll` są przezroczyste, dopóki nie wejdą
   w widok, więc audyt bez przewijania (np. sam Lighthouse) po prostu ich nie sprawdza.
-- `strona.spec.ts` — kotwice w nawigacji, FAQ, menu mobilne, baner cookies, przyklejone CTA,
+- `strona.spec.ts` - kotwice w nawigacji, FAQ, menu mobilne, baner cookies, przyklejone CTA,
   brak żądań do Google przed zgodą, obsługa błędu formularza, manifest.
 
 Pierwsze uruchomienie wymaga przeglądarki: `npx playwright install chromium`.
@@ -75,7 +75,7 @@ Jeśli w środowisku jest już Chromium, można wskazać je przez `PLAYWRIGHT_CH
 ### Ważne: warstwy CSS
 
 Style globalne muszą siedzieć w `@layer base`, a własne klasy w `@layer components`.
-CSS spoza warstw **wygrywa z każdą klasą Tailwinda** — wcześniej właśnie to unieważniało
+CSS spoza warstw **wygrywa z każdą klasą Tailwinda** - wcześniej właśnie to unieważniało
 warianty `md:`/`lg:` w komponentach. Nie dopisuj reguł globalnych poza warstwami.
 
 ## Flagi funkcji (`src/data/features.json`)
@@ -84,9 +84,9 @@ warianty `md:`/`lg:` w komponentach. Nie dopisuj reguł globalnych poza warstwam
 { "blog": false, "metamorphosis": false }
 ```
 
-- `blog` — przy `false` trasy `/blog/` i wpisy **nie powstają** (patrz integracja
+- `blog` - przy `false` trasy `/blog/` i wpisy **nie powstają** (patrz integracja
   `blogRoutes` w `astro.config.mjs`), znikają też z menu i sitemapy
-- `metamorphosis` — pokazuje sekcję metamorfoz na stronie głównej
+- `metamorphosis` - pokazuje sekcję metamorfoz na stronie głównej
 
 ## Dane gabinetu
 
@@ -94,7 +94,7 @@ Wszystko w jednym miejscu: `src/data/business.json` (nazwa, adres, telefon, godz
 `areaServed`, `hasMap`, profile społecznościowe). Stąd korzystają nagłówek, stopka,
 kontakt, polityka prywatności i dane strukturalne Schema.org.
 
-Do uzupełnienia prawdziwymi danymi: `specialist.credentials` — lista uprawnień
+Do uzupełnienia prawdziwymi danymi: `specialist.credentials` - lista uprawnień
 (`{ "category": "dyplom", "name": "...", "issuedBy": "..." }`). Pusta lista oznacza,
 że pole `hasCredential` nie trafia do Schema.org.
 
@@ -108,21 +108,21 @@ Do uzupełnienia prawdziwymi danymi: `specialist.credentials` — lista uprawnie
 Build produkcyjny (domena docelowa): canonical, sitemapa i `robots.txt` z `Allow: /`.
 
 Build z `GITHUB_PAGES=true`: prefiks `/rownowaga-web`, `<meta name="robots" content="noindex">`
-na każdej stronie, brak canonicala i brak sitemapy — podgląd nie może trafić do Google
+na każdej stronie, brak canonicala i brak sitemapy - podgląd nie może trafić do Google
 jako duplikat treści.
 
-- `.github/workflows/ci.yml` — lint, Prettier, typy i build (push i PR)
-- `.github/workflows/deploy.yml` — publikacja podglądu na GitHub Pages
+- `.github/workflows/ci.yml` - lint, Prettier, typy i build (push i PR)
+- `.github/workflows/deploy.yml` - publikacja podglądu na GitHub Pages
 
 ## Formularz kontaktowy
 
 Web3Forms, klucz publiczny w `src/components/ContactSection.astro`. Formularz celowo
-nie zachęca do podawania danych o zdrowiu — zgoda obejmuje art. 9 RODO, a szczegóły
+nie zachęca do podawania danych o zdrowiu - zgoda obejmuje art. 9 RODO, a szczegóły
 opisuje polityka prywatności.
 
 ## Znane zadania
 
-- `og:image` wskazuje oryginał hero (2048×2048) — do zastąpienia obrazem 1200×630
+- `og:image` wskazuje oryginał hero (2048×2048) - do zastąpienia obrazem 1200×630
 - wpisy bloga bez zdjęć mają `og:image` w SVG, którego nie renderują serwisy społecznościowe
 - brakujące zdjęcia: profilowe, sekcja „Dieta jest podstawą współpracy”, wpisy bloga
 - `specialist.credentials` w `business.json` do uzupełnienia

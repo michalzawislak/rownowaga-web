@@ -9,7 +9,7 @@ Sitemap: ${sitemapUrl.href}
 /**
  * Podgląd celowo NIE blokuje crawlowania: Google musi móc pobrać stronę,
  * żeby zobaczyć `noindex`. Blokada w robots.txt skutkowałaby indeksacją
- * samych adresów (bez treści). Brak sitemapy — nie zgłaszamy URL-i podglądu.
+ * samych adresów (bez treści). Brak sitemapy - nie zgłaszamy URL-i podglądu.
  */
 const previewRobots = `User-agent: *
 Allow: /

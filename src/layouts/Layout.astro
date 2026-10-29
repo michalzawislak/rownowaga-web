@@ -56,7 +56,7 @@ const ogImage = new URL(resolveImage(image).src.replace(/^\//, ''), Astro.site);
     <link rel="manifest" href={withBase('/site.webmanifest')} />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- Google Consent Mode v2 – domyślnie denied, przed jakimkolwiek tagiem -->
+    <!-- Google Consent Mode v2 - domyślnie denied, przed jakimkolwiek tagiem -->
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
@@ -75,7 +75,7 @@ const ogImage = new URL(resolveImage(image).src.replace(/^\//, ''), Astro.site);
       gtag('set', 'ads_data_redaction', true);
       gtag('set', 'url_passthrough', true);
     </script>
-    <!-- Fonty serwujemy z własnej domeny (Astro Fonts API) — bez zapytań do Google. -->
+    <!-- Fonty serwujemy z własnej domeny (Astro Fonts API) - bez zapytań do Google. -->
     <Font cssVariable="--font-heading-family" preload />
     <Font cssVariable="--font-body-family" preload />
 

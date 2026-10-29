@@ -2,7 +2,7 @@ import { defineConfig, devices } from '@playwright/test';
 
 /*
  * Celowo inny port niż `npm run dev` (4321). Gdyby testy trafiły na serwer
- * deweloperski, sprawdzałyby inny kod niż ten, który trafia na hosting —
+ * deweloperski, sprawdzałyby inny kod niż ten, który trafia na hosting -
  * m.in. obrazy generowane na żądanie zamiast gotowych plików z builda.
  */
 const PORT = 4329;
@@ -30,7 +30,7 @@ export default defineConfig({
     { name: 'mobile', use: { ...devices['Pixel 7'] } },
   ],
   /**
-   * Testujemy build produkcyjny, a nie serwer deweloperski — chcemy sprawdzać
+   * Testujemy build produkcyjny, a nie serwer deweloperski - chcemy sprawdzać
    * dokładnie ten HTML i CSS, który trafia na hosting.
    */
   webServer: {

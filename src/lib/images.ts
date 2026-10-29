@@ -7,7 +7,7 @@ import type { ImageMetadata } from 'astro';
  *
  * Dane w JSON-ach (np. `business.json`) nadal opisują obraz ścieżką
  * w stylu `/images/about/profile.jpg`. Ten helper tłumaczy taką ścieżkę
- * na zaimportowany zasób, a gdy pliku jeszcze nie ma — podstawia placeholder.
+ * na zaimportowany zasób, a gdy pliku jeszcze nie ma - podstawia placeholder.
  */
 const assets = import.meta.glob<{ default: ImageMetadata }>(
   '/src/assets/images/**/*.{jpeg,jpg,png,webp,avif,svg}',

@@ -10,13 +10,13 @@ category: "Dietetyka"
 tags: ["dietetyka", "dieta", "wizyty kontrolne", "gabinet dietetyczny"]
 ---
 
-Zastanawiasz się, czy kolejna dieta z bloga wystarczy, czy czas na gabinet? Dieta jest podstawą mojej pracy. Układam ją indywidualnie, a potem regularnie dopasowujemy na wizytach — z dzienniczkiem, przepisami i analizą składu ciała.
+Zastanawiasz się, czy kolejna dieta z bloga wystarczy, czy czas na gabinet? Dieta jest podstawą mojej pracy. Układam ją indywidualnie, a potem regularnie dopasowujemy na wizytach - z dzienniczkiem, przepisami i analizą składu ciała.
 
 ## 1. Przeskakujesz z diety na dietę
 
 Keto, pudełka, „to, co teraz wszyscy jedzą”. Działa przez chwilę, potem wraca jo-jo i zaczynasz od nowa.
 
-**To nie musi być Twoja wina.** Gotowiec z internetu nie zna Twojego zdrowia, dnia ani tego, co naprawdę jesz. W gabinecie dieta powstaje po wywiadzie i — gdy pracujemy stacjonarnie — po analizie składu ciała.
+**To nie musi być Twoja wina.** Gotowiec z internetu nie zna Twojego zdrowia, dnia ani tego, co naprawdę jesz. W gabinecie dieta powstaje po wywiadzie i - gdy pracujemy stacjonarnie - po analizie składu ciała.
 
 ## 2. Nie wiesz, co jeść na co dzień
 
@@ -28,13 +28,13 @@ Dieta ma to uporządkować: schemat, zalecenia na tydzień albo dwa i przepisy d
 
 Zaczynasz z motywacją, a po dwóch tygodniach plan się rozjeżdża. Nikt nie patrzy w dzienniczek, nikt nie mówi, co zmienić.
 
-Dlatego współpraca opiera się na wizytach kontrolnych. Sprawdzamy, co wyszło, co nie, i dajemy zalecenia na kolejny tydzień albo dwa — zamiast zostawiać Cię samą z kartką.
+Dlatego współpraca opiera się na wizytach kontrolnych. Sprawdzamy, co wyszło, co nie, i dajemy zalecenia na kolejny tydzień albo dwa - zamiast zostawiać Cię samą z kartką.
 
 ## 4. Stres zjada plan
 
 Zły dzień i dieta leci. Wiesz, co „wypadałoby” jeść, ale w praktyce się nie da.
 
-Tu pomaga psychodietetyka — jako wsparcie przy utrzymaniu diety, nie zamiast niej. Rozróżniamy głód od emocji i szukamy rozwiązań, które da się zastosować w Twoim życiu.
+Tu pomaga psychodietetyka - jako wsparcie przy utrzymaniu diety, nie zamiast niej. Rozróżniamy głód od emocji i szukamy rozwiązań, które da się zastosować w Twoim życiu.
 
 ## 5. Nie wiesz, czy idziesz w dobrą stronę
 
@@ -44,7 +44,7 @@ Analiza składu ciała i monitoring postępów dają konkret. Na tej podstawie k
 
 ## Czy rozpoznałaś się w tych znakach?
 
-Jeśli choć jeden punkt brzmi znajomo, warto umówić się do gabinetu. Szukanie pomocy to nie słabość — to decyzja, żeby dieta wreszcie była planem, a nie zgadywaniem.
+Jeśli choć jeden punkt brzmi znajomo, warto umówić się do gabinetu. Szukanie pomocy to nie słabość - to decyzja, żeby dieta wreszcie była planem, a nie zgadywaniem.
 
 ### Jak wygląda współpraca?
 
@@ -55,8 +55,8 @@ Jeśli choć jeden punkt brzmi znajomo, warto umówić się do gabinetu. Szukani
 
 ## Następne kroki
 
-1. **Umów bezpłatną 15-minutową rozmowę wstępną** — to nie jest jeszcze pierwsza wizyta z cennika
-2. **Zobacz ofertę** — pierwsza konsultacja, kontrole i pakiet miesięczny
+1. **Umów bezpłatną 15-minutową rozmowę wstępną** - to nie jest jeszcze pierwsza wizyta z cennika
+2. **Zobacz ofertę** - pierwsza konsultacja, kontrole i pakiet miesięczny
 3. **Przygotuj pytania** o cele, badania i to, jak jesz na co dzień
 
 ---

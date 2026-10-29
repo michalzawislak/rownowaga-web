@@ -17,7 +17,7 @@ const { tone = 'default' } = Astro.props;
  */
 const optimize = async (path: string) => {
   const asset = resolveImage(path);
-  // Placeholder (SVG) przepuszczamy bez zmian — nie ma czego optymalizować.
+  // Placeholder (SVG) przepuszczamy bez zmian - nie ma czego optymalizować.
   if (asset.format === 'svg') return asset.src;
 
   return (await getImage({ src: asset, format: 'webp', width: 900, height: 900 })).src;

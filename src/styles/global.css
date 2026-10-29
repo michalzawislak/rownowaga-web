@@ -4,7 +4,7 @@
   /* Kolorystyka inspirowana Truly Real Nutrition */
   --color-primary: #e8d5c4;
   --color-primary-dark: #d4c0ad;
-  /* Jasna zieleń — wyłącznie dekoracja (poświaty, obramowania, tła bez tekstu). */
+  /* Jasna zieleń - wyłącznie dekoracja (poświaty, obramowania, tła bez tekstu). */
   --color-secondary: #7b9e89;
   --color-secondary-dark: #6a8b76;
   /*
@@ -27,7 +27,7 @@
   --color-background-alt: #f9f6f3;
   --color-background-card: #ffffff;
 
-  /* Typografia — rodziny wstrzykuje Astro Fonts API (patrz astro.config.mjs). */
+  /* Typografia - rodziny wstrzykuje Astro Fonts API (patrz astro.config.mjs). */
   --font-heading: var(--font-heading-family), Georgia, serif;
   --font-body: var(--font-body-family), system-ui, sans-serif;
 
@@ -146,7 +146,7 @@
     border-radius: 0.25rem;
   }
 
-  /* Domyślny odstęp sekcji — nadpisywalny klasami `py-*` w komponentach. */
+  /* Domyślny odstęp sekcji - nadpisywalny klasami `py-*` w komponentach. */
   section {
     padding: var(--spacing-section-mobile) 0;
   }
@@ -183,7 +183,7 @@
 }
 
 @layer components {
-  /* Link „Przejdź do treści” — widoczny dopiero po sfokusowaniu klawiaturą. */
+  /* Link „Przejdź do treści” - widoczny dopiero po sfokusowaniu klawiaturą. */
   .skip-link {
     position: absolute;
     left: 1rem;
@@ -295,7 +295,7 @@
     transform: translateY(-4px);
   }
 
-  /* Mocniejsze uniesienie — wygrywa z `.card-lift`, bo jest niżej. */
+  /* Mocniejsze uniesienie - wygrywa z `.card-lift`, bo jest niżej. */
   .hover-lift {
     transition:
       transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
@@ -329,7 +329,7 @@
     transform: scale(1.2);
   }
 
-  /* Link wewnątrz bloku tekstu — wyróżniony podkreśleniem, nie tylko kolorem. */
+  /* Link wewnątrz bloku tekstu - wyróżniony podkreśleniem, nie tylko kolorem. */
   .link-inline {
     color: var(--color-secondary-text);
     text-decoration: underline;

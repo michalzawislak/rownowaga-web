@@ -29,7 +29,7 @@ const checkmarks = ['Online i stacjonarnie w Szczecinie', 'Indywidualny schemat 
               wejścia i bez JavaScriptu. `widths` odpowiadają realnym
               szerokościom w layoucie (z zapasem na ekrany 2x).
               Zdjęcie jest poziome (3:2), a kosze sięgają prawie do krawędzi
-              kadru — proporcja 4:3 przycina tylko tło, kwadrat uciąłby kosze.
+              kadru - proporcja 4:3 przycina tylko tło, kwadrat uciąłby kosze.
               Przycięcie z 3:2 do 4:3 wymaga ~1,125× szerszego źródła (stąd `sizes`).
             -->
             <Picture
@@ -69,7 +69,7 @@ const checkmarks = ['Online i stacjonarnie w Szczecinie', 'Indywidualny schemat 
 
         <!--
           Lista atutów w czystym HTML i CSS. Wcześniej była wyspą React tylko
-          po to, żeby animować wejście — nie ma tu żadnej interaktywności.
+          po to, żeby animować wejście - nie ma tu żadnej interaktywności.
         -->
         <ul class="hero-checkmarks flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 text-sm md:text-base text-[var(--color-text-light)]">
           {checkmarks.map((text, index) => (
@@ -100,7 +100,7 @@ const checkmarks = ['Online i stacjonarnie w Szczecinie', 'Indywidualny schemat 
   /*
    * Animujemy wyłącznie `transform`. Wygaszanie przez `opacity` sprawiało,
    * że przez pierwsze 0,6 s tekst na przyciskach miał zaniżony kontrast
-   * (przezroczysty element miesza się z tłem) — i mylił audyty dostępności.
+   * (przezroczysty element miesza się z tłem) - i mylił audyty dostępności.
    */
   @keyframes slideInUp {
     from {
@@ -140,7 +140,7 @@ const checkmarks = ['Online i stacjonarnie w Szczecinie', 'Indywidualny schemat 
     animation: slideInUp 0.5s ease-out both;
   }
 
-  /* Sam obraz nie ma animacji wejścia — nie opóźniamy LCP. */
+  /* Sam obraz nie ma animacji wejścia - nie opóźniamy LCP. */
   .hero-image {
     animation: scaleIn 0.6s ease-out both;
     animation-delay: 0.1s;

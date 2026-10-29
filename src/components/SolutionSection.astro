@@ -43,7 +43,7 @@ const appFeatures = [
   <div class="container mx-auto px-4 md:px-8 lg:px-16">
     <!--
       Na mobile kolejność to: nagłówek i wstęp, telefon, a dopiero potem lista
-      możliwości — obraz wspiera treść zamiast zamykać sekcję. Na desktopie
+      możliwości - obraz wspiera treść zamiast zamykać sekcję. Na desktopie
       układ zostaje dwukolumnowy: telefon po lewej, cały tekst po prawej.
     -->
     <div class="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-[auto_1fr] gap-x-12 gap-y-10 lg:gap-y-6 items-center">
@@ -64,11 +64,11 @@ const appFeatures = [
 
       <!--
         Zrzut z aplikacji pokazujemy w rysowanej CSS-em ramce telefonu.
-        Obudowa, wysepka i przyciski są dekoracją (`aria-hidden`) — treść
+        Obudowa, wysepka i przyciski są dekoracją (`aria-hidden`) - treść
         niesie sam obraz wraz z opisem alternatywnym.
 
         Na desktopie telefon jest przyklejony (`sticky`) i towarzyszy
-        przewijanej liście możliwości — tak samo jak zdjęcie w sekcji
+        przewijanej liście możliwości - tak samo jak zdjęcie w sekcji
         „Poznajmy się". `self-start` jest tu konieczne: bez niego element
         wypełniłby całą wysokość obszaru siatki i nie miałby jak się
         przesuwać.
@@ -128,7 +128,7 @@ const appFeatures = [
                 </svg>
                 <span class="text-[var(--color-text-light)]">
                   <strong class="text-[var(--color-text-dark)] font-medium">{feature.title}</strong>
-                  {' — '}
+                  {' - '}
                   {feature.description}
                 </span>
               </li>
@@ -152,7 +152,7 @@ const appFeatures = [
           <strong class="text-[var(--color-text-dark)] font-medium">
             Korzystanie z aplikacji jest całkowicie dobrowolne.
           </strong>{' '}
-          Jeśli wolisz tradycyjną formę współpracy — oczywiście jest taka możliwość. Najważniejsze
+          Jeśli wolisz tradycyjną formę współpracy - oczywiście jest taka możliwość. Najważniejsze
           jest to, aby sposób współpracy był dopasowany do Twoich potrzeb i preferencji.
         </p>
 

@@ -4,12 +4,12 @@
  *
  * Wartość powstaje w czasie builda (strona jest statyczna), więc odświeża się
  * przy każdym wdrożeniu. Jeśli strona nie jest przebudowywana przez cały rok,
- * liczba zostaje nieaktualna — dlatego w CI warto trzymać cykliczny build.
+ * liczba zostaje nieaktualna - dlatego w CI warto trzymać cykliczny build.
  */
 
 /**
  * Przypadek gramatyczny, w jakim liczebnik stoi w zdaniu. Różnica jest realna:
- * mówimy „przez 22 lata”, ale „od 22 lat” — po „od” rzeczownik idzie w
+ * mówimy „przez 22 lata”, ale „od 22 lat” - po „od” rzeczownik idzie w
  * dopełniaczu i wtedy zawsze jest „lat”.
  */
 export type YearsCase = 'accusative' | 'genitive';
@@ -22,8 +22,8 @@ export function yearsSince(startYear: number, now: Date = new Date()): number {
 /**
  * Polska odmiana rzeczownika „rok”.
  *
- * Biernik (po „przez”): 1 rok, 2–4 lata, 5–21 lat, 22–24 lata… Wyjątkiem są
- * nastki (12, 13, 14), które mimo końcówki 2–4 biorą „lat”.
+ * Biernik (po „przez”): 1 rok, 2-4 lata, 5-21 lat, 22-24 lata… Wyjątkiem są
+ * nastki (12, 13, 14), które mimo końcówki 2-4 biorą „lat”.
  *
  * Dopełniacz (po „od”): „roku” dla jedynki, „lat” dla każdej innej liczby.
  */

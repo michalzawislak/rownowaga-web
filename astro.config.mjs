@@ -11,7 +11,7 @@ const isGitHubPages = process.env.GITHUB_PAGES === 'true';
 /**
  * Indeksowanie dopuszczamy wyłącznie dla buildu na domenę produkcyjną.
  * Podgląd na GitHub Pages (i każdy inny build z GITHUB_PAGES=true) dostaje
- * `<meta name="robots" content="noindex">`, nie ma canonicala ani sitemapy —
+ * `<meta name="robots" content="noindex">`, nie ma canonicala ani sitemapy -
  * żeby nie powstał duplikat treści w Google.
  */
 const isIndexable = !isGitHubPages;
@@ -19,7 +19,7 @@ const isIndexable = !isGitHubPages;
 /**
  * Strony bloga żyją poza `src/pages`, więc powstają wyłącznie wtedy,
  * gdy `features.blog` jest włączone. Przy wyłączonej fladze nie ma
- * ani `/blog/`, ani wpisów — nie da się ich otworzyć ani zaindeksować.
+ * ani `/blog/`, ani wpisów - nie da się ich otworzyć ani zaindeksować.
  *
  * @returns {import('astro').AstroIntegration}
  */

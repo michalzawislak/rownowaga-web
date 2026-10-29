@@ -1,6 +1,6 @@
 import type { Page } from '@playwright/test';
 
-/** Zgoda zapisana z góry — baner nie zasłania treści w testach. */
+/** Zgoda zapisana z góry - baner nie zasłania treści w testach. */
 export async function acceptCookiesUpfront(page: Page): Promise<void> {
   await page.addInitScript(() => {
     localStorage.setItem(
@@ -13,7 +13,7 @@ export async function acceptCookiesUpfront(page: Page): Promise<void> {
 /**
  * Przewija stronę do końca i z powrotem, żeby sekcje z `animate-on-scroll`
  * zdążyły się pokazać. Bez tego są przezroczyste, a audyt dostępności
- * pomija je jako niewidoczne — dokładnie tak umykały błędy kontrastu.
+ * pomija je jako niewidoczne - dokładnie tak umykały błędy kontrastu.
  */
 export async function revealAllSections(page: Page): Promise<void> {
   await page.evaluate(async () => {
@@ -27,7 +27,7 @@ export async function revealAllSections(page: Page): Promise<void> {
     window.scrollTo(0, 0);
     await new Promise((resolve) => setTimeout(resolve, 400));
   });
-  // Animacje wejścia trwają 0,6 s — czekamy, aż kolory się ustabilizują.
+  // Animacje wejścia trwają 0,6 s - czekamy, aż kolory się ustabilizują.
   await page.waitForTimeout(800);
 }
 

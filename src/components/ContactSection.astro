@@ -117,7 +117,7 @@ const addressLine = `${business.address.streetAddress}, ${business.address.posta
             <input type="checkbox" id="consent" name="consent" required class="mt-1 mr-2" />
             <!-- prettier-ignore -->
             <label for="consent" class="text-sm text-[var(--color-text-light)]">
-              Wyrażam zgodę na przetwarzanie moich danych osobowych w celu odpowiedzi na wiadomość - w tym informacji o zdrowiu, jeśli sam(a) je podam (art. 9 ust. 2 lit. a RODO) — zgodnie z <a href={withBase('/polityka-prywatnosci')} class="link-inline">polityką prywatności</a>. Zgodę mogę wycofać w każdej chwili. *
+              Wyrażam zgodę na przetwarzanie moich danych osobowych w celu odpowiedzi na wiadomość - w tym informacji o zdrowiu, jeśli sam(a) je podam (art. 9 ust. 2 lit. a RODO) - zgodnie z <a href={withBase('/polityka-prywatnosci')} class="link-inline">polityką prywatności</a>. Zgodę mogę wycofać w każdej chwili. *
             </label>
           </div>
 
@@ -265,11 +265,11 @@ const addressLine = `${business.address.streetAddress}, ${business.address.posta
                   {business.openingHours.map((hours) => (
                     <p>
                       <span class="inline-block w-28 capitalize">{hours.day}</span>
-                      {hours.opens}–{hours.closes}
+                      {hours.opens}-{hours.closes}
                     </p>
                   ))}
                   <p>
-                    <span class="inline-block w-28">sob–niedz</span> zamknięte
+                    <span class="inline-block w-28">sob-niedz</span> zamknięte
                   </p>
                 </div>
               </div>
@@ -289,7 +289,7 @@ const addressLine = `${business.address.streetAddress}, ${business.address.posta
           <!--
             Do czasu uruchomienia rezerwacji online przycisk prowadzi wprost do
             telefonu. Wcześniej wskazywał `#kontakt`, czyli sekcję, w której sam
-            się znajduje — kliknięcie nie robiło nic.
+            się znajduje - kliknięcie nie robiło nic.
           -->
           <Button
             href={`tel:${business.telephone.replace(/\s/g, '')}`}

@@ -76,7 +76,7 @@ const socialLinks = [
       <!--
         Sygnet jest dekoracją: nazwa gabinetu stoi obok jako tekst, więc opis
         alternatywny tylko dublowałby ją w czytniku ekranu. Ładujemy go
-        priorytetowo — siedzi w pierwszym ekranie i nie może doskoczyć później.
+        priorytetowo - siedzi w pierwszym ekranie i nie może doskoczyć później.
       -->
       <a href={withBase('/')} class="flex items-center gap-2.5 md:gap-3">
         <Image
@@ -111,7 +111,7 @@ const socialLinks = [
       </div>
 
       <!--
-        Jeden przycisk przełącza panel i sam zmienia się w krzyżyk — obie kreski
+        Jeden przycisk przełącza panel i sam zmienia się w krzyżyk - obie kreski
         obracają się z pozycji hamburgera, więc nie podmieniamy ikon w JS.
       -->
       <button
@@ -180,7 +180,7 @@ const socialLinks = [
         <span class="mobile-menu__phone-text">
           <span class="mobile-menu__phone-number">{business.telephone}</span>
           <!--
-              Domyślnie neutralny opis — skrypt podmienia go na dzisiejszy status
+              Domyślnie neutralny opis - skrypt podmienia go na dzisiejszy status
               otwarcia. Bez JavaScriptu zostaje sensowne zdanie zamiast pustki.
             -->
           <span
@@ -245,7 +245,7 @@ const socialLinks = [
   /**
    * Przy otwartym panelu blokujemy przewijanie tła. `position: fixed` na `body`
    * gubi pozycję przewinięcia, więc zapamiętujemy ją i przywracamy przy
-   * zamknięciu — inaczej strona skakałaby na górę po każdym zamknięciu menu.
+   * zamknięciu - inaczej strona skakałaby na górę po każdym zamknięciu menu.
    */
   let savedScrollY = 0;
 
@@ -266,7 +266,7 @@ const socialLinks = [
     document.body.classList.remove('menu-open');
     /*
      * `behavior: 'instant'` jest tu konieczne: `html` ma `scroll-behavior:
-     * smooth`, więc zwykłe `scrollTo` animowałoby powrót z samej góry strony —
+     * smooth`, więc zwykłe `scrollTo` animowałoby powrót z samej góry strony -
      * użytkownik widziałby przewijanie przez pół strony po zamknięciu menu.
      */
     window.scrollTo({ top: savedScrollY, left: 0, behavior: 'instant' });
@@ -336,7 +336,7 @@ const socialLinks = [
 
   /*
    * Po obróceniu telefonu albo rozciągnięciu okna do szerokości desktopowej
-   * panel znika z układu, ale blokada przewijania zostałaby na `body` —
+   * panel znika z układu, ale blokada przewijania zostałaby na `body` -
    * strona wyglądałaby na zawieszoną. Dlatego zamykamy menu jawnie.
    */
   const desktopView = window.matchMedia('(min-width: 1024px)');
@@ -370,7 +370,7 @@ const socialLinks = [
   }
 
   /**
-   * Czas liczymy w strefie gabinetu, nie przeglądarki — ktoś przeglądający
+   * Czas liczymy w strefie gabinetu, nie przeglądarki - ktoś przeglądający
    * stronę z innej strefy dostałby inaczej błędną informację o otwarciu.
    */
   function warsawNow(): { day: number; minutes: number } {
@@ -552,7 +552,7 @@ const socialLinks = [
 
   /*
    * Widoczność sterujemy tu, a nie klasą `lg:hidden`. Style komponentu Astro są
-   * poza `@layer`, a utility Tailwinda siedzą w warstwie `utilities` — reguła
+   * poza `@layer`, a utility Tailwinda siedzą w warstwie `utilities` - reguła
    * bez warstwy zawsze wygrywa, więc `display: flex` przykrywało `lg:hidden`
    * i hamburger zostawał widoczny na desktopie obok pełnego menu.
    */
@@ -815,7 +815,7 @@ const socialLinks = [
     }
   }
 
-  /* Samo tło panelu pojawia się natychmiast — gdyby się rozjaśniało, przez pierwsze klatki prześwitywałaby przez nie treść strony. */
+  /* Samo tło panelu pojawia się natychmiast - gdyby się rozjaśniało, przez pierwsze klatki prześwitywałaby przez nie treść strony. */
   .mobile-menu__list li,
   .mobile-menu__phone,
   .mobile-menu__row,
