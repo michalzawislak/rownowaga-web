@@ -1,7 +1,7 @@
 ---
 import { Picture } from 'astro:assets';
 import Button from './ui/Button.astro';
-import heroImage from '../assets/images/hero/hero-main.jpeg';
+import heroImage from '../assets/images/hero/ekz-hero.jpg';
 
 const checkmarks = ['Online i stacjonarnie w Szczecinie', 'Indywidualny schemat diety'];
 ---
@@ -28,17 +28,20 @@ const checkmarks = ['Online i stacjonarnie w Szczecinie', 'Indywidualny schemat 
               To jest element LCP: ładujemy go priorytetowo, bez animacji
               wejścia i bez JavaScriptu. `widths` odpowiadają realnym
               szerokościom w layoucie (z zapasem na ekrany 2x).
+              Zdjęcie jest poziome (3:2), a kosze sięgają prawie do krawędzi
+              kadru — proporcja 4:3 przycina tylko tło, kwadrat uciąłby kosze.
+              Przycięcie z 3:2 do 4:3 wymaga ~1,125× szerszego źródła (stąd `sizes`).
             -->
             <Picture
               src={heroImage}
               formats={['avif', 'webp']}
-              widths={[360, 480, 576, 720, 960, 1152]}
-              sizes="(min-width: 1024px) 576px, (min-width: 640px) 448px, calc(100vw - 2rem)"
-              alt="Mosiężna waga szalkowa w równowadze: na jednej szalce warzywa, na drugiej owoce, orzechy i czekolada"
+              widths={[400, 504, 648, 810, 1008, 1296]}
+              sizes="(min-width: 1024px) 648px, (min-width: 640px) 504px, calc(112.5vw - 2.25rem)"
+              alt="Elżbieta Kuczyńska-Zawiślak, dietetyk i psychodietetyk, trzyma w dłoniach dwa kosze: z warzywami i ziołami oraz z owocami, warzywami i czekoladą"
               loading="eager"
               fetchpriority="high"
               decoding="async"
-              class="aspect-square w-full object-cover"
+              class="aspect-[4/3] w-full object-cover object-[48%_50%]"
             />
           </div>
         </div>

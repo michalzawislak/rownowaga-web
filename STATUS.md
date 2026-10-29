@@ -54,11 +54,10 @@ Stan na 17 września 2026. Strona nie jest jeszcze opublikowana pod docelową do
 
 - [ ] Hero: obraz 2,2 MB (2048×2048) do wymiany na `astro:assets` (`<Picture>`, AVIF/WebP,
       `srcset`, `fetchpriority="high"`) i wyjęcie go z wyspy React — dziś LCP czeka na hydratację
-- [ ] `hero-main.png` (1,2 MB) jest nieużywany — do usunięcia
+- [ ] `src/assets/images/hero/hero-main.jpeg` (2 MB, zdjęcie wagi) jest nieużywany po wymianie hero — do usunięcia
 
 ### Brakujące pliki (404)
 
-- [ ] `/images/about/profile.jpg` — dziś symlink do placeholdera SVG, trafia też do Schema.org
 - [ ] `/images/solution/mindful-eating.jpg`
 - [ ] `/images/hero.jpg` — domyślny `og:image`
 - [ ] `/images/blog/psychodietician-signs.jpg` (przy włączaniu bloga)
@@ -67,7 +66,7 @@ Stan na 17 września 2026. Strona nie jest jeszcze opublikowana pod docelową do
 ### Treści i dane
 
 - [ ] `specialist.credentials` w `business.json` — prawdziwe uprawnienia do `hasCredential`
-- [ ] Docelowe zdjęcia zamiast placeholderów
+- [ ] Docelowe zdjęcia zamiast placeholderów (hero i „Poznajmy się” już są: `ekz-hero.jpg`, `ekz.jpg`)
 - [ ] Prawdziwe historie w `metamorphosis.json` przed włączeniem sekcji
 
 ### Pozostałe

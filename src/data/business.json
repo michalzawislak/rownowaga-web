@@ -6,7 +6,7 @@
   "url": "https://rownowaga-dietetyka.pl",
   "telephone": "+48 720 851 299",
   "email": "gabinet@rownowaga-dietetyka.pl",
-  "image": "/images/about/profile.jpg",
+  "image": "/images/hero/ekz-hero.jpg",
   "priceRange": "$$",
   "address": {
     "streetAddress": "Jacka Malczewskiego 34/1",
@@ -57,7 +57,7 @@
     "name": "Elżbieta Kuczyńska-Zawiślak",
     "jobTitle": "Dietetyk i psychodietetyk",
     "practiceSince": 2013,
-    "image": "/images/about/profile.jpg",
+    "image": "/images/shared/ekz.jpg",
     "credentials": []
   },
   "sameAs": [

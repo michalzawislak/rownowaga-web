@@ -1,6 +1,6 @@
 ---
 import Button from './ui/Button.astro';
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import business from '../data/business.json';
 import { resolveImage } from '../lib/images';
 import { experienceLabel } from '../lib/experience';
@@ -32,13 +32,22 @@ const experienceOver = experienceLabel(business.specialist.practiceSince, 'accus
     <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
       <div class="lg:col-span-2 lg:sticky lg:top-24 animate-on-scroll">
         <div class="rounded-2xl overflow-hidden shadow-xl image-hover">
-          <Image
+          <!--
+            Zdjęcie jest poziome (3:2) z dużą ilością tła po bokach. Kadr
+            ustawiamy na twarz (`object-position`), żeby w wąskiej kolumnie
+            na desktopie i w kwadracie na mobile postać nie była ucięta.
+            `sizes` liczymy od wysokości kontenera (h × 1,5), bo przy
+            `object-cover` to wysokość decyduje, ile pikseli źródła widać.
+          -->
+          <Picture
             src={resolveImage(business.specialist.image)}
+            formats={['avif', 'webp']}
+            widths={[570, 760, 810, 1140, 1620]}
+            sizes="(min-width: 1024px) 810px, (min-width: 640px) calc(100vw - 4rem), 570px"
             alt={`${business.specialist.name} - ${business.specialist.jobTitle}`}
-            width={600}
-            height={500}
-            class="w-full h-[350px] md:h-[450px] lg:h-[500px] object-cover transition-transform duration-700"
+            class="w-full h-[380px] sm:h-[450px] lg:h-[540px] object-cover object-[53%_20%] transition-transform duration-700"
             loading="lazy"
+            decoding="async"
           />
         </div>
       </div>
