@@ -72,6 +72,41 @@ jobs:
       - name: Instalacja lftp
         run: sudo apt-get update && sudo apt-get install -y lftp
 
+      # Szybka diagnostyka połączenia, zanim ruszy synchronizacja. Każdy błąd
+      # kończy się czytelnym komunikatem zamiast ogólnego „Not connected”.
+      # Wartości sekretów nie są wypisywane (GitHub i tak je maskuje).
+      - name: Sprawdzenie połączenia SFTP
+        env:
+          SFTP_HOST: ${{ secrets.SFTP_HOST }}
+          SFTP_USERNAME: ${{ secrets.SFTP_USERNAME }}
+          SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
+        run: |
+          fail() { echo "::error::$1"; exit 1; }
+
+          [ -n "$SFTP_HOST" ] || fail "Brak sekretu SFTP_HOST."
+          [ -n "$SFTP_USERNAME" ] || fail "Brak sekretu SFTP_USERNAME."
+          [ -n "$SFTP_PASSWORD" ] || fail "Brak sekretu SFTP_PASSWORD."
+          case "$SFTP_HOST" in
+            *://*) fail "SFTP_HOST zawiera protokół (np. ftp://). Wpisz samą nazwę serwera, np. ftp.cluster0XX.hosting.ovh.net." ;;
+            *:*) fail "SFTP_HOST zawiera port. Wpisz samą nazwę serwera - port 22 jest w workflow." ;;
+            *[[:space:]]*) fail "SFTP_HOST zawiera spację lub znak nowej linii." ;;
+          esac
+          case "$SFTP_USERNAME" in
+            *[[:space:]]*) fail "SFTP_USERNAME zawiera spację lub znak nowej linii." ;;
+          esac
+
+          getent hosts "$SFTP_HOST" > /dev/null || fail "Nie znaleziono serwera $SFTP_HOST w DNS - sprawdź nazwę w panelu OVH (zakładka FTP - SSH)."
+          timeout 15 bash -c "</dev/tcp/$SFTP_HOST/22" 2> /dev/null \
+            || fail "Port 22 na $SFTP_HOST nie odpowiada. Sprawdź w panelu OVH, czy SFTP jest włączone dla tego loginu."
+          echo "Serwer odpowiada na porcie 22, sprawdzam logowanie..."
+
+          sudo apt-get install -y sshpass > /dev/null
+          mkdir -p ~/.ssh && ssh-keyscan -p 22 "$SFTP_HOST" >> ~/.ssh/known_hosts 2> /dev/null
+          echo "pwd" | SSHPASS="$SFTP_PASSWORD" sshpass -e sftp -oBatchMode=no -oPreferredAuthentications=password,keyboard-interactive \
+            -oPubkeyAuthentication=no -P 22 "$SFTP_USERNAME@$SFTP_HOST" > /tmp/sftp.log 2>&1 \
+            || { cat /tmp/sftp.log; fail "Logowanie SFTP nie powiodło się - sprawdź login i hasło (SFTP_USERNAME, SFTP_PASSWORD) oraz czy SFTP jest włączone dla loginu."; }
+          echo "Logowanie OK."
+
       # Katalog domowy loginu FTP to główny katalog hostingu: obok `www/` leży
       # tam `.ovhconfig`, którego nie wolno ruszać. Dlatego synchronizujemy
       # wyłącznie `www/` i przerywamy, jeśli go nie ma - zamiast pisać
@@ -81,18 +116,21 @@ jobs:
         env:
           SFTP_HOST: ${{ secrets.SFTP_HOST }}
           SFTP_USERNAME: ${{ secrets.SFTP_USERNAME }}
-          # lftp czyta hasło z LFTP_PASSWORD (`--env-password`), więc nie trafia
-          # ono do linii poleceń, a znaki specjalne w haśle niczego nie psują.
+          # lftp czyta hasło z LFTP_PASSWORD (`open --env-password`), więc nie
+          # trafia ono do linii poleceń, a znaki specjalne niczego nie psują.
           LFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
         run: |
-          lftp -e "
-            set sftp:auto-confirm yes;
-            set net:max-retries 3;
-            set net:timeout 30;
-            cd www || exit 1;
-            mirror --reverse --delete --verbose --parallel=4 dist/ ./;
-            bye
-          " --env-password -u "$SFTP_USERNAME" "sftp://$SFTP_HOST:22"
+          cat > /tmp/deploy.lftp <<LFTP
+          set cmd:fail-exit yes
+          set sftp:auto-confirm yes
+          set net:max-retries 2
+          set net:timeout 30
+          open --env-password -u "$SFTP_USERNAME" "sftp://$SFTP_HOST:22"
+          cd www
+          mirror --reverse --delete --verbose --parallel=4 dist/ ./
+          bye
+          LFTP
+          lftp -f /tmp/deploy.lftp
 
       - name: Kontrola strony po publikacji
         run: |
